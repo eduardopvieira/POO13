@@ -1,16 +1,16 @@
-public class Endereço {
+public class Endereco {
 	
 	private String rua;
 	private String bairro;
 	private String cep;
 	private int numCasa;
 	
-	//ÀS PESSOAS DO MEU GRUPO: se forem usar de referencia, nao façam os métodos no modelo dos que
+	//ÀS PESSOAS DO MEU GRUPO: se forem usar de referencia, nao facam os métodos no modelo dos que
 	//estão comentados, gadelha nao quer daquele jeito ainda (mandei email pra ele ´perguntadno)
 	
-	public Endereço() {};
+	public Endereco() {};
 	
-	public Endereço(String rua, String bairro, String cep, int numCasa) {
+	public Endereco(String rua, String bairro, String cep, int numCasa) {
 		setRua(rua);
 		setBairro(bairro);
 		setCep(cep);
@@ -54,24 +54,24 @@ public class Endereço {
 	}
 	//------------------------------------------------------
 	public void addEndereco()
-	{System.out.println("cadastrou endereço");}
+	{System.out.println("cadastrou endereco");}
 
-	public void excluirEndereço()
+	public void excluirEndereco()
 	{
-		System.out.println("Endereço excluido");
+		System.out.println("Endereco excluido");
 	}
 	
-	public void editarEndereço()
+	public void editarEndereco()
 	{
-		System.out.println("Endereço editado");
+		System.out.println("Endereco editado");
 	}
 	
 	
 	
 	public static void main (String args[]) {
-	Endereço e = new Endereço("rua foda", "bairro foda", "cep foda", 2469);
+	Endereco e = new Endereco("rua foda", "bairro foda", "cep foda", 2469);
 	System.out.println(e.getRua());
-	e.excluirEndereço();
+	e.excluirEndereco();
 	System.out.println(e.getRua());
 	
 	}
@@ -79,7 +79,7 @@ public class Endereço {
 }
 
 
-/*public void excluirEndereço() {         
+/*public void excluirEndereco() {         
 this.bairro = null;
 this.rua = null;
 this.cep = null;
