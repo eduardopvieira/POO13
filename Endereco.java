@@ -40,7 +40,7 @@ public class Endereco {
 			return cep;
 	}
 	public void setCep(String cep) {
-		if (cep != null && !cep.isEmpty() && !cep.length == 8) {
+		if (cep != null && !cep.isEmpty() && cep.length == 8) {
 			this.cep = cep;
 		}
 	}
