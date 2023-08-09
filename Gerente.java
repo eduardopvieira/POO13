@@ -80,14 +80,4 @@ public class Gerente{
 		System.out.println(g2.getSenha());
 		g2.editarFuncionario("11121314156");
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 }
