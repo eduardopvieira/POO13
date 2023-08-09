@@ -113,9 +113,3 @@ public class Automovel{
 		auto2.buscarp("placa1");
 	}
 }
-	
-	
-	
-	
-	
-	
