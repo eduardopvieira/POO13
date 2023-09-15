@@ -21,25 +21,4 @@ public class Cliente extends Pessoa{
         return auto;
     }
 
-
-    @Override
-    public void cadastrar() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'cadastrar'");
-    }
-
-    @Override
-    public void excluir() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'excluir'");
-    }
-
-    @Override
-    public void editar() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'editar'");
-    }
-
-
-
 }

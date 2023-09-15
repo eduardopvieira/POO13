@@ -14,6 +14,10 @@ public class Funcionario extends Pessoa {
         setSenha(senha);
 
     }
+    public Funcionario (String cpf, String senha) throws InfoNaoCompativelException {
+        super.setCPF(cpf);
+        setSenha(senha);
+    }
 
     public void setSenha(String senha) throws InfoNaoCompativelException {
         if (senha.length() < 6 && senha != null && senha.isEmpty() == false) {

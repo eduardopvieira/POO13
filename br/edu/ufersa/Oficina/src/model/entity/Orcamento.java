@@ -1,17 +1,16 @@
 package model.entity;
 
-import java.util.Scanner;
 import java.util.Date;
 
 public class Orcamento {
 
-  private static int idServico;
+  private int idOrcamento;
   private Cliente clienteOrcamento;
   private Automovel automovelOrcamento;
   private Pecas pecasOrcamento;
   private Servico servicoOrcamento;
   private double totalOrcamento;
-  private Date dataOrcamento = new Date();
+  private Date dataOrcamento;
 
   public Orcamento(){}
   public Orcamento(Cliente clienteOrcamento, Automovel automovelOrcamento, Pecas pecasOrcamento, Servico servicoOrcamento){
@@ -20,10 +19,21 @@ public class Orcamento {
       setAutomovelOrcamento(automovelOrcamento);
       setPecasOrcamento(pecasOrcamento);
       setServicoOrcamento(servicoOrcamento);
-      this.dataOrcamento = dataOrcamento;
+      setDataOrcamento(dataOrcamento);
       /*setTotalOrcamento(totalOrcamento);*/
   }
 
+
+public void setDataOrcamento(Date data) {
+  this.dataOrcamento = data;
+}
+
+public Date getDataOrcamento() {
+    return dataOrcamento;
+}
+
+
+public int getIdOrcamento() {return idOrcamento;}
 
 /*==>GET/SET clienteOrcamento<==*/
   public Cliente getClienteOrcamento(){
@@ -31,7 +41,6 @@ public class Orcamento {
   }
   public void setClienteOrcamento(Cliente clienteOrcamento){
     this.clienteOrcamento = clienteOrcamento;
-    System.out.println("Cliente atribuido.");
   }
 /*<========================>*/
 
@@ -74,11 +83,6 @@ public class Orcamento {
 /*METODO EXCLUIR CLIENTE(ESQUECER)*/
   public void excluiOrcamento(){
     System.out.println("Confirma exclusao do orcamento? ");
-  }
-/*<========================>*/
-/*METOODO CONSULTA*/
-  public void consultaOrcamento(){
-    System.out.println("Teste: "+idServico);
   }
 /*<========================>*/
 /*GET E SET PREÇO TOTAL DO ORÇAMENTO*/

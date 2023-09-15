@@ -8,25 +8,22 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import model.entity.Automovel;
+import model.entity.Servico;
 
-public class AutomovelDAO extends BaseDAOImpl <Automovel>{
+public class ServicoDAO extends BaseDAOImpl <Servico>{
     
     @Override
-    public Long inserir (Automovel entity) {
+    public Long inserir (Servico entity) {
 
         Connection con = getConnection();
-        String sql = "INSERT INTO tb_auto (placa, cor, modelo, ano, quilometragem, dono) " + "values (?,?,?,?,?,?)";
+        String sql = "INSERT INTO tb_servicos (servico_nome, servico_desc, servico_preco) " + "values (?,?,?)";
 
         try {
             PreparedStatement ps = con.prepareStatement(sql);
 
-            ps.setString(1, entity.getPlaca());
-            ps.setString(2, entity.getCor());
-            ps.setString(3, entity.getModelo());
-            ps.setInt(4, entity.getAno());
-            ps.setInt(5, entity.getKm());
-            ps.setString(6, entity.getDono().getCPF());
+            ps.setString(1, entity.getServicoNome());
+            ps.setString(2, entity.getServicoDescricao());
+            ps.setDouble(3, entity.getServicoPreco());
             ps.execute();
             ps.close();
         
@@ -40,16 +37,16 @@ public class AutomovelDAO extends BaseDAOImpl <Automovel>{
     }
     //=======================================================================================
 
-    public void deletar(Automovel entity) {
+    public void deletar(Servico entity) {
 
         Connection con = getConnection();
-        String sql = "DELETE FROM tb_auto WHERE placa = ?";
+        String sql = "DELETE FROM tb_servicos WHERE id_servico = ?";
 
         try
         {
             PreparedStatement ps = con.prepareStatement(sql);
 
-            ps.setString(1, entity.getPlaca());
+            ps.setInt(1, entity.getIdServico());
             ps.execute();
             ps.close();
         }
@@ -61,19 +58,17 @@ public class AutomovelDAO extends BaseDAOImpl <Automovel>{
     }
 //=======================================================================================
 
-    public void alterar (Automovel entity) {
+    public void alterar (Servico entity) {
         Connection con = getConnection();
-        String sql = "UPDATE tb_auto SET placa = ?, cor = ?, modelo = ?, ano = ?, quilometragem = ? WHERE cpf_d = ?";
+        String sql = "UPDATE tb_servicos SET servico_nome = ?, servico_desc = ?, servico_preco = ? WHERE id_servico = ?";
 
         try
         {
             PreparedStatement ps = con.prepareStatement(sql);
-            ps.setString(1, entity.getPlaca());
-            ps.setString(2, entity.getCor());
-            ps.setString(3, entity.getModelo());
-            ps.setInt(4, entity.getAno());
-            ps.setInt(5, entity.getKm());
-            ps.setString(6, entity.getDono().getCPF());
+            ps.setString(1, entity.getServicoNome());
+            ps.setString(2, entity.getServicoDescricao());
+            ps.setDouble(3, entity.getServicoPreco());
+            ps.setInt(4, entity.getIdServico());
             ps.execute();
             ps.close();
         }
@@ -85,16 +80,16 @@ public class AutomovelDAO extends BaseDAOImpl <Automovel>{
     }
 
 //=======================================================================================
-    public ResultSet buscar (Automovel entity) {
+    public ResultSet buscar (Servico entity) {
 
-        String sql = "SELECT * FROM tb_auto WHERE placa=? OR modelo=?";
+        String sql = "SELECT * FROM tb_servicos WHERE servico_nome = ? OR servico_desc = ?";
         PreparedStatement ptst;
         ResultSet rs = null;
     
         try {
             ptst = getConnection().prepareStatement(sql);
-            ptst.setString(1, entity.getPlaca()); // Parâmetro para o nome
-            ptst.setString(2, entity.getModelo()); // Parâmetro para o CPF
+            ptst.setString(1, entity.getServicoNome()); // Parâmetro para o nome
+            ptst.setString(2, entity.getServicoDescricao()); // Parâmetro para o CPF
             System.out.println(ptst);
             rs = ptst.executeQuery();
         } catch (SQLException e) {
@@ -105,10 +100,10 @@ public class AutomovelDAO extends BaseDAOImpl <Automovel>{
 
     //====================================== LISTAR ==================================
     @Override
-    public List<Automovel> listar(){
+    public List<Servico> listar(){
 		Connection con = BaseDAOImpl.getConnection();
-        String sql = "SELECT * FROM tb_auto";
-        List<Automovel> lista = new ArrayList<>();
+        String sql = "SELECT * FROM tb_servicos";
+        List<Servico> lista = new ArrayList<>();
         try {
 			PreparedStatement ps = con.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();

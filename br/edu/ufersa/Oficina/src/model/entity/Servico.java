@@ -10,15 +10,14 @@ public class Servico {
   public Servico(){}
 
   public Servico(String servicoNome, String servicoDescricao, double servicoPreco){
-    this.idServico++;
     setServicoNome(servicoNome);
     setServicoDescricao(servicoDescricao);
     setServicoPreco(servicoPreco);
   }
 
-/*==>GET/SET (id)<==
-NÃO SE APLICA
-<========================>*/
+//get id:
+public int getIdServico() {return idServico;}
+
 /*==>GET/SET (servicoNome)<==*/
   public String getServicoNome(){
     return servicoNome;
@@ -58,7 +57,7 @@ NÃO SE APLICA
 /*<========================>*/
 
 /*==>GET/SET (servico)<==*/
-  public double getSercoPreco(){
+  public double getServicoPreco(){
     return servicoPreco;
   }
 
