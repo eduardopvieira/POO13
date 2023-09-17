@@ -103,3 +103,90 @@ public class Automovel {
     public void buscarModelo(String modelo) {};
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+==============================================Segunda opção ===================================================
+
+package entity;
+
+import exceptions.InformacaoInvalida;
+
+public class Automovel {
+	private String placa;
+	private String cor;
+	private String modelo;
+	private int ano;
+	private int quilometragem;
+	private Cliente dono;
+	// =============Construtores ================
+	public Automovel() {}
+	public Automovel(String placa, String cor, String modelo, int ano, int quilometragem, Cliente dono) throws InformacaoInvalida{
+		setPlaca(placa);
+		setCor(cor);
+		setModelo(modelo);
+		setAno(ano);
+		setQuilometragem(quilometragem);
+		this.dono = dono;
+	}
+	
+	//=========== gets e sets =============
+	public String getPlaca() {
+		return placa;
+	}
+	public void setPlaca(String placa) throws InformacaoInvalida {
+		if(placa != null && placa.length() == 7)
+			this.placa = placa;
+		else
+			throw new InformacaoInvalida("Placa inválida");
+	}
+	public String getCor() {
+		return this.cor;
+	}
+	public void setCor(String cor) throws InformacaoInvalida {
+		if(cor != null && !cor.isEmpty())
+			this.cor = cor;
+		else
+			throw new InformacaoInvalida("Cor inválida");
+	}
+	public String getModelo() {
+		return this.modelo;
+	}
+	public void setModelo(String modelo) throws InformacaoInvalida{
+		if(modelo != null && !modelo.isEmpty())
+			this.modelo = modelo;
+		else
+			throw new InformacaoInvalida("Modelo inválido");
+	}
+	public int getAno() {
+		return this.ano;
+	}
+	public void setAno(int ano) throws InformacaoInvalida{
+		if(ano > 1886)
+			this.ano = ano;
+		else
+			throw new InformacaoInvalida("Ano do veículo inválido");
+	}
+	public int getQuilometragem() {
+		return quilometragem;
+	}
+	public void setQuilometragem(int quilometragem) throws InformacaoInvalida {
+		if(quilometragem >= 0)
+			this.quilometragem = quilometragem;
+		else
+			throw new InformacaoInvalida("quilometragem inválida");
+	}
+}
+    
