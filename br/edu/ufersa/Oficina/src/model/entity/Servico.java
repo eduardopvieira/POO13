@@ -76,3 +76,53 @@ public int getIdServico() {return idServico;}
   }
 
 }
+
+
+
+
+
+
+
+
+========================SEGUNDA OPCAO =======================================
+
+
+
+package entity;
+
+import exceptions.InformacaoInvalida;
+
+public class Servico {
+	private String nomeServico;
+	private double precoServico;
+	
+	//======== CONSTRUTORES ===========
+	
+	public Servico(String nomeServico, double precoServico) throws InformacaoInvalida{
+		setNomeServico(nomeServico);
+		setPrecoServico(precoServico);
+	}
+
+	public String getNomeServico() {
+		return this.nomeServico;
+	}
+
+	public void setNomeServico(String nomeServico) throws InformacaoInvalida{
+		if(nomeServico != null && !nomeServico.isEmpty())
+			this.nomeServico = nomeServico;
+		else
+			throw new InformacaoInvalida("O nome do serviço não pode ser vazio");
+	}
+
+	public double getPrecoServico() {
+		return this.precoServico;
+	}
+
+	public void setPrecoServico(double precoServico) throws InformacaoInvalida{
+		if(precoServico >= 0)
+			this.precoServico = precoServico;
+		else
+			throw new InformacaoInvalida("O preço do serviço não pode ser negativo");
+	}
+}
+
