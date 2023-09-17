@@ -16,3 +16,19 @@ public class Gerente extends Funcionario{
 
     }
 }
+
+
+
+========================= SEGUNDA OPCAO ===================================
+
+package entity;
+
+import exceptions.InformacaoInvalida;
+
+public class Gerente extends Funcionario{
+	public Gerente () {}
+	public Gerente (String nome, String cpf, String endereco, String senha) throws InformacaoInvalida {
+		super(nome, cpf, endereco, senha);
+	}
+}
+
