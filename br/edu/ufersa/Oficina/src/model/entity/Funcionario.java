@@ -35,3 +35,35 @@ public class Funcionario extends Pessoa {
         }
     }
 }
+
+
+
+
+
+=======================================SEGUNDA OPCAO =============================================
+
+package entity;
+
+import exceptions.InformacaoInvalida;
+
+public class Funcionario extends Pessoa{
+	private String senha;
+	
+	
+	// =========CONSTRUTORES ============
+	public Funcionario() {}
+	public Funcionario(String nome, String cpf, String endereco, String senha) throws InformacaoInvalida{
+		super(nome, cpf, endereco);
+		setSenha(senha);
+	}
+	public String getSenha() {
+		return this.senha;
+	}
+	public void setSenha(String senha) throws InformacaoInvalida{
+		if(senha != null && !senha.isEmpty())
+			this.senha = senha;
+		else
+			throw new InformacaoInvalida("Sua senha não pode ser vazia");
+	}
+}
+
