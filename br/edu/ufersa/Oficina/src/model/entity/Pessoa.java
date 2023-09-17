@@ -41,3 +41,60 @@ public abstract class Pessoa {
     public String getEndereco(){return endereco;}
     
 }
+
+
+
+
+
+
+========================SEGUNDA OPCAO =================================
+
+
+package entity;
+
+import exceptions.InformacaoInvalida;
+
+public abstract class Pessoa {
+	private String nome;
+	private String cpf;
+	private String endereco;
+	
+	//construtores
+	public Pessoa() {};
+	public Pessoa(String nome, String cpf, String endereco) throws InformacaoInvalida{
+		setNome(nome);
+		setCpf(cpf);
+		setEndereco(endereco);
+	}
+	
+	//===============gets e sets=============
+	public String getNome() {
+		return this.nome;
+	}
+	public void setNome(String nome) throws InformacaoInvalida {
+		if(nome !=null && !nome.isEmpty())
+			this.nome = nome;
+		else
+			throw new InformacaoInvalida("O nome não pode ser vazio");
+	}
+	public String getCpf() {
+		return this.cpf;
+	}
+	public void setCpf(String cpf) throws InformacaoInvalida{
+		if(cpf != null && cpf.length() == 11)	
+			this.cpf = cpf;
+		else
+			throw new InformacaoInvalida("CPF inválido");
+	}
+	public String getEndereco() {
+		return this.endereco;
+	}
+	public void setEndereco(String endereco) throws InformacaoInvalida{
+		if(endereco != null && !endereco.isEmpty())
+			this.endereco = endereco;
+		else
+			throw new InformacaoInvalida("Endereço inválido");
+	}
+	//=========== MÉTODOS ABSTRATOS ================= 
+}
+
