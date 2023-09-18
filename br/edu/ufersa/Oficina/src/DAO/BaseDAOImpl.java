@@ -9,7 +9,7 @@ import java.sql.ResultSet;
 public abstract class BaseDAOImpl<E> implements BaseDAO<E> {
     final static String URL = "jdbc:postgresql://localhost:5432/Oficina";
     final static String USER = "postgres";
-    final static String PASS = "2635";
+    final static String PASS = "x3h912312";
     static Connection con = null;
 
 

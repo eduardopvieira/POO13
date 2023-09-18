@@ -87,14 +87,31 @@ public class AutomovelDAO extends BaseDAOImpl <Automovel>{
 //=======================================================================================
     public ResultSet buscar (Automovel entity) {
 
-        String sql = "SELECT * FROM tb_auto WHERE placa=? OR modelo=?";
+        String sql = "SELECT * FROM tb_auto WHERE placa=?";
         PreparedStatement ptst;
         ResultSet rs = null;
     
         try {
             ptst = getConnection().prepareStatement(sql);
-            ptst.setString(1, entity.getPlaca()); // Parâmetro para o nome
-            ptst.setString(2, entity.getModelo()); // Parâmetro para o CPF
+            ptst.setString(1, entity.getPlaca()); // Parâmetro para o PLACA
+            System.out.println(ptst);
+            rs = ptst.executeQuery();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return rs;
+    }
+
+//========================================= BUSCAR POR MODELO =========================================
+        public ResultSet buscarPorModelo (Automovel entity) {
+
+        String sql = "SELECT * FROM tb_auto WHERE modelo=?";
+        PreparedStatement ptst;
+        ResultSet rs = null;
+    
+        try {
+            ptst = getConnection().prepareStatement(sql);
+            ptst.setString(1, entity.getModelo()); // Parâmetro para o PLACA
             System.out.println(ptst);
             rs = ptst.executeQuery();
         } catch (SQLException e) {

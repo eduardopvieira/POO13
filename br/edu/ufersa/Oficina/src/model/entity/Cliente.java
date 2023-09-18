@@ -1,24 +1,33 @@
 package model.entity;
 
 import Exceptions.InfoNaoCompativelException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Cliente extends Pessoa{
 
-    private Automovel auto;
+    private List <Automovel> ListaAuto;
     
     public Cliente(){};
-    public Cliente(String nome, String cpf, Automovel auto) throws InfoNaoCompativelException {
+    public Cliente(String nome, String cpf) throws InfoNaoCompativelException {
         super.setNome(nome);
         super.setCPF(cpf);
-        setAuto(auto);
+        ListaAuto = new ArrayList<Automovel>();
     }
 
 
-    public void setAuto (Automovel auto) {
-        this.auto = auto;
+    public void setAuto (List<Automovel> ListaAuto) {
+        this.ListaAuto = ListaAuto;
+ 
     }
-    public Automovel getAuto() {
-        return auto;
+    public List<Automovel> getAuto() {
+        return ListaAuto;
+    }
+
+    public void addAuto(Automovel auto){
+        if (auto != null) {
+        this.ListaAuto.add(auto);
+        }
     }
 
 }

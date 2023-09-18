@@ -13,6 +13,5 @@ public class Gerente extends Funcionario{
         super.setNome(nome);
         super.setEndereco(endereco);
         super.setSenha(senha);
-
     }
 }

@@ -7,18 +7,18 @@ public class Automovel {
     private String placa;
     private String cor;
     private String modelo;
-    private Cliente dono;
     private int ano;
     private int km;
+    private Cliente dono;
 
     public Automovel () {};
-    public Automovel (String placa, String cor, String modelo, Cliente dono, int ano, int km) {
-        this.placa = placa;
-        this.cor = cor;
-        this.modelo = modelo;
+    public Automovel (String placa, String cor, String modelo, int ano, int km, Cliente dono) throws InfoNaoCompativelException {
+        setPlaca(placa);
+        setCor(cor);
+        setModelo(modelo);
+        setAno(ano);
+        setKm(km);
         this.dono = dono;
-        this.ano = ano;
-        this.km = km;
     }
     
 //====================GET E SET PLACA=======================
@@ -60,26 +60,13 @@ public class Automovel {
         }
     }
 
-//=====================GET E SET DONO=========================
-
-    public Cliente getDono() {
-        return dono;
-    }
-    public void setDono(Cliente dono) throws InfoNaoCompativelException {
-        if (dono != null && dono.getNome().isEmpty() == false) {
-            this.dono = dono;
-        } else {
-            throw new InfoNaoCompativelException("Dono invalido.");
-        }
-    }
-
 //=====================GET E SET ANO=========================
 
     public int getAno() {
         return ano;
     }
     public void setAno(int ano) throws InfoNaoCompativelException {
-        if (ano <= 1900 && ano >= 2024) {
+        if (ano >= 1900 && ano <= 2024) {
             this.ano = ano;
         } else {throw new InfoNaoCompativelException("Ano inválido.");}
     }
@@ -90,10 +77,20 @@ public class Automovel {
         return km;
     }
     public void setKm(int km) throws InfoNaoCompativelException {
-        if (km < 0) {
+        if (km >= 0) {
             this.km = km;
         } else {throw new InfoNaoCompativelException("Quilometragem invalida.");}
     }
+//============================GET E SET DONO========
+public void setDono(Cliente dono) {
+    this.dono = dono;
+}
+
+public Cliente getDono() {
+    return dono;
+}
+
+
 
 //======================== METODOS =====================
     public void cadastrarAuto(Automovel auto) {};

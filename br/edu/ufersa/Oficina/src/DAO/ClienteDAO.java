@@ -17,7 +17,7 @@ public class ClienteDAO extends BaseDAOImpl <Cliente>{
     public Long inserir (Cliente entity) {
 
         Connection con = getConnection();
-        String sql = "INSERT INTO tb_clientes (cpf_cliente, nome_cliente, endereco) " + "values (?,?,?)";
+        String sql = "INSERT INTO tb_clientes (cpf_cliente, nome_cliente, endereco_cliente) " + "values (?,?,?)";
 
         try {
             PreparedStatement ps = con.prepareStatement(sql);
@@ -27,6 +27,7 @@ public class ClienteDAO extends BaseDAOImpl <Cliente>{
             ps.setString(3, entity.getEndereco());
             ps.execute();
             ps.close();
+            System.out.println("Adicionado com sucesso.");
         
         } catch (SQLException e) {
             e.printStackTrace();
