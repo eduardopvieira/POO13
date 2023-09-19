@@ -16,7 +16,6 @@ public class ServicoDAO extends BaseDAOImpl <Servico>{
 
         Connection con = getConnection();
         String sql = "INSERT INTO tb_servicos (servico_nome, servico_desc, servico_preco) " + "values (?,?,?)";
-
         try {
             PreparedStatement ps = con.prepareStatement(sql);
 
@@ -59,14 +58,15 @@ public class ServicoDAO extends BaseDAOImpl <Servico>{
 
     public void alterar (Servico entity) {
         Connection con = getConnection();
-        String sql = "UPDATE tb_servicos SET servico_nome = ?, servico_preco = ? WHERE id_servico = ?";
+        String sql = "UPDATE tb_servicos SET servico_nome = ?, servico_desc = ?, servico_preco = ? WHERE id_servico = ?";
 
         try
         {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1, entity.getServicoNome());
-            ps.setDouble(2, entity.getServicoPreco());
-            ps.setInt(3, entity.getIdServico());
+            ps.setString(2, entity.getServicoDescricao());
+            ps.setDouble(3, entity.getServicoPreco());
+            ps.setInt(4, entity.getIdServico());
             ps.execute();
             ps.close();
         }
@@ -77,7 +77,7 @@ public class ServicoDAO extends BaseDAOImpl <Servico>{
         finally {closeConnection();}
     }
 
-//=======================================================================================
+    //=======================================================================================
     public ResultSet buscar (Servico entity) {
 
         String sql = "SELECT * FROM tb_servicos WHERE servico_nome = ?";

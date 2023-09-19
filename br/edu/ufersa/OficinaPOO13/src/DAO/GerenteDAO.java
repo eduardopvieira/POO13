@@ -14,7 +14,7 @@ public class GerenteDAO extends BaseDAOImpl<Gerente> {
     //=================================== INSERIR ===========================================    
 	public Long inserir(Gerente func) {
 		Connection con = BaseDAOImpl.getConnection();
-		String sql = "INSERT INTO tb_gerentes (nome, cpf_gerente, senha, endereco) values (?, ?, ?, ?)";
+		String sql = "INSERT INTO tb_gerentes (nome_gerente, cpf_gerente, senha_gerente, endereco_gerente) values (?, ?, ?, ?)";
 		String nome = func.getNome();
 		String cpf = func.getCPF();
 		String senha = func.getSenha();
@@ -57,7 +57,7 @@ public class GerenteDAO extends BaseDAOImpl<Gerente> {
     //===================================== ALTERAR ========================================
 	public void alterar(Gerente func){
         Connection con = BaseDAOImpl.getConnection();
-        String sql = "UPDATE tb_gerentes SET nome = ?, senha = ?, endereco = ? WHERE cpf_gerente = ?";
+        String sql = "UPDATE tb_gerentes SET nome_gerente = ?, senha_gerente = ?, endereco_gerente = ? WHERE cpf_gerente = ?";
         try {
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setString(1, func.getNome());
@@ -76,14 +76,31 @@ public class GerenteDAO extends BaseDAOImpl<Gerente> {
   //==================================== BUSCAR =============================================  
 	    public ResultSet buscar (Gerente entity) {
 
-        String sql = "SELECT * FROM tb_gerentes WHERE nome=? OR cpf=?";
+        String sql = "SELECT * FROM tb_gerentes WHERE cpf_gerente = ?";
         PreparedStatement ptst;
         ResultSet rs = null;
     
         try {
             ptst = getConnection().prepareStatement(sql);
-            ptst.setString(1, entity.getNome()); // Parâmetro para o nome
-            ptst.setString(2, entity.getCPF()); // Parâmetro para o CPF
+            ptst.setString(1, entity.getCPF()); // Parâmetro para o CPF
+            System.out.println(ptst);
+            rs = ptst.executeQuery();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return rs;
+    }
+
+  //==================================== BUSCAR POR NOME =============================================  
+	    public ResultSet buscarPOrNome (Gerente entity) {
+
+        String sql = "SELECT * FROM tb_gerentes WHERE nome_gerente = ?";
+        PreparedStatement ptst;
+        ResultSet rs = null;
+    
+        try {
+            ptst = getConnection().prepareStatement(sql);
+            ptst.setString(1, entity.getNome());
             System.out.println(ptst);
             rs = ptst.executeQuery();
         } catch (SQLException e) {

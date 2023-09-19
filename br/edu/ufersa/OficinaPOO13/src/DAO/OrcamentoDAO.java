@@ -15,7 +15,7 @@ public class OrcamentoDAO extends BaseDAOImpl <Orcamento>{
     public Long inserir (Orcamento entity) {
 
         Connection con = getConnection();
-        String sql = "INSERT INTO tb_orcamento (cpf_cliente, placa_carro, id_pecas, id_servico, preco_orcamento, data_orcamento) " + "values (?,?,?,?,?,?)";
+        String sql = "INSERT INTO tb_orcamentos (cpf_cliente, placa, id_pecas, id_servico, preco_orcamento, data_orcamento) " + "values (?,?,?,?,?,?)";
 
         try {
             PreparedStatement ps = con.prepareStatement(sql);
@@ -62,7 +62,7 @@ public class OrcamentoDAO extends BaseDAOImpl <Orcamento>{
 
     public void alterar (Orcamento entity) {
         Connection con = getConnection();
-        String sql = "UPDATE tb_orcamentos SET cpf_cliente = ?, placa_carro = ?, id_pecas = ?, id_servico = ?, preco_orcamento = ?, data_orcamento = ? WHERE id_orcamento = ?";
+        String sql = "UPDATE tb_orcamentos SET cpf_cliente = ?, placa = ?, id_pecas = ?, id_servico = ?, preco_orcamento = ?, data_orcamento = ? WHERE id_orcamento = ?";
 
         try
         {
@@ -86,7 +86,7 @@ public class OrcamentoDAO extends BaseDAOImpl <Orcamento>{
 //=======================================================================================
     public ResultSet buscar (Orcamento entity) {
 
-        String sql = "SELECT * FROM tb_orcamentos WHERE placa_auto = ?";
+        String sql = "SELECT * FROM tb_orcamentos WHERE placa = ?";
         PreparedStatement ptst;
         ResultSet rs = null;
     

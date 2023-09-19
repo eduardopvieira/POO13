@@ -4,20 +4,31 @@ import Exceptions.InfoNaoCompativelException;
 
 public class Servico {
 
-	private static int idServico;
+	private int idServico;
 	private String servicoNome, servicoDescricao;
 	private double servicoPreco;
 
   public Servico(){}
 
-  public Servico(String servicoNome, String servicoDescricao, double servicoPreco) throws InfoNaoCompativelException{
+  public Servico(int idServico, String servicoNome, String servicoDescricao, double servicoPreco) throws InfoNaoCompativelException{
+    setIdServico(idServico);
     setServicoNome(servicoNome);
     setServicoDescricao(servicoDescricao);
     setServicoPreco(servicoPreco);
+    
   }
 
 //get id:
-public int getIdServico() {return idServico;}
+public int getIdServico() {
+  return idServico;
+}
+
+public void setIdServico(int l) {
+  if(l > 0)
+    this.idServico = l;
+  else
+    this.idServico = 0;
+}
 
 /*==>GET/SET (servicoNome)<==*/
   public String getServicoNome(){
@@ -32,6 +43,7 @@ public int getIdServico() {return idServico;}
 }
 
 /*==>GET/SET (servicoDescricao)<==*/
+
   public String getServicoDescricao(){
     return servicoDescricao;
   }

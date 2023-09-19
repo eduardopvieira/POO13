@@ -63,7 +63,7 @@ public class AutomovelDAO extends BaseDAOImpl <Automovel>{
 
     public void alterar (Automovel entity) {
         Connection con = getConnection();
-        String sql = "UPDATE tb_automovel SET placa = ?, cor = ?, modelo = ?, ano = ?, quilometragem = ? WHERE cpf_d = ?";
+        String sql = "UPDATE tb_automovel SET placa = ?, cor = ?, modelo = ?, ano = ?, quilometragem = ? WHERE dono = ?";
 
         try
         {
