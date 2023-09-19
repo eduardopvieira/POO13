@@ -16,7 +16,7 @@ public class AutomovelDAO extends BaseDAOImpl <Automovel>{
     public Long inserir (Automovel entity) {
 
         Connection con = getConnection();
-        String sql = "INSERT INTO tb_auto (placa, cor, modelo, ano, quilometragem, dono) " + "values (?,?,?,?,?,?)";
+        String sql = "INSERT INTO tb_automovel (placa, cor, modelo, ano, quilometragem, dono) " + "values (?,?,?,?,?,?)";
 
         try {
             PreparedStatement ps = con.prepareStatement(sql);
@@ -43,7 +43,7 @@ public class AutomovelDAO extends BaseDAOImpl <Automovel>{
     public void deletar(Automovel entity) {
 
         Connection con = getConnection();
-        String sql = "DELETE FROM tb_auto WHERE placa = ?";
+        String sql = "DELETE FROM tb_automovel WHERE placa = ?";
 
         try
         {
@@ -63,7 +63,7 @@ public class AutomovelDAO extends BaseDAOImpl <Automovel>{
 
     public void alterar (Automovel entity) {
         Connection con = getConnection();
-        String sql = "UPDATE tb_auto SET placa = ?, cor = ?, modelo = ?, ano = ?, quilometragem = ? WHERE cpf_d = ?";
+        String sql = "UPDATE tb_automovel SET placa = ?, cor = ?, modelo = ?, ano = ?, quilometragem = ? WHERE cpf_d = ?";
 
         try
         {
@@ -87,7 +87,7 @@ public class AutomovelDAO extends BaseDAOImpl <Automovel>{
 //=======================================================================================
     public ResultSet buscar (Automovel entity) {
 
-        String sql = "SELECT * FROM tb_auto WHERE placa=?";
+        String sql = "SELECT * FROM tb_automovel WHERE placa=?";
         PreparedStatement ptst;
         ResultSet rs = null;
     
@@ -105,7 +105,7 @@ public class AutomovelDAO extends BaseDAOImpl <Automovel>{
 //========================================= BUSCAR POR MODELO =========================================
         public ResultSet buscarPorModelo (Automovel entity) {
 
-        String sql = "SELECT * FROM tb_auto WHERE modelo=?";
+        String sql = "SELECT * FROM tb_automovel WHERE modelo=?";
         PreparedStatement ptst;
         ResultSet rs = null;
     
@@ -124,7 +124,7 @@ public class AutomovelDAO extends BaseDAOImpl <Automovel>{
     @Override
     public List<Automovel> listar(){
 		Connection con = BaseDAOImpl.getConnection();
-        String sql = "SELECT * FROM tb_auto";
+        String sql = "SELECT * FROM tb_automovel";
         List<Automovel> lista = new ArrayList<>();
         try {
 			PreparedStatement ps = con.prepareStatement(sql);
