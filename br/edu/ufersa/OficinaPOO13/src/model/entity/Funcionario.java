@@ -12,7 +12,6 @@ public class Funcionario extends Pessoa {
         super.setNome(nome);
         super.setEndereco(endereco);
         setSenha(senha);
-
     }
     public Funcionario (String cpf, String senha) throws InfoNaoCompativelException {
         super.setCPF(cpf);

@@ -1,6 +1,5 @@
 package DAO;
 
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -101,7 +100,7 @@ public class ServicoDAO extends BaseDAOImpl <Servico>{
     public List<Servico> listar(){
 		Connection con = BaseDAOImpl.getConnection();
         String sql = "SELECT * FROM tb_servicos";
-        List<Servico> lista = new ArrayList<>();
+        List<Servico> list = new ArrayList<>();
         try {
 			PreparedStatement ps = con.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
@@ -114,7 +113,7 @@ public class ServicoDAO extends BaseDAOImpl <Servico>{
 		finally {
             BaseDAOImpl.closeConnection();
 		}
-		return lista;
+		return list;
 	}
 
 }
