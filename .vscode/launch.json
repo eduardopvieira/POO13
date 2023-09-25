@@ -1,0 +1,25 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "HelloFx",
+            "request": "launch",
+            "mainClass": "view.HelloFx",
+            "projectName": "OficinaPOO_d2872db"
+        },
+        {
+            "type": "java",
+            "name": "Current File",
+            "request": "launch",
+            "mainClass": "${file}"
+        },
+        {
+            "type": "java",
+            "name": "main",
+            "request": "launch",
+            "mainClass": "main",
+            "projectName": "POO13H  backup_6faa906e"
+        }
+    ]
+}
