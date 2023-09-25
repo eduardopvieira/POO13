@@ -1,4 +1,4 @@
-package model.entity;
+package model.VO;
 
 import Exceptions.InfoNaoCompativelException;
 import java.util.ArrayList;
@@ -9,9 +9,8 @@ public class Cliente extends Pessoa{
     private List <Automovel> ListaAuto;
     
     public Cliente(){};
-    public Cliente(String nome, String cpf) throws InfoNaoCompativelException {
-        super.setNome(nome);
-        super.setCPF(cpf);
+    public Cliente(String nome,String endereco, String cpf) throws InfoNaoCompativelException {
+        super(nome, endereco, cpf);
         ListaAuto = new ArrayList<Automovel>();
     }
 

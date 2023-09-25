@@ -19,7 +19,6 @@ public class OrcamentoDAO extends BaseDAOImpl <Orcamento>{
 
         try {
             PreparedStatement ps = con.prepareStatement(sql);
-
             ps.setString(1, entity.getClienteOrcamento().getCPF());
             ps.setString(2, entity.getAutomovelOrcamento().getPlaca());
             ps.setInt(3, entity.getPecasOrcamento().getIdItem());

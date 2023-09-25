@@ -3,38 +3,54 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.ufersa.OficinaPOO13.src.controller.FrontController">
-  <children>
-    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
-      <children>
-        <Label alignment="CENTER" layoutX="155.0" layoutY="177.0" style="&#10;" text="Drag components from Library here…" textAlignment="CENTER" textFill="#9f9f9f" wrapText="false">
-          <font>
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: 225;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.ufersa.OficinaPOO13.src.controller.FrontController">
+   <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d0d0d0" height="243.0" layoutX="143.0" layoutY="85.0" stroke="BLACK" strokeType="INSIDE" width="311.0" />
+      <BorderPane>
+         <right>
+            <ImageView fitHeight="122.0" fitWidth="133.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+            </ImageView>
+         </right>
+      </BorderPane>
+      <Label layoutX="134.0" layoutY="14.0" prefHeight="56.0" prefWidth="333.0" text="Oficina do Zezé">
+         <font>
+            <Font size="39.0" />
+         </font>
+      </Label>
+      <Label layoutX="169.0" layoutY="157.0" prefHeight="31.0" prefWidth="40.0" text="CPF">
+         <font>
             <Font size="18.0" />
-          </font>
-        </Label>
-            <Button fx:id="botaoLogin" layoutX="276.0" layoutY="295.0" mnemonicParsing="false" onAction="#fazerLogin" prefHeight="41.0" prefWidth="89.0" text="Logar" />
-            <Label layoutX="264.0" layoutY="47.0" prefHeight="66.0" prefWidth="125.0" text="Login:">
-               <font>
-                  <Font size="40.0" />
-               </font>
-            </Label>
-            <TextField fx:id="campoUserCPF" layoutX="235.0" layoutY="176.0" />
-            <TextField fx:id="campoUserSenha" layoutX="235.0" layoutY="241.0" />
-            <Label layoutX="233.0" layoutY="141.0" text="Digite seu CPF:">
-               <font>
-                  <Font size="23.0" />
-               </font>
-            </Label>
-            <Label layoutX="233.0" layoutY="207.0" text="Digite sua senha:">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Label>
-      </children>
-    </AnchorPane>
-  </children>
-</VBox>
+         </font>
+      </Label>
+      <Label layoutX="152.0" layoutY="204.0" text="Senha">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Button fx:id="botaoLogin" layoutX="251.0" layoutY="257.0" mnemonicParsing="false" onAction="#fazerLogin" style="-fx-background-color: #00FFFF;" text="Entrar">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Button>
+      <TextField fx:id="campoUserCPF" layoutX="215.0" layoutY="161.0" />
+      <TextField fx:id="campoUserSenha" layoutX="215.0" layoutY="202.0" />
+      <Label layoutX="252.0" layoutY="113.0" prefHeight="30.0" prefWidth="97.0" text="Login">
+         <font>
+            <Font size="28.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="31.0" fitWidth="33.0" layoutX="344.0" layoutY="115.0" pickOnBounds="true" preserveRatio="true">
+      </ImageView>
+      <Label layoutX="194.0" layoutY="338.0" text="CPF ou senha incorretos." textFill="RED" visible="false">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Label>
+   </children>
+</Pane>

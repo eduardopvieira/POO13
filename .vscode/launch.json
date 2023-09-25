@@ -1,4 +1,7 @@
 {
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
         {
@@ -6,20 +9,47 @@
             "name": "HelloFx",
             "request": "launch",
             "mainClass": "view.HelloFx",
-            "projectName": "OficinaPOO_d2872db"
+            "projectName": "OficinaPOO_d2872db",
+            "vmArgs": "--module-path /usr/lib/jvm/javafx-sdk-11.0.2/lib --add-modules javafx.controls,javafx.fxml"
+        },
+        {
+            "type": "java",
+            "name": "LoginController",
+            "request": "launch",
+            "mainClass": "view.LoginController",
+            "projectName": "br_b9be2d91",
+            "vmArgs": "--module-path /usr/lib/jvm/javafx-sdk-11.0.2/lib --add-modules javafx.controls,javafx.fxml"
+        },
+        {
+            "type": "java",
+            "name": "teste",
+            "request": "launch",
+            "mainClass": "view.teste",
+            "projectName": "br_b9be2d91",
+            "vmArgs": "--module-path /usr/lib/jvm/javafx-sdk-11.0.2/lib --add-modules javafx.controls,javafx.fxml"
+        },
+        {
+            "type": "java",
+            "name": "Main",
+            "request": "launch",
+            "mainClass": "hellofx.Main",
+            "projectName": "br_b9be2d91",
+            "vmArgs": "--module-path /usr/lib/jvm/javafx-sdk-11.0.2/lib --add-modules javafx.controls,javafx.fxml"
         },
         {
             "type": "java",
             "name": "Current File",
             "request": "launch",
-            "mainClass": "${file}"
+            "mainClass": "${file}",
+            "vmArgs": "--module-path /usr/lib/jvm/javafx-sdk-11.0.2/lib --add-modules javafx.controls,javafx.fxml"
         },
         {
             "type": "java",
             "name": "main",
             "request": "launch",
             "mainClass": "main",
-            "projectName": "POO13H  backup_6faa906e"
+            "projectName": "br_b9be2d91",
+            "vmArgs": "--module-path /usr/lib/jvm/javafx-sdk-11.0.2/lib --add-modules javafx.controls,javafx.fxml"
         }
-    ]
+    ]   
 }

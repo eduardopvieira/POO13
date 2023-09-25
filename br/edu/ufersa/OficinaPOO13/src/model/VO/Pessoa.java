@@ -1,4 +1,4 @@
-package model.entity;
+package model.VO;
 
 import Exceptions.*;
 
@@ -7,6 +7,13 @@ public abstract class Pessoa {
     private String endereco;
     private String cpf;
     
+    public Pessoa () {};
+    public Pessoa(String nome, String endereco, String cpf) throws InfoNaoCompativelException {
+        setNome(nome);
+        setEndereco(endereco);
+        setCPF(cpf);
+    }
+
     public void setNome(String nome) throws InfoNaoCompativelException{
         if (nome != null && nome.isEmpty() == false) {
             this.nome = nome;
