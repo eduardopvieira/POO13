@@ -23,23 +23,13 @@
             <Font size="39.0" />
          </font>
       </Label>
-      <Label layoutX="169.0" layoutY="157.0" prefHeight="31.0" prefWidth="40.0" text="CPF">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Label>
-      <Label layoutX="152.0" layoutY="204.0" text="Senha">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Label>
-      <Button fx:id="botaoLogin" layoutX="251.0" layoutY="257.0" mnemonicParsing="false" onAction="#fazerLogin" style="-fx-background-color: #00FFFF;" text="Entrar">
+      <Button fx:id="botaoLogin" layoutX="251.0" layoutY="257.0" mnemonicParsing="false" onAction="#fazerLogin" style="-fx-background-color: #e56e27;" text="Entrar">
          <font>
             <Font size="22.0" />
          </font>
       </Button>
-      <TextField fx:id="campoUserCPF" layoutX="215.0" layoutY="161.0" />
-      <TextField fx:id="campoUserSenha" layoutX="215.0" layoutY="202.0" />
+      <TextField fx:id="campoUserCPF" layoutX="215.0" layoutY="161.0" promptText="CPF" />
+      <TextField fx:id="campoUserSenha" layoutX="215.0" layoutY="202.0" promptText="Senha" />
       <Label layoutX="252.0" layoutY="113.0" prefHeight="30.0" prefWidth="97.0" text="Login">
          <font>
             <Font size="28.0" />
@@ -47,7 +37,7 @@
       </Label>
       <ImageView fitHeight="31.0" fitWidth="33.0" layoutX="344.0" layoutY="115.0" pickOnBounds="true" preserveRatio="true">
       </ImageView>
-      <Label layoutX="194.0" layoutY="338.0" text="CPF ou senha incorretos." textFill="RED" visible="false">
+      <Label fx:id="loginFalhou" layoutX="194.0" layoutY="338.0" text="CPF ou senha incorretos." textFill="RED" visible="false">
          <font>
             <Font size="17.0" />
          </font>

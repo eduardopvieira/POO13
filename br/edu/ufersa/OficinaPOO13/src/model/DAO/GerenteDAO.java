@@ -1,11 +1,12 @@
-package DAO;
+package model.DAO;
 
 import java.sql.*;
 import java.util.List;
+
+import model.VO.Gerente;
+
 import java.util.ArrayList;
 //import br.edu.ufersa.Oficina.src.model.entity.Gerente;
-
-import model.entity.Gerente;
 
 
 public class GerenteDAO extends BaseDAOImpl<Gerente> {

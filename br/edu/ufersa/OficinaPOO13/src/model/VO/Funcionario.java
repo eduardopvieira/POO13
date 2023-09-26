@@ -1,4 +1,4 @@
-package model.entity;
+package model.VO;
 
 import Exceptions.*;
 
@@ -8,9 +8,7 @@ public class Funcionario extends Pessoa {
 
     public Funcionario(){}
     public Funcionario (String cpf, String nome, String endereco, String senha) throws InfoNaoCompativelException {
-        super.setCPF(cpf);
-        super.setNome(nome);
-        super.setEndereco(endereco);
+        super(nome, endereco, cpf);
         setSenha(senha);
     }
     public Funcionario (String cpf, String senha) throws InfoNaoCompativelException {

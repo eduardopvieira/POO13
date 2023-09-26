@@ -1,4 +1,4 @@
-package model.entity;
+package model.VO;
 
 import java.util.Date;
 //import java.util.List;

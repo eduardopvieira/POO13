@@ -1,4 +1,4 @@
-package model.entity;
+package model.VO;
 
 public class Pecas {
 

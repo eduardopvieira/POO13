@@ -1,11 +1,12 @@
-package DAO;
+package model.DAO;
 
 import java.sql.*;
 import java.util.List;
+
+import model.VO.Funcionario;
+
 import java.util.ArrayList;
 //import br.edu.ufersa.Oficina.src.model.entity.Funcionario;
-
-import model.entity.Funcionario;
 
 
 public class FuncionarioDAO extends BaseDAOImpl<Funcionario> {

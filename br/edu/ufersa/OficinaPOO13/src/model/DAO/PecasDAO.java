@@ -1,4 +1,4 @@
-package DAO;
+package model.DAO;
 
 
 import java.sql.Connection;
@@ -8,7 +8,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import model.entity.Pecas;
+import model.VO.Pecas;
 
 public class PecasDAO extends BaseDAOImpl <Pecas>{
     

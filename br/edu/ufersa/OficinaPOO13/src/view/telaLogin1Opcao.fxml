@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: 225;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FrontController">
+   <children>
+      <BorderPane />
+      <Label layoutX="139.0" layoutY="32.0" prefHeight="56.0" prefWidth="334.0" text="Oficina do Zezé">
+         <font>
+            <Font size="39.0" />
+         </font>
+      </Label>
+      <Label layoutX="185.0" layoutY="157.0" prefHeight="31.0" prefWidth="40.0" text="CPF">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="181.0" layoutY="200.0" text="Senha">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Button fx:id="botaoLogin" layoutX="262.0" layoutY="248.0" mnemonicParsing="false" onAction="#autenticar" style="-fx-background-color: #00FFFF;" text="Entrar">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Button>
+      <TextField fx:id="campoUserCPF" layoutX="242.0" layoutY="160.0" />
+      <TextField fx:id="campoUserSenha" layoutX="242.0" layoutY="201.0" />
+      <Label layoutX="257.0" layoutY="111.0" prefHeight="30.0" prefWidth="97.0" text="Login">
+         <font>
+            <Font size="28.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="31.0" fitWidth="33.0" layoutX="344.0" layoutY="115.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../../Users/Cliente/Downloads/logoLogin-oficina.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="erroAut" layoutX="377.0" layoutY="252.0" text="ERRO" textFill="#f80606" visible="false" />
+      <ImageView fitHeight="40.0" fitWidth="33.0" layoutX="328.0" layoutY="115.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../imagens/logoLogin-oficina.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="191.0" fitWidth="128.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../imagens/Logo-oficina.jpg" />
+         </image>
+      </ImageView>
+   </children>
+</Pane>
