@@ -83,8 +83,8 @@
                </font>
             </Label>
             <Button fx:id="botaoEditar" layoutX="519.0" layoutY="101.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="31.0" />
-            <Rectangle fx:id="nomeServiço" arcHeight="5.0" arcWidth="5.0" fill="#f8f1f1" height="31.0" layoutX="162.0" layoutY="101.0" stroke="BLACK" strokeType="INSIDE" width="127.0" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f8f1f1" height="33.0" layoutX="298.0" layoutY="100.0" stroke="BLACK" strokeType="INSIDE" width="119.0" />
+            <Rectangle fx:id="nomeServiço" arcHeight="5.0" arcWidth="5.0" fill="#f8f1f1" height="33.0" layoutX="162.0" layoutY="101.0" stroke="BLACK" strokeType="INSIDE" width="88.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f8f1f1" height="33.0" layoutX="265.0" layoutY="101.0" stroke="BLACK" strokeType="INSIDE" width="88.0" />
             <ImageView fx:id="botaoDeletar" fitHeight="25.0" fitWidth="25.0" layoutX="563.0" layoutY="104.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@telas/fotos/trash.png" />
@@ -95,10 +95,12 @@
                   <Image url="@telas/fotos/edit.png" />
                </image>
             </ImageView>
-            <Label fx:id="nomePeça" layoutX="164.0" layoutY="100.0" prefHeight="33.0" prefWidth="127.0" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="31.0" layoutX="425.0" layoutY="101.0" stroke="BLACK" strokeType="INSIDE" width="85.0" />
-            <Label fx:id="precoPeca" layoutX="425.0" layoutY="101.0" prefHeight="31.0" prefWidth="85.0" />
-            <Label fx:id="fabricantePeca" layoutX="298.0" layoutY="101.0" prefHeight="31.0" prefWidth="119.0" />
+            <Label fx:id="nomePeca" layoutX="164.0" layoutY="100.0" prefHeight="33.0" prefWidth="88.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="33.0" layoutX="447.0" layoutY="100.0" stroke="BLACK" strokeType="INSIDE" width="60.0" />
+            <Label fx:id="estoquePeca" layoutX="447.0" layoutY="102.0" prefHeight="31.0" prefWidth="60.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="33.0" layoutX="367.0" layoutY="100.0" stroke="BLACK" strokeType="INSIDE" width="68.0" />
+            <Label fx:id="fabricantePeca" layoutX="265.0" layoutY="102.0" prefHeight="31.0" prefWidth="111.0" />
+            <Label fx:id="precoPeca" layoutX="367.0" layoutY="102.0" prefHeight="31.0" prefWidth="68.0" />
       </children>
     </AnchorPane>
   </children>

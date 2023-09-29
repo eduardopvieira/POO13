@@ -7,15 +7,17 @@ public class Automovel {
     private String placa;
     private String cor;
     private String modelo;
+    private String marca;
     private int ano;
     private int km;
     private Cliente dono;
 
     public Automovel () {};
-    public Automovel (String placa, String cor, String modelo, int ano, int km, Cliente dono) throws InfoNaoCompativelException {
+    public Automovel (String placa, String cor, String modelo, String marca, int ano, int km, Cliente dono) throws InfoNaoCompativelException {
         setPlaca(placa);
         setCor(cor);
         setModelo(modelo);
+        setMarca(marca);
         setAno(ano);
         setKm(km);
         this.dono = dono;
@@ -89,8 +91,19 @@ public void setDono(Cliente dono) {
 public Cliente getDono() {
     return dono;
 }
+//===================================GET E SET MARCA ============================
 
+public void setMarca(String marca) throws InfoNaoCompativelException {
+    if (modelo != null && marca.isEmpty() == false) {
+        this.marca = marca;
+    } else {
+        throw new InfoNaoCompativelException("marca inválida.");
+    }
+}
 
+public String getMarca() {
+	return marca;
+}
 
 //======================== METODOS =====================
     public void cadastrarAuto(Automovel auto) {};

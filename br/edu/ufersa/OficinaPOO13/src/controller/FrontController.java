@@ -1,59 +1,84 @@
 package controller;
 
 import javafx.event.ActionEvent;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import model.VO.Funcionario;
-import model.VO.Gerente;
-import view.HelloFx;
-import model.BO.GerenteBO;
-import Exceptions.*;
+import javafx.scene.image.ImageView;
+import javafx.scene.shape.Rectangle;
+import javafx.stage.Stage;
 
 public class FrontController {
 
-    @FXML private Label erroLogin;
-    @FXML private Button botaoLogin;
-    @FXML private TextField campoUserCPF;
-    @FXML private TextField campoUserSenha;
-    @FXML private Label loginFalhou;
+    @FXML
+    private Button botaoLogin;
 
     @FXML
-    public void fazerLogin(ActionEvent event) throws LoginFailedException{
-        String cpfText = campoUserCPF.getText();
-        String passwordText = campoUserSenha.getText();
+    private TextField campoUserCPF;
 
-            Gerente vo = new Gerente();
-            vo.setCPF(cpfText);
-            vo.setSenha(passwordText);
-            Funcionario vo2 = new Funcionario();
-            vo2.setCPF(cpfText);
-            vo2.setSenha(passwordText);
+    @FXML
+    private TextField campoUserSenha;
 
-            // CUIDADO ---- AO USAR ENTITY AGORA ESTAMOS VALIDANDO 
-            // (SetCPF) - Não existe CPF com menos de 11 caracteres
-            // (SetSenha) - Senha maior que 3 caracteres
+    @FXML
+    private Label erroAut;
+    
+    @FXML
+    private TextField botaoBuscar;
 
-            try {
-                GerenteBO gerbo = new GerenteBO();
-                Gerente autenticado = gerbo.autenticar(vo);
+    @FXML
+    private Button botaoCadastrar;
 
-                if (autenticado != null) {
-                    HelloFx.telaPrincipalGerente();
-                } 
-            } catch (AutenticationException e) { //verificar Funcionário
-                try {
-                    FuncionarioBo funBo = new FuncionarioBo();
-                    Funcionario autenticado2 = funBo.autenticar(vo2);
-                    if (autenticado2 != null) {
-                        HelloFx.telaClientes();
-                    } else throw new AutenticationException("Autenticaçao falhou");
-                } catch (AutenticationException e2) {
-                    loginFalhou.setVisible(true);
-                }
-            } else {
-            loginFalhou.setVisible(true);
-            new LoginFailedException("Login falhou.");
-        } 
+    @FXML
+    private ImageView botaoDeletar;
+
+    @FXML
+    private ImageView botaoEditar;
+
+    @FXML
+    private Button botaoOrcamentos;
+
+    @FXML
+    private Button botaoPecas;
+
+    @FXML
+    private Button botaoSair;
+
+    @FXML
+    private Button botaoServicos;
+
+    @FXML
+    private Label estoquePeca;
+
+    @FXML
+    private Label fabricantePeca;
+
+    @FXML
+    private Label headerNomeFunc;
+
+    @FXML
+    private Label nomePeca;
+
+    @FXML
+    private Rectangle nomeServiço;
+
+    @FXML
+    private Label precoPeca;
+    
+    
+    @FXML
+    public void autenticar(ActionEvent event) throws Exception{
+		Funcionario funcVO = new Funcionario();
+		funcVO.setCPF(campoUserCPF.getText());
+		funcVO.setSenha(campoUserSenha.getText());
+		System.out.println("O CPF do funcionario é " + funcVO.getCPF() + " e a senha é " + funcVO.getSenha());
     }
+    
+    
+
+}
