@@ -28,9 +28,9 @@
             <Font size="17.0" />
          </font>
       </Button>
-      <Button fx:id="botaoConcluir1" layoutX="400.0" layoutY="20.0" mnemonicParsing="false" style="-fx-background-color: #FF0000;" text="Cancelar">
+      <Button fx:id="botaoConcluir1" layoutX="400.0" layoutY="20.0" mnemonicParsing="false" style="-fx-background-color: #FF0000;" text="Cancelar" textFill="WHITE">
          <font>
-            <Font size="17.0" />
+            <Font size="16.0" />
          </font>
       </Button>
    </children>
