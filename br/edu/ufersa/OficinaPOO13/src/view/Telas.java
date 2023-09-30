@@ -26,7 +26,12 @@ public class Telas extends Application{
 		setPrimaryStage(primaryStage);
 		primaryStage.setTitle("Oficina do Zezé");
 		primaryStage.show();
-		telaCadastroCliente();
+		telaCadastrarServicoGerente(); // <--TROQUE AQUI PELO MÉTODO DA TELA
+		//Telas funcionando:
+		//telaLogin();
+		//telaMenuClientes();
+		//telaCadastroCliente();
+		//telaCadastrarServicoGerente();
 	}
 	
 	public static void telaLogin() throws Exception{
@@ -46,6 +51,13 @@ public class Telas extends Application{
 		Scene cena = new Scene(root);		
 		primaryStage.setScene(cena);
 	}
+	
+	public static void telaCadastrarServicoGerente() throws Exception {
+		Parent root = FXMLLoader.load(Telas.class.getResource("telaCadastrarServicoGerente.fxml"));
+		Scene cena = new Scene(root);		
+		primaryStage.setScene(cena);
+	}
+	
 	public static void main(String ... args) {
 		launch();
 	}
