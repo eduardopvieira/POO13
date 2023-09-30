@@ -23,12 +23,12 @@
             <TextField fx:id="precoPeca" layoutX="326.0" layoutY="8.0" />
          </children>
       </Pane>
-      <Button fx:id="botaoConcluir" layoutX="510.0" layoutY="20.0" mnemonicParsing="false" style="-fx-background-color: #FF8C00;" text="Concluir">
+      <Button fx:id="botaoConcluir" layoutX="510.0" layoutY="20.0" mnemonicParsing="false" onAction="#concluir" style="-fx-background-color: #FF8C00;" text="Concluir">
          <font>
             <Font size="17.0" />
          </font>
       </Button>
-      <Button fx:id="botaoCancelar" layoutX="426.0" layoutY="20.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="77.0" style="-fx-background-color: #FF4500;" text="Cancelar" textFill="WHITE">
+      <Button fx:id="botaoCancelar" layoutX="426.0" layoutY="20.0" mnemonicParsing="false" onAction="#cancelar" prefHeight="38.0" prefWidth="77.0" style="-fx-background-color: #FF4500;" text="Cancelar" textFill="WHITE">
          <font>
             <Font size="15.0" />
          </font>
