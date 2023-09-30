@@ -46,7 +46,7 @@ public class CadastroClientesController {
     private TextField placaAuto;
 
     @FXML
-    void cadastrarCliente(ActionEvent event) throws Exception {
+    public void cadastrarCliente(ActionEvent event) throws Exception {
     	Cliente c = new Cliente();
     	Automovel a = new Automovel();
     	

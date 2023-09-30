@@ -18,7 +18,7 @@ public class CadastrarPecaFuncController {
 	@FXML
 	private Button botaoCancelar;
 	
-	void concluir(ActionEvent event) throws Exception{
+	public void concluir(ActionEvent event) throws Exception{
 		Pecas pecaVO = new Pecas();
 		pecaVO.setDescricaoItem(descricaoPeca.getText());
 		pecaVO.setFabricante(fabricantePeca.getText());
@@ -26,7 +26,7 @@ public class CadastrarPecaFuncController {
 		System.out.println("Peça: Descrição: " + pecaVO.getDescricaoItem() + " Fabricante: " + pecaVO.getFabricante() + " Preco: " + pecaVO.getPrecoItem());
 		
 	}
-	void cancelar(ActionEvent event) throws Exception{
+	public void cancelar(ActionEvent event) throws Exception{
 		
 	}
 }
