@@ -62,6 +62,11 @@ public class Telas extends Application{
 		Scene cena = new Scene(root);		
 		primaryStage.setScene(cena);
 	}
+	public static void telaCadastroPecaGer() throws Exception {
+		Parent root = FXMLLoader.load(Telas.class.getResource("cadastroPecaGer.fxml"));
+		Scene cena = new Scene(root);		
+		primaryStage.setScene(cena);
+	}
 	
 	public static void main(String ... args) {
 		launch();

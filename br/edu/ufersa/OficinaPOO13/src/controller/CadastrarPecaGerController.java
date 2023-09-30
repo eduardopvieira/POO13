@@ -6,13 +6,15 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import model.VO.Pecas;
 
-public class CadastrarPecaFunc {
+public class CadastrarPecaGerController {
 	@FXML
     private TextField descricaoPeca;
 	@FXML
 	private TextField fabricantePeca;
 	@FXML
 	private TextField precoPeca;
+	@FXML
+	private TextField estoquePeca;
 	@FXML
 	private Button botaoConcluir;
 	@FXML
@@ -22,8 +24,9 @@ public class CadastrarPecaFunc {
 		Pecas pecaVO = new Pecas();
 		pecaVO.setDescricaoItem(descricaoPeca.getText());
 		pecaVO.setFabricante(fabricantePeca.getText());
-		pecaVO.setPrecoItem(Integer.parseInt(precoPeca.getText()));
-		System.out.println("Peça: Descrição: " + pecaVO.getDescricaoItem() + " Fabricante: " + pecaVO.getFabricante() + " Preco: " + pecaVO.getPrecoItem());
+		pecaVO.setPrecoItem(Double.parseDouble(precoPeca.getText()));
+		pecaVO.setEstoqueItem(Integer.parseInt(estoquePeca.getText()));
+		System.out.println("Peça: Descrição: " + pecaVO.getDescricaoItem() + " Fabricante: " + pecaVO.getFabricante() + " Preco: " + pecaVO.getPrecoItem() + " Estoque: " + pecaVO.getEstoqueItem());
 		
 	}
 	void cancelar(ActionEvent event) throws Exception{
