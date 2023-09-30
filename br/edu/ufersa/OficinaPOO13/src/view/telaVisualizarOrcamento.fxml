@@ -7,8 +7,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.VisualizarOrcamentoController">
    <children>
       <Label layoutX="70.0" layoutY="14.0" text="Orçamento">
          <font>
@@ -49,5 +48,10 @@
             <Label fx:id="precoServico" layoutX="104.0" layoutY="53.0" prefHeight="17.0" prefWidth="87.0" style="-fx-background-color: white;" />
          </children>
       </Pane>
+      <Button fx:id="visualizar" layoutX="285.0" layoutY="19.0" mnemonicParsing="false" onAction="#visualizar" style="-fx-background-color: #7FFFD4;" text="Visualizar">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Button>
    </children>
 </Pane>

@@ -24,6 +24,7 @@ public class Orcamento {
       setServicoOrcamento(servicoOrcamento);;
       setDataOrcamento(dataOrcamento);
   }
+  
 
 
 public void setTotalOrcamento(Servico s, Pecas p) {

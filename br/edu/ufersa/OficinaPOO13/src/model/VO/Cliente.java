@@ -11,7 +11,7 @@ public class Cliente extends Pessoa{
     public Cliente(){};
     public Cliente(String nome,String endereco, String cpf) throws InfoNaoCompativelException {
         super(nome, endereco, cpf);
-        ListaAuto = new ArrayList<Automovel>();
+        //ListaAuto = new ArrayList<Automovel>();
     }
 
 
