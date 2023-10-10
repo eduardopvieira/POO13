@@ -1,8 +1,10 @@
 package model.VO;
 
+import java.util.ArrayList;
 import java.util.Date;
 //import java.util.List;
 //import java.util.ArrayList;
+import java.util.List;
 
 
 public class Orcamento {
@@ -10,8 +12,8 @@ public class Orcamento {
   private int idOrcamento;
   private Cliente clienteOrcamento;
   private Automovel automovelOrcamento;
-  private Pecas pecasOrcamento;
-  private Servico servicoOrcamento;
+  private List <Pecas> listaPecas;
+  private List <Servico> listaServicos;
   private double totalOrcamento;
   private Date dataOrcamento;
 
@@ -20,13 +22,38 @@ public class Orcamento {
       
       setClienteOrcamento(clienteOrcamento);
       setAutomovelOrcamento(automovelOrcamento);
-      setPecasOrcamento(pecasOrcamento);
-      setServicoOrcamento(servicoOrcamento);;
       setDataOrcamento(dataOrcamento);
+      listaPecas = new ArrayList<Pecas>();
+      listaServicos = new ArrayList<Servico>();
+
   }
   
 
-
+//=========================GET LISTA PEÇA E SERVICO============================
+ public List<Pecas> getPecas() {
+	 return listaPecas;
+ }
+ 
+ public List<Servico> getServicos() {
+	 return listaServicos;
+ }
+//=========================ADD E REMOVE PEÇAS E SERVICOS==================================================
+ public void addPecas(Pecas peca) {
+	 listaPecas.add(peca);
+ } 
+ 
+ public void addServico (Servico servico) {
+	 listaServicos.add(servico);
+ }
+ 
+ public void removePecas(Pecas peca) {
+	 listaPecas.remove(peca);
+ } 
+ 
+ public void removeServico (Servico servico) {
+	 listaServicos.remove(servico);
+ }
+//=========================== SET E GET TOTAL DO ORÇAMENTO ===========================
 public void setTotalOrcamento(Servico s, Pecas p) {
     if (s != null && p != null) {
       this.totalOrcamento = s.getServicoPreco() + p.getPrecoItem();
@@ -34,16 +61,7 @@ public void setTotalOrcamento(Servico s, Pecas p) {
 }
 
 public double getTotalOrcamento() {return this.totalOrcamento;}
-
-public void setPecasOrcamento (Pecas p) {
-  if (p != null) {
-    this.pecasOrcamento = p;
-  }
-}
-
-public Pecas getPecasOrcamento() {
-    return pecasOrcamento;
-}
+//===========================SET E GET DATA ORCAMENTO=========================================================
 
 public void setDataOrcamento(Date data) {
   this.dataOrcamento = data;
@@ -52,19 +70,15 @@ public void setDataOrcamento(Date data) {
 public Date getDataOrcamento() {
     return dataOrcamento;    
 }
+//=========================GET E SET CLIENTE NO ORÇAMENTO==========================================================
 
-public int getIdOrcamento() {return idOrcamento;}
-
-/*==>GET/SET clienteOrcamento<==*/
   public Cliente getClienteOrcamento(){
     return clienteOrcamento;
   }
   public void setClienteOrcamento(Cliente clienteOrcamento){
     this.clienteOrcamento = clienteOrcamento;
   }
-/*<========================>*/
-
-/*==>GET/SET automovelCliente<==*/
+//=========================GET E SET AUTOMOVEL NO ORÇAMENTO========================================
   public Automovel getAutomovelOrcamento(){
     return automovelOrcamento;
   }
@@ -72,39 +86,14 @@ public int getIdOrcamento() {return idOrcamento;}
     this.automovelOrcamento = automovelOrcamento;
     System.out.println("Automovel atribuido.");
   }
+//=========================GET E SET ID DO ORÇAMENTO=====================================
+ 
+  public int getIdOrcamento() {return idOrcamento;}
 
-
-/*==>GET/SET<==*/
-  public Servico getServicoOrcamento(){
-    return servicoOrcamento;
+  public void setIdOrcamento(int id) {
+	  if (id >= 0) {
+		  this.idOrcamento = id;
+	  }
   }
-  public void setServicoOrcamento(Servico servicoOrcamento){
-    this.servicoOrcamento = servicoOrcamento;
-  }
-
-
-  public void addPeca(Pecas peca) {
-
-  }
-/*  public List<Pecas> getPecasOrcamento(){
-    return pecasOrcamento;
-  }
-  public void setPecasOrcamento(List<Pecas> pecasOrcamento){
-    this.pecasOrcamento = pecasOrcamento;
-    System.out.println("Pecas atribuidos.");
-  }
-*/
-
-/*public void addPecas(Pecas peca) {
-    if (peca != null) {
-      this.pecasOrcamento.add(peca);
-    }
-}
-
-public void addServicos(Servico serv) {
-    if (serv != null) {
-      this.servicoOrcamento.add(serv);
-    }
-}*/
-
+  
 }

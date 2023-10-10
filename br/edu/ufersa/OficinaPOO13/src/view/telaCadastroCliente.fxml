@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="436.0" prefWidth="627.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CadastroClientesController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="436.0" prefWidth="627.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CadastroClientesController">
    <children>
       <Label layoutX="31.0" layoutY="11.0" prefHeight="49.0" prefWidth="339.0" text="Cadastro de Cliente">
          <font>
@@ -47,8 +47,7 @@
             <Image url="@../../Users/Cliente/Downloads/setaAnterior-Oficina.png" />
          </image>
       </ImageView>
-      <Button fx:id="addVeiculo" layoutX="229.0" layoutY="346.0" mnemonicParsing="false" prefHeight="57.0" prefWidth="170.0" text="Adicionar veículo" />
-      <Button fx:id="botaoCadastrar" layoutX="504.0" layoutY="15.0" mnemonicParsing="false" onAction="#cadastrarCliente" prefHeight="39.0" prefWidth="73.0" text="Cadastrar" />
-      <Button layoutX="399.0" layoutY="16.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="67.0" text="Cancelar" />
+      <Button fx:id="botaoCadastrar" layoutX="382.0" layoutY="354.0" mnemonicParsing="false" onAction="#cadastrarCliente" prefHeight="39.0" prefWidth="129.0" text="Cadastrar" />
+      <Button layoutX="113.0" layoutY="354.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="137.0" text="Cancelar" />
    </children>
 </Pane>
