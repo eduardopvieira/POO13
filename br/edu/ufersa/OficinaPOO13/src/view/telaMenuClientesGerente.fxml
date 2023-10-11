@@ -50,7 +50,7 @@
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#4a4a4a" height="44.0" stroke="BLACK" strokeType="INSIDE" width="640.0" />
             <Button fx:id="botaoCadastrarCliente" alignment="CENTER" contentDisplay="CENTER" layoutX="479.0" layoutY="359.0" mnemonicParsing="false" onAction="#abrirCadastroCliente" prefHeight="31.0" prefWidth="142.0" style="-fx-background-color: #;" text="Cadastrar" />
             <TextField fx:id="botaoBuscar" layoutX="20.0" layoutY="359.0" onAction="#buscarCliente" prefHeight="31.0" prefWidth="163.0" text="Buscar" />
-            <TableView layoutX="20.0" layoutY="85.0" prefHeight="272.0" prefWidth="601.0">
+            <TableView layoutX="20.0" layoutY="63.0" prefHeight="294.0" prefWidth="601.0">
               <columns>
                 <TableColumn fx:id="tableColumnCPF" prefWidth="111.0" text="CPF" />
                 <TableColumn fx:id="tableColumnCliente" prefWidth="88.0" text="Cliente" />
@@ -85,7 +85,6 @@
                   <Font size="26.0" />
                </font>
             </Label>
-            <Button fx:id="trocarMenuFuncionarios" layoutX="513.0" layoutY="51.0" mnemonicParsing="false" onAction="#trocarParaMenuFuncionarios" prefHeight="23.0" prefWidth="108.0" text="Funcionarios" />
       </children>
     </AnchorPane>
   </children>
