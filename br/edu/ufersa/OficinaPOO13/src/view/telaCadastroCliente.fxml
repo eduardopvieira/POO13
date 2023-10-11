@@ -2,9 +2,9 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
@@ -15,7 +15,7 @@
             <Font size="33.0" />
          </font>
       </Label>
-      <Pane layoutX="50.0" layoutY="77.0" prefHeight="94.0" prefWidth="516.0" style="-fx-background-color: #DCDCDC;">
+      <Pane layoutX="22.0" layoutY="64.0" prefHeight="96.0" prefWidth="586.0" style="-fx-background-color: #DCDCDC;">
          <children>
             <Label layoutX="26.0" layoutY="14.0" text="Nome" />
             <Label layoutX="287.0" layoutY="15.0" text="CPF" />
@@ -26,28 +26,20 @@
             <TextField fx:id="enderecoCliente" layoutX="71.0" layoutY="49.0" prefHeight="26.0" prefWidth="431.0" style="-fx-background-color: FFFFFF;" />
          </children>
       </Pane>
-      <Pane layoutX="50.0" layoutY="202.0" prefHeight="123.0" prefWidth="516.0" style="-fx-background-color: #DCDCDC;">
-         <children>
-            <Label layoutX="12.0" layoutY="12.0" prefHeight="16.0" prefWidth="54.0" text="Modelo:" />
-            <Label layoutX="19.0" layoutY="44.0" text="Marca" />
-            <Label layoutX="34.0" layoutY="78.0" text="Ano" />
-            <Label layoutX="300.0" layoutY="12.0" text="KM" />
-            <Label layoutX="294.0" layoutY="44.0" text="Placa" />
-            <Label layoutX="301.0" layoutY="78.0" text="Cor" />
-            <TextField fx:id="modeloAuto" layoutX="72.0" layoutY="8.0" prefHeight="26.0" prefWidth="170.0" style="-fx-background-color: FFFFFF;" />
-            <TextField fx:id="marcaAuto" layoutX="72.0" layoutY="40.0" prefHeight="26.0" prefWidth="170.0" style="-fx-background-color: FFFFFF;" />
-            <TextField fx:id="anoAuto" layoutX="72.0" layoutY="74.0" prefHeight="26.0" prefWidth="170.0" style="-fx-background-color: FFFFFF;" />
-            <TextField fx:id="kmAuto" layoutX="332.0" layoutY="8.0" prefHeight="26.0" prefWidth="170.0" style="-fx-background-color: FFFFFF;" />
-            <TextField fx:id="placaAuto" layoutX="332.0" layoutY="40.0" prefHeight="26.0" prefWidth="170.0" style="-fx-background-color: FFFFFF;" />
-            <TextField fx:id="corAuto" layoutX="332.0" layoutY="74.0" prefHeight="26.0" prefWidth="170.0" style="-fx-background-color: FFFFFF;" />
-         </children>
-      </Pane>
-      <ImageView fitHeight="49.0" fitWidth="34.0" layoutX="14.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../Users/Cliente/Downloads/setaAnterior-Oficina.png" />
-         </image>
-      </ImageView>
-      <Button fx:id="botaoCadastrar" layoutX="382.0" layoutY="354.0" mnemonicParsing="false" onAction="#cadastrarCliente" prefHeight="39.0" prefWidth="129.0" text="Cadastrar" />
-      <Button layoutX="113.0" layoutY="354.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="137.0" text="Cancelar" />
+      <Button fx:id="botaoCadastrar" layoutX="479.0" layoutY="383.0" mnemonicParsing="false" onAction="#cadastrarCliente" prefHeight="39.0" prefWidth="129.0" text="Cadastrar" />
+      <TableView layoutX="22.0" layoutY="181.0" prefHeight="187.0" prefWidth="586.0">
+        <columns>
+          <TableColumn fx:id="tableColumnPlacaAuto" prefWidth="75.0" text="Placa" />
+          <TableColumn fx:id="tableColumnModeloAuto" prefWidth="75.0" text="Modelo" />
+            <TableColumn fx:id="tableColumnMarcaAuto" prefWidth="75.0" text="Marca" />
+            <TableColumn fx:id="tableColumnKMAuto" prefWidth="69.0" text="KM" />
+            <TableColumn fx:id="tableColumnCorAuto" prefWidth="94.0" text="Cor" />
+            <TableColumn fx:id="tableColumnAnoAuto" prefWidth="62.0" text="Ano" />
+            <TableColumn fx:id="tableColumnEditarAuto" prefWidth="61.0" text="Editar" />
+            <TableColumn fx:id="tableColumnDeletarAuto" prefWidth="74.0" text="Deletar" />
+        </columns>
+      </TableView>
+      <Button fx:id="botaoAddVeiculo" layoutX="223.0" layoutY="383.0" mnemonicParsing="false" onAction="#abrirTelaCadastroVeiculo" prefHeight="39.0" prefWidth="182.0" text="Adicionar Veiculo" />
+      <Button fx:id="botaoCancelar" layoutX="22.0" layoutY="383.0" mnemonicParsing="false" onAction="#cancelarCadastro" prefHeight="39.0" prefWidth="129.0" text="Cancelar" />
    </children>
 </Pane>

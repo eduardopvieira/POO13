@@ -2,55 +2,62 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.VisualizarOrcamentoController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="436.0" prefWidth="627.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.VisualizarOrcamentoController">
    <children>
-      <Label layoutX="70.0" layoutY="14.0" text="Orçamento">
+      <Label layoutX="62.0" layoutY="14.0" prefHeight="49.0" prefWidth="402.0" text="Visualizar Orçamento:">
          <font>
-            <Font size="31.0" />
+            <Font size="33.0" />
          </font>
       </Label>
-      <ImageView fitHeight="37.0" fitWidth="39.0" layoutX="23.0" layoutY="19.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../../../../../../../telas-Oficina/imagens/setaAnterior-Oficina.png" />
-         </image>
-      </ImageView>
-      <Button fx:id="botaoVoltar" layoutX="23.0" layoutY="19.0" mnemonicParsing="false" onAction="#voltar" prefHeight="37.0" prefWidth="37.0" visible="false" />
-      <Pane layoutX="24.0" layoutY="60.0" prefHeight="140.0" prefWidth="553.0" style="-fx-background-color: #D3D3D3;">
+      <Pane layoutX="62.0" layoutY="71.0" prefHeight="294.0" prefWidth="520.0" style="-fx-background-color: #DCDCDC;">
          <children>
-            <Label layoutX="22.0" layoutY="29.0" text="Nome:" />
-            <Label layoutX="329.0" layoutY="30.0" text="CPF:" />
-            <Label layoutX="22.0" layoutY="62.0" text="Endereço:" />
-            <Label fx:id="lbNome" layoutX="66.0" layoutY="30.0" prefHeight="17.0" prefWidth="243.0" style="-fx-background-color: white;" />
-            <Label fx:id="lbEndereco" layoutX="77.0" layoutY="62.0" prefHeight="17.0" prefWidth="243.0" style="-fx-background-color: white;" />
-            <Label fx:id="lbCPF" layoutX="359.0" layoutY="30.0" prefHeight="17.0" prefWidth="153.0" style="-fx-background-color: white;" />
+            <Label layoutX="27.0" layoutY="12.0" prefHeight="16.0" prefWidth="56.0" text="Cliente:" />
+            <Label layoutX="244.0" layoutY="12.0" prefHeight="16.0" prefWidth="143.0" text="Placa do Automovel:" />
+            <TableView layoutX="35.0" layoutY="80.0" prefHeight="200.0" prefWidth="189.0">
+              <columns>
+                <TableColumn fx:id="nomePecasOrc" prefWidth="75.0" text="Peças:" />
+                <TableColumn fx:id="qtdPecaOrc" prefWidth="42.0" text="QTD:" />
+                  <TableColumn fx:id="precoPecaOrc" prefWidth="71.0" text="Preço:" />
+              </columns>
+            </TableView>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="23.0" layoutX="82.0" layoutY="9.0" stroke="BLACK" strokeType="INSIDE" width="120.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="23.0" layoutX="387.0" layoutY="9.0" stroke="BLACK" strokeType="INSIDE" width="120.0" />
+            <TableView layoutX="306.0" layoutY="80.0" prefHeight="200.0" prefWidth="200.0">
+              <columns>
+                <TableColumn fx:id="nomeServicoOrc" prefWidth="75.0" text="Serviços:" />
+                <TableColumn fx:id="qtdServicoOrc" prefWidth="47.0" text="QTD:" />
+                  <TableColumn fx:id="precoServicoOrc" prefWidth="77.0" text="Preço:" />
+              </columns>
+            </TableView>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="23.0" layoutX="387.0" layoutY="48.0" stroke="BLACK" strokeType="INSIDE" width="120.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="23.0" layoutX="82.0" layoutY="48.0" stroke="BLACK" strokeType="INSIDE" width="120.0" />
+            <Label layoutX="41.0" layoutY="52.0" prefHeight="16.0" prefWidth="42.0" text="Data:" />
+            <Label layoutX="298.0" layoutY="52.0" prefHeight="16.0" prefWidth="84.0" text="Preço Total:" />
+            <Label fx:id="nomeCliente" layoutX="83.0" layoutY="12.0" prefHeight="16.0" prefWidth="120.0" />
+            <Label fx:id="dataOrc" layoutX="83.0" layoutY="52.0" prefHeight="16.0" prefWidth="120.0" />
+            <Label fx:id="placaAutoOrc" layoutX="387.0" layoutY="13.0" prefHeight="16.0" prefWidth="120.0" />
+            <Label fx:id="precoTotalOrc" layoutX="387.0" layoutY="52.0" prefHeight="16.0" prefWidth="120.0" />
          </children>
       </Pane>
-      <Pane layoutX="45.0" layoutY="213.0" prefHeight="158.0" prefWidth="203.0" style="-fx-background-color: #D3D3D3;">
-         <children>
-            <Label layoutX="14.0" layoutY="14.0" text="Peças:" />
-            <Label layoutX="85.0" layoutY="14.0" text="Total: R$" />
-            <Label fx:id="valorTotalPecas" layoutX="134.0" layoutY="14.0" prefHeight="17.0" prefWidth="32.0" style="-fx-background-color: white;" />
-            <Label fx:id="descricaoPeca" layoutX="16.0" layoutY="53.0" prefHeight="17.0" prefWidth="87.0" style="-fx-background-color: white;" />
-            <Label fx:id="precoPeca" layoutX="102.0" layoutY="53.0" prefHeight="17.0" prefWidth="87.0" style="-fx-background-color: white;" />
-         </children>
-      </Pane>
-      <Pane layoutX="344.0" layoutY="213.0" prefHeight="158.0" prefWidth="203.0" style="-fx-background-color: #D3D3D3;">
-         <children>
-            <Label layoutX="14.0" layoutY="14.0" text="Serviços:" />
-            <Label layoutX="102.0" layoutY="14.0" text="Total: R$" />
-            <Label fx:id="valorTotalServico" layoutX="148.0" layoutY="14.0" prefHeight="17.0" prefWidth="32.0" style="-fx-background-color: white;" />
-            <Label fx:id="descricaoServico" layoutX="20.0" layoutY="53.0" prefHeight="17.0" prefWidth="87.0" style="-fx-background-color: white;" />
-            <Label fx:id="precoServico" layoutX="104.0" layoutY="53.0" prefHeight="17.0" prefWidth="87.0" style="-fx-background-color: white;" />
-         </children>
-      </Pane>
-      <Button fx:id="visualizar" layoutX="285.0" layoutY="19.0" mnemonicParsing="false" onAction="#visualizar" style="-fx-background-color: #7FFFD4;" text="Visualizar">
+      <Button fx:id="botaoConcluir" layoutX="471.0" layoutY="380.0" mnemonicParsing="false" onAction="#irParaTelaMenuOrcamento" prefHeight="42.0" prefWidth="111.0" style="-fx-background-color: #FF8C00;" text="Concluir">
          <font>
-            <Font size="15.0" />
+            <Font size="17.0" />
+         </font>
+      </Button>
+      <Button fx:id="botaoDeletar" layoutX="62.0" layoutY="380.0" mnemonicParsing="false" onAction="#deletarOrcamento" prefHeight="42.0" prefWidth="111.0" style="-fx-background-color: FF6347;" text="Deletar">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Button>
+      <Button fx:id="botaoPagar" layoutX="267.0" layoutY="380.0" mnemonicParsing="false" onAction="#pagarOrcamento" prefHeight="42.0" prefWidth="111.0" style="-fx-background-color: #5dd55d;" text="Pagar">
+         <font>
+            <Font size="17.0" />
          </font>
       </Button>
    </children>

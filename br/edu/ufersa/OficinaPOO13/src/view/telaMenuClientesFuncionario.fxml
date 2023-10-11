@@ -43,45 +43,44 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MenuPecasController">
+<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MenuClienteFuncionarioController">
   <children>
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
       <children>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#4a4a4a" height="44.0" stroke="BLACK" strokeType="INSIDE" width="640.0" />
-            <Button fx:id="botaoCadastrarPeca" alignment="CENTER" contentDisplay="CENTER" layoutX="479.0" layoutY="359.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="142.0" style="-fx-background-color: #;" text="Cadastrar" />
-            <TextField fx:id="botaoBuscar" layoutX="20.0" layoutY="359.0" prefHeight="31.0" prefWidth="163.0" text="Buscar" />
-            <TableView layoutX="20.0" layoutY="56.0" prefHeight="294.0" prefWidth="601.0">
+            <Button fx:id="botaoCadastrarCliente" alignment="CENTER" contentDisplay="CENTER" layoutX="479.0" layoutY="47.0" mnemonicParsing="false" onAction="#abrirCadastroCliente" prefHeight="31.0" prefWidth="142.0" style="-fx-background-color: #;" text="Cadastrar" />
+            <TextField fx:id="textFieldBuscar" layoutX="20.0" layoutY="47.0" prefHeight="31.0" prefWidth="163.0" text="Buscar" />
+            <TableView layoutX="20.0" layoutY="85.0" prefHeight="295.0" prefWidth="601.0">
               <columns>
-                <TableColumn fx:id="tableColumnIDPeca" prefWidth="56.0" text="ID" />
-                <TableColumn fx:id="tableColumnNomePeca" prefWidth="118.0" text="Nome" />
-                  <TableColumn fx:id="tableColumnFabricantePeca" prefWidth="111.0" text="Fabricante" />
-                  <TableColumn fx:id="tableColumnValorPeca" prefWidth="90.0" text="Valor" />
-                  <TableColumn fx:id="tableColumnEstoquePeca" prefWidth="73.0" text="Estoque" />
-                  <TableColumn fx:id="tableColumnEditar" minWidth="0.0" prefWidth="79.0" text="Editar" />
-                  <TableColumn fx:id="tableColumnDeletar" prefWidth="73.0" text="Deletar" />
+                <TableColumn fx:id="tableColumnCPF" prefWidth="111.0" text="CPF" />
+                <TableColumn fx:id="tableColumnCliente" prefWidth="88.0" text="Cliente" />
+                  <TableColumn fx:id="tableColumnAuto" prefWidth="124.0" text="Automovel" />
+                  <TableColumn fx:id="tableColumnPlaca" prefWidth="108.0" text="Placa" />
+                  <TableColumn fx:id="tableColumnEditar" minWidth="0.0" prefWidth="88.0" text="Editar" />
+                  <TableColumn fx:id="tableColumnDeletar" prefWidth="79.0" text="Deletar" />
               </columns>
             </TableView>
             <ButtonBar layoutY="2.0" prefHeight="40.0" prefWidth="621.0">
               <buttons>
-                  <Button fx:id="botaoClientes" minWidth="69.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="245.0" text="Clientes">
+                  <Button fx:id="botaoOrcamentos" minWidth="69.0" mnemonicParsing="false" onAction="#trocarParaTelaOrcamentos" prefHeight="36.0" prefWidth="245.0" text="Orçamentos">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Button>
-                  <Button fx:id="botaoOrcamentos" mnemonicParsing="false" prefHeight="36.0" prefWidth="207.0" text="Orçamentos">
+                  <Button fx:id="botaoPecas" mnemonicParsing="false" onAction="#trocarParaTelaPecas" prefHeight="36.0" prefWidth="207.0" text="Peças">
                      <font>
                         <Font size="16.0" />
                      </font>
                   </Button>
-                  <Button fx:id="botaoServicos" mnemonicParsing="false" prefHeight="36.0" prefWidth="111.0" text="Serviços">
+                  <Button fx:id="botaoServicos" mnemonicParsing="false" onAction="#trocarParaTelaServicos" prefHeight="36.0" prefWidth="111.0" text="Serviços">
                      <font>
                         <Font size="16.0" />
                      </font>
                   </Button>
-                  <Button fx:id="botaoSair" mnemonicParsing="false" prefHeight="36.0" prefWidth="96.0" text="Sair" />
+                  <Button fx:id="botaoSair" mnemonicParsing="false" onAction="#trocarParaTelaSair" prefHeight="36.0" prefWidth="96.0" text="Sair" />
               </buttons>
             </ButtonBar>
-            <Label layoutX="259.0" layoutY="357.0" prefHeight="36.0" prefWidth="143.0" text="Peças">
+            <Label layoutX="269.0" layoutY="45.0" prefHeight="36.0" prefWidth="115.0" text="Clientes">
                <font>
                   <Font size="26.0" />
                </font>

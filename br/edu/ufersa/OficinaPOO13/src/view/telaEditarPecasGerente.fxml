@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="436.0" prefWidth="627.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="EditarPecasGerenteController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="436.0" prefWidth="627.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.EditarPecasGerenteController">
    <children>
       <Label layoutX="62.0" layoutY="14.0" prefHeight="49.0" prefWidth="402.0" text="Editar Peça:">
          <font>
@@ -25,12 +25,12 @@
             <TextField fx:id="textfieldEstoquePeca" layoutX="335.0" layoutY="40.0" />
          </children>
       </Pane>
-      <Button fx:id="botaoConcluir" layoutX="353.0" layoutY="259.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="111.0" style="-fx-background-color: #FF8C00;" text="Concluir">
+      <Button fx:id="botaoConcluir" layoutX="353.0" layoutY="259.0" mnemonicParsing="false" onAction="#editarPeca" prefHeight="42.0" prefWidth="111.0" style="-fx-background-color: #FF8C00;" text="Concluir">
          <font>
             <Font size="17.0" />
          </font>
       </Button>
-      <Button fx:id="botaoCancelar" layoutX="152.0" layoutY="259.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="111.0" style="-fx-background-color: FF6347;" text="Cancelar">
+      <Button fx:id="botaoCancelar" layoutX="152.0" layoutY="259.0" mnemonicParsing="false" onAction="#voltar" prefHeight="42.0" prefWidth="111.0" style="-fx-background-color: FF6347;" text="Cancelar">
          <font>
             <Font size="17.0" />
          </font>

@@ -12,7 +12,7 @@ import model.VO.Orcamento;
 public class OrcamentoDAO extends BaseDAOImpl <Orcamento>{
     
     @Override
-    public Long inserir (Orcamento entity) {
+    public void inserir (Orcamento entity) {
 
         Connection con = getConnection();
         String sql = "INSERT INTO tb_orcamentos (cpf_cliente, placa, id_pecas, id_servico, preco_orcamento, data_orcamento) " + "values (?,?,?,?,?,?)";
@@ -131,25 +131,38 @@ public class OrcamentoDAO extends BaseDAOImpl <Orcamento>{
         }
         return rs;
     }
+   //=================================================================================
+    public ResultSet buscarEntreDatas (Orcamento entity) {
+
+        String sql = "SELECT * FROM tb_orcamentos WHERE data_orcamento BETWEEN data1 AND data2";
+        PreparedStatement ptst;
+        ResultSet rs = null;
+    
+        try {
+            ptst = getConnection().prepareStatement(sql);
+            ptst.setDate(1, (Date) entity.getDataInicio()); //data inicial do menu orçamento
+            ptst.setDate(2, (Date) entity.getDatafinal());  //data final do menu orcamento
+            rs = ptst.executeQuery();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return rs;
+    }
+
     //====================================== LISTAR ==================================
     @Override
-    public List<Orcamento> listar(){
-		Connection con = BaseDAOImpl.getConnection();
-        String sql = "SELECT * FROM tb_orcamentos";
-        List<Orcamento> lista = new ArrayList<>();
+    public ResultSet listar() {
+        ResultSet rs = null;
         try {
-			PreparedStatement ps = con.prepareStatement(sql);
-            ResultSet rs = ps.executeQuery();
-            while (rs.next()) {
-
-            }
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		finally {
+            Connection con = BaseDAOImpl.getConnection();
+            String sql = "SELECT * FROM tb_automovel";
+            PreparedStatement statement = con.prepareStatement(sql);
+            rs = statement.executeQuery();
             BaseDAOImpl.closeConnection();
-		}
-		return lista;
-	}
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return rs;
+    }
 
 }

@@ -1,11 +1,15 @@
 package view;
 
+import controller.FrontController;
+import model.VO.Funcionario;
+import model.VO.Gerente;
 import javafx.application.Application;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.stage.Stage;
-import model.VO.Funcionario;
 
 
 public class Telas extends Application{
@@ -22,9 +26,9 @@ public class Telas extends Application{
 		setPrimaryStage(primaryStage);
 		primaryStage.setTitle("Oficina do Zezé");
 		primaryStage.show();
-		//telaVisualizarOrcamento();// <--TROQUE AQUI PELO MÉTODO DA TELA
+		telaVisualizarOrcamento();// <--TROQUE AQUI PELO MÉTODO DA TELA
 		//Telas funcionando:
-		telaLogin();
+		//telaLogin();
 		//telaMenuClientes();
 		//telaCadastroCliente();
 		//telaCadastrarServicoGerente();
@@ -33,7 +37,7 @@ public class Telas extends Application{
 	}
 	
 	public static void telaLogin() throws Exception{
-		Parent root = FXMLLoader.load(Telas.class.getResource("telaLogin.fxml"));
+		Parent root = FXMLLoader.load(Telas.class.getResource("telaLogin1Opcao.fxml"));
 		Scene cena = new Scene(root);
 		primaryStage.setScene(cena);
 	}

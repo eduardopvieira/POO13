@@ -1,29 +1,23 @@
 package controller;
 
-import javafx.scene.control.TextField;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import model.VO.Cliente;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TextField;
 import model.VO.Automovel;
+import model.VO.Cliente;
 
 public class CadastroClientesController {
 	@FXML
-    private Button addVeiculo;
-
-    @FXML
-    private TextField anoAuto;
+    private Button botaoAddVeiculo;
 
     @FXML
     private Button botaoCadastrar;
 
     @FXML
     private Button botaoCancelar;
-
-    @FXML
-    private TextField corAuto;
-
+    
     @FXML
     private TextField cpfCliente;
 
@@ -31,38 +25,44 @@ public class CadastroClientesController {
     private TextField enderecoCliente;
 
     @FXML
-    private TextField kmAuto;
-
-    @FXML
-    private TextField marcaAuto;
-
-    @FXML
-    private TextField modeloAuto;
-
-    @FXML
     private TextField nomeCliente;
 
     @FXML
-    private TextField placaAuto;
+    private TableColumn<Automovel, Integer> tableColumnAnoAuto;
+
+    @FXML
+    private TableColumn<Automovel, String> tableColumnCorAuto;
+
+    @FXML
+    private TableColumn<Automovel, Button> tableColumnDeletarAuto;
+
+    @FXML
+    private TableColumn<Automovel, Button> tableColumnEditarAuto;
+
+    @FXML
+    private TableColumn<Automovel, Integer> tableColumnKMAuto;
+
+    @FXML
+    private TableColumn<Automovel, String> tableColumnMarcaAuto;
+
+    @FXML
+    private TableColumn<Automovel, String> tableColumnModeloAuto;
+
+    @FXML
+    private TableColumn<Automovel, String> tableColumnPlacaAuto;
+
+    @FXML
+    void abrirTelaCadastroVeiculo(ActionEvent event) {
+
+    }
 
     @FXML
     public void cadastrarCliente(ActionEvent event) throws Exception {
-    	Cliente c = new Cliente();
-    	Automovel a = new Automovel();
     	
-    	c.setNome(nomeCliente.getText());
-    	c.setCPF(cpfCliente.getText());
-    	c.setEndereco(enderecoCliente.getText());
-    	
-    	a.setModelo(modeloAuto.getText());
-    	a.setAno(Integer.parseInt(anoAuto.getText()));
-    	a.setMarca(marcaAuto.getText());
-    	a.setDono(c);
-    	a.setKm(Integer.parseInt(kmAuto.getText()));
-    	a.setPlaca(placaAuto.getText());
-    	a.setCor(corAuto.getText());
-  
-    	System.out.println("Cliente: CPF:" + c.getCPF() + " NOME: " + c.getNome() + " ENDERECO: " + c.getEndereco());
-    	System.out.println("Auto: MODELO: " + a.getModelo() + " ANO: " + a.getAno() + "MARCA: " + a.getMarca() + " KM: " + a.getKm() + " PLACA: " + a.getPlaca() + " cor:" + a.getCor());
     }	
+
+    @FXML
+    void cancelarCadastro(ActionEvent event) {
+
+    }
 }
