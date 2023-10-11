@@ -11,7 +11,7 @@ public class Servico {
   public Servico(){}
 
   public Servico(int idServico, String servicoNome, String servicoDescricao, double servicoPreco) throws InfoNaoCompativelException{
-    setIdServico(idServico);
+    setServicoId(idServico);
     setServicoNome(servicoNome);
     setServicoDescricao(servicoDescricao);
     setServicoPreco(servicoPreco);
@@ -19,11 +19,11 @@ public class Servico {
   }
 
 //get id:
-public int getIdServico() {
+public int getServicoId() {
   return idServico;
 }
 
-public void setIdServico(int l) {
+public void setServicoId(int l) {
   if(l > 0)
     this.idServico = l;
   else

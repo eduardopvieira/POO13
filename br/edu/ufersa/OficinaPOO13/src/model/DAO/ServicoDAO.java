@@ -7,33 +7,38 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import model.VO.Pecas;
 import model.VO.Servico;
 
 public class ServicoDAO extends BaseDAOImpl <Servico>{
-    
-    @Override
-    public Long inserir (Servico entity) {
-
-        Connection con = getConnection();
-        String sql = "INSERT INTO tb_servicos (servico_nome, servico_desc, servico_preco) " + "values (?,?,?)";
-        try {
-            PreparedStatement ps = con.prepareStatement(sql);
-
-            ps.setString(1, entity.getServicoNome());
-            ps.setString(2, entity.getServicoDescricao());
-            ps.setDouble(3, entity.getServicoPreco());
-            ps.execute();
-            ps.close();
-        
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return null;
-        }
-        finally {closeConnection();
-            System.out.println("Chegou aqui!"); }
-            return null;
-    }
-    //=======================================================================================
+    	
+	public void inserir(Servico entity) {
+            try {
+                Connection con = BaseDAOImpl.getConnection();
+                String sql = "INSERT INTO tb_servicos (servico_nome, servico_desc, servico_preco, id_servico) " + "values (?,?,?,?)";
+                PreparedStatement statement = con.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
+                statement.setString(1, entity.getServicoNome());
+                statement.setString(2, entity.getServicoDescricao());
+                statement.setDouble(3, entity.getServicoPreco());
+                statement.setInt(4, entity.getServicoId());
+                int affectedRows = statement.executeUpdate();
+                if (affectedRows == 0) {
+                    throw new Exception("A inserção falhou. Nenhuma linha foi alterada.");
+                }
+                ResultSet generatedKeys = statement.getGeneratedKeys();
+                if (generatedKeys.next()) {
+                    entity.setServicoId(generatedKeys.getInt(1));
+                } else {
+                    throw new Exception("A inserção falhou. Nenhum id foi retornado.");
+                }
+                statement.close();
+                BaseDAOImpl.closeConnection();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+    	}
+ 
+//=================================== Inserir ====================================================
 
     public void deletar(Servico entity) {
 
@@ -44,7 +49,7 @@ public class ServicoDAO extends BaseDAOImpl <Servico>{
         {
             PreparedStatement ps = con.prepareStatement(sql);
 
-            ps.setInt(1, entity.getIdServico());
+            ps.setInt(1, entity.getServicoId());
             ps.execute();
             ps.close();
         }
@@ -66,7 +71,7 @@ public class ServicoDAO extends BaseDAOImpl <Servico>{
             ps.setString(1, entity.getServicoNome());
             ps.setString(2, entity.getServicoDescricao());
             ps.setDouble(3, entity.getServicoPreco());
-            ps.setInt(4, entity.getIdServico());
+            ps.setInt(4, entity.getServicoId());
             ps.execute();
             ps.close();
         }
@@ -77,7 +82,7 @@ public class ServicoDAO extends BaseDAOImpl <Servico>{
         finally {closeConnection();}
     }
 
-    //=======================================================================================
+    //===================================Buscar por nome====================================================
     public ResultSet buscar (Servico entity) {
 
         String sql = "SELECT * FROM tb_servicos WHERE servico_nome = ?";
@@ -86,7 +91,7 @@ public class ServicoDAO extends BaseDAOImpl <Servico>{
     
         try {
             ptst = getConnection().prepareStatement(sql);
-            ptst.setString(1, entity.getServicoNome()); // Parâmetro para o nome
+            ptst.setString(1, entity.getServicoNome());
             System.out.println(ptst);
             rs = ptst.executeQuery();
         } catch (SQLException e) {
@@ -96,24 +101,18 @@ public class ServicoDAO extends BaseDAOImpl <Servico>{
     }
 
     //====================================== LISTAR ==================================
-    @Override
-    public List<Servico> listar(){
-		Connection con = BaseDAOImpl.getConnection();
-        String sql = "SELECT * FROM tb_servicos";
-        List<Servico> list = new ArrayList<>();
+    public ResultSet listar() {
+        ResultSet rs = null;
         try {
-			PreparedStatement ps = con.prepareStatement(sql);
-            ResultSet rs = ps.executeQuery();
-            while (rs.next()) {
-
-            }
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		finally {
+            Connection con = BaseDAOImpl.getConnection();
+            String sql = "SELECT * FROM tb_servicos";
+            PreparedStatement statement = con.prepareStatement(sql);
+            rs = statement.executeQuery();
             BaseDAOImpl.closeConnection();
-		}
-		return list;
-	}
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return rs;
+    }
 
 }

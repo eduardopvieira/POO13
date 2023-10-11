@@ -9,7 +9,7 @@ import java.sql.ResultSet;
 public abstract class BaseDAOImpl<E> implements BaseDAO<E> {
     final static String URL = "jdbc:postgresql://localhost:5432/Oficina";
     final static String USER = "postgres";
-    final static String PASS = "1234";
+    final static String PASS = "123";
     static Connection con = null;
 
 
@@ -40,7 +40,7 @@ public abstract class BaseDAOImpl<E> implements BaseDAO<E> {
         }
     }
 
-    public abstract Long inserir (E entity);
+    public abstract void inserir (E entity);
 
     public abstract void deletar (E entity);
 
@@ -48,6 +48,6 @@ public abstract class BaseDAOImpl<E> implements BaseDAO<E> {
 
     public abstract ResultSet buscar (E entity);
 
-    public abstract List<E> listar ();
+    public abstract ResultSet listar ();
 
 }

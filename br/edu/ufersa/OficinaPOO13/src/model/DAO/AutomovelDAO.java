@@ -1,6 +1,5 @@
 package model.DAO;
 
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -13,10 +12,10 @@ import model.VO.Automovel;
 public class AutomovelDAO extends BaseDAOImpl <Automovel>{
     
     @Override
-    public Long inserir (Automovel entity) {
+    public void inserir (Automovel entity) {
 
         Connection con = getConnection();
-        String sql = "INSERT INTO tb_automovel (placa, cor, modelo, ano, quilometragem, dono) " + "values (?,?,?,?,?,?)";
+        String sql = "INSERT INTO tb_automovel (placa, cor, modelo, marca, ano, quilometragem, dono) " + "values (?,?,?,?,?,?,?)";
 
         try {
             PreparedStatement ps = con.prepareStatement(sql);
@@ -24,19 +23,17 @@ public class AutomovelDAO extends BaseDAOImpl <Automovel>{
             ps.setString(1, entity.getPlaca());
             ps.setString(2, entity.getCor());
             ps.setString(3, entity.getModelo());
-            ps.setInt(4, entity.getAno());
-            ps.setInt(5, entity.getKm());
-            ps.setString(6, entity.getDono().getCPF());
+            ps.setString(4, entity.getMarca());
+            ps.setInt(5, entity.getAno());
+            ps.setInt(6, entity.getKm());
+            ps.setString(7, entity.getDono().getCPF());
             ps.execute();
             ps.close();
         
         } catch (SQLException e) {
-            e.printStackTrace();
-            return null;
+            e.printStackTrace();   
         }
-        finally {closeConnection();
-            System.out.println("Chegou aqui!"); }
-            return null;
+        finally {closeConnection();}
     }
     //=======================================================================================
 
@@ -93,7 +90,7 @@ public class AutomovelDAO extends BaseDAOImpl <Automovel>{
     
         try {
             ptst = getConnection().prepareStatement(sql);
-            ptst.setString(1, entity.getPlaca()); // Parâmetro para o PLACA
+            ptst.setString(1, entity.getPlaca());
             System.out.println(ptst);
             rs = ptst.executeQuery();
         } catch (SQLException e) {
@@ -105,13 +102,13 @@ public class AutomovelDAO extends BaseDAOImpl <Automovel>{
 //========================================= BUSCAR POR MODELO =========================================
         public ResultSet buscarPorModelo (Automovel entity) {
 
-        String sql = "SELECT * FROM tb_automovel WHERE modelo=?";
+        String sql = "SELECT * FROM tb_automovel WHERE modelo = ?";
         PreparedStatement ptst;
         ResultSet rs = null;
     
         try {
             ptst = getConnection().prepareStatement(sql);
-            ptst.setString(1, entity.getModelo()); // Parâmetro para o PLACA
+            ptst.setString(1, entity.getModelo());
             System.out.println(ptst);
             rs = ptst.executeQuery();
         } catch (SQLException e) {
@@ -122,23 +119,18 @@ public class AutomovelDAO extends BaseDAOImpl <Automovel>{
 
     //====================================== LISTAR ==================================
     @Override
-    public List<Automovel> listar(){
-		Connection con = BaseDAOImpl.getConnection();
-        String sql = "SELECT * FROM tb_automovel";
-        List<Automovel> lista = new ArrayList<>();
+    public ResultSet listar() {
+        ResultSet rs = null;
         try {
-			PreparedStatement ps = con.prepareStatement(sql);
-            ResultSet rs = ps.executeQuery();
-            while (rs.next()) {
-
-            }
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		finally {
+            Connection con = BaseDAOImpl.getConnection();
+            String sql = "SELECT * FROM tb_automovel";
+            PreparedStatement statement = con.prepareStatement(sql);
+            rs = statement.executeQuery();
             BaseDAOImpl.closeConnection();
-		}
-		return lista;
-	}
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return rs;
+    }
 
 }
