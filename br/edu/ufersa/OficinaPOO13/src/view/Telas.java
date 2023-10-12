@@ -6,6 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import model.VO.Funcionario;
+import model.VO.Gerente;
 
 
 public class Telas extends Application{
@@ -38,8 +39,14 @@ public class Telas extends Application{
 		primaryStage.setScene(cena);
 	}
 	
-	public static void telaMenuClientes(Funcionario func) throws Exception{
-		Parent root = FXMLLoader.load(Telas.class.getResource("telaMenuClientes.fxml"));
+	public static void telaMenuClientesFuncionario(Funcionario func) throws Exception{
+		Parent root = FXMLLoader.load(Telas.class.getResource("telaMenuClientesFuncionario.fxml"));
+		Scene cena = new Scene(root);
+		primaryStage.setScene(cena);
+	}
+	
+	public static void telaMenuClientesGerente(Gerente gerente) throws Exception{
+		Parent root = FXMLLoader.load(Telas.class.getResource("telaMenuClientesGerente.fxml"));
 		Scene cena = new Scene(root);
 		primaryStage.setScene(cena);
 	}

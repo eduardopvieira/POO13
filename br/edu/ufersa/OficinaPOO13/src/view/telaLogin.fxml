@@ -40,10 +40,10 @@
                 <RowConstraints maxHeight="44.0" minHeight="10.0" prefHeight="32.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Label text="Login" />
-                  <Label text="Senha" GridPane.rowIndex="1" />
-                  <TextField prefHeight="24.0" prefWidth="134.0" GridPane.columnIndex="1" />
-                  <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <Label prefHeight="16.0" prefWidth="35.0" text="CPF:" />
+                  <Label text="Senha:" GridPane.rowIndex="1" />
+                  <TextField fx:id="campoCPF" prefHeight="24.0" prefWidth="134.0" GridPane.columnIndex="1" />
+                  <TextField fx:id="campoSenha" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                </children>
             </GridPane>
             <ImageView fitHeight="40.0" fitWidth="36.0" layoutX="84.0" layoutY="55.0" pickOnBounds="true" preserveRatio="true">
@@ -61,6 +61,11 @@
                   <Font name="Manjari Bold" size="18.0" />
                </font>
             </Button>
+            <Label layoutX="68.0" layoutY="136.0" prefHeight="30.0" prefWidth="192.0" text="Coloque o CPF sem pontuaçao!">
+               <font>
+                  <Font name="Manjari Regular" size="13.0" />
+               </font>
+            </Label>
          </children>
       </Pane>
    </items>

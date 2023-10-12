@@ -85,6 +85,7 @@
                   <Font size="26.0" />
                </font>
             </Label>
+            <Label layoutX="191.0" layoutY="44.0" prefHeight="16.0" prefWidth="103.0" text="Gerente" />
       </children>
     </AnchorPane>
   </children>

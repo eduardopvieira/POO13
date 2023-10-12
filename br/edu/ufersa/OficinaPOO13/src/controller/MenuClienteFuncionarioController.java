@@ -9,6 +9,9 @@ import javafx.scene.control.TextField;
 public class MenuClienteFuncionarioController {
 
     @FXML
+    private TextField botaoBuscar;
+
+    @FXML
     private Button botaoCadastrarCliente;
 
     @FXML
@@ -42,30 +45,32 @@ public class MenuClienteFuncionarioController {
     private TableColumn<?, ?> tableColumnPlaca;
 
     @FXML
-    private TextField textFieldBuscar;
-
-    @FXML
     void abrirCadastroCliente(ActionEvent event) {
 
     }
 
     @FXML
-    void trocarParaTelaOrcamentos(ActionEvent event) {
+    void buscarCliente(ActionEvent event) {
 
     }
 
     @FXML
-    void trocarParaTelaPecas(ActionEvent event) {
+    void trocarParaMenuOrcamentos(ActionEvent event) {
 
     }
 
     @FXML
-    void trocarParaTelaSair(ActionEvent event) {
+    void trocarParaMenuPecas(ActionEvent event) {
 
     }
 
     @FXML
-    void trocarParaTelaServicos(ActionEvent event) {
+    void trocarParaMenuServicos(ActionEvent event) {
+
+    }
+
+    @FXML
+    void trocarParaTelaLogin(ActionEvent event) {
 
     }
 

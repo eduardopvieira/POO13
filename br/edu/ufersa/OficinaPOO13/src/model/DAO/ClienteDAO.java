@@ -62,7 +62,7 @@ public class ClienteDAO extends BaseDAOImpl <Cliente>{
     @Override
     public void alterar (Cliente entity) {
         Connection con = getConnection();
-        String sql = "UPDATE tb_clientes SET nome_cliente = ?, endereco = ? WHERE cpf_cliente = ?";
+        String sql = "UPDATE tb_clientes SET nome_cliente = ?, endereco_cliente = ? WHERE cpf_cliente = ?";
 
         try
         {
