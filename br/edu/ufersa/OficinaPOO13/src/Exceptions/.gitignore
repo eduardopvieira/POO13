@@ -2,3 +2,7 @@
 /InfoExistenteException.class
 /InfoNaoCompativelException.class
 /LoginFailedException.class
+/InfoNaoExistenteException.class
+/InsertException.class
+/JaCadastradoException.class
+/NotFoundException.class

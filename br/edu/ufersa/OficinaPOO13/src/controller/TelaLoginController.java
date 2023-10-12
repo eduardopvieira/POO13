@@ -3,12 +3,15 @@ package controller;
 import Exceptions.InfoNaoCompativelException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import model.BO.FuncionarioBO;
 import model.VO.Funcionario;
 import model.VO.Gerente;
 import view.Telas;
+import view.util.Alerts;
 
 public class TelaLoginController {
 
@@ -19,7 +22,7 @@ public class TelaLoginController {
     private TextField campoCPF;
 
     @FXML
-    private TextField campoSenha;
+    private PasswordField campoSenha;
     
 	FuncionarioBO funcBO = new FuncionarioBO();
 
@@ -41,7 +44,7 @@ public class TelaLoginController {
         }
         try
         {
-            Funcionario autenticado = funcBO.autenticar(func);
+        	Funcionario autenticado = funcBO.autenticar(func);
             if(autenticado.getIsGerente() == true)
             {
             	Gerente ger = new Gerente();
@@ -59,8 +62,10 @@ public class TelaLoginController {
         {
             //colocar o alert
         	System.out.println("Usuário ou senha inválidos");
+        	Alerts.showAlert("Error", "Erro de autenticação", e.getMessage(), AlertType.WARNING);
             e.printStackTrace();
         }
     }
+
 
 }
