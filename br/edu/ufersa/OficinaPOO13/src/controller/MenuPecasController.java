@@ -5,6 +5,10 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TextField;
+import model.VO.Funcionario;
+import model.VO.Gerente;
+import model.VO.UsuarioAutenticado;
+import view.Telas;
 
 public class MenuPecasController {
 
@@ -48,33 +52,45 @@ public class MenuPecasController {
     private TableColumn<?, ?> tableColumnValorPeca;
 
     @FXML
-    void buscarPeca(ActionEvent event) {
+    void buscarPeca(ActionEvent event)throws Exception {
 
     }
 
     @FXML
-    void irParaMenuClientes(ActionEvent event) {
-
+    void irParaMenuClientes(ActionEvent event)throws Exception {
+    	Gerente ger = UsuarioAutenticado.getGerenteAutenticado();
+    	if (ger != null) {
+    		Telas.telaMenuClientesGerente(ger);
+    	} else {
+    		Funcionario func = UsuarioAutenticado.getFuncAutenticado();
+    		Telas.telaMenuClientesFuncionario(func);
+    	}
     }
 
     @FXML
-    void irParaMenuOrcamento(ActionEvent event) {
-
+    void irParaMenuOrcamento(ActionEvent event)throws Exception {
+    	Telas.telaMenuOrcamento();
     }
 
     @FXML
-    void irParaMenuServico(ActionEvent event) {
-
+    void irParaMenuServico(ActionEvent event) throws Exception {
+    	Gerente ger = UsuarioAutenticado.getGerenteAutenticado();
+    	if (ger != null) {
+    		Telas.telaMenuServicoGerente(ger);
+    	} else {
+    		Funcionario func = UsuarioAutenticado.getFuncAutenticado();
+    		Telas.telaMenuServicoFuncionario(func);
+    	}
     }
 
     @FXML
-    void irParaTelaLogin(ActionEvent event) {
-
+    void irParaTelaLogin(ActionEvent event)throws Exception {
+    	Telas.telaLogin();
     }
 
     @FXML
-    void irTelaCadastrarPeca(ActionEvent event) {
-
+    void irTelaCadastrarPeca(ActionEvent event)throws Exception {
+    	Telas.telaCadastrarPecas();
     }
 
 }

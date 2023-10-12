@@ -1,0 +1,38 @@
+CREATE TABLE tb_clientes (
+    cpf_cliente varchar(11) PRIMARY KEY,
+    nome_cliente varchar(50),
+    endereco_cliente varchar(100)
+);
+
+CREATE TABLE tb_automoveis (
+    dono varchar(11) REFERENCES tb_clientes(cpf),
+    placa varchar(7) PRIMARY KEY,
+    modelo varchar(30),
+    marca varchar(30),
+    ano int,
+    quilometragem numeric(7, 0),
+    cor varchar(30)
+);
+
+CREATE TABLE tb_funcionarios (
+    cpf_func varchar(11) PRIMARY KEY,
+    nome_func varchar(50),
+    endereco_func varchar(100),
+    senha_func varchar(20),
+    isGerente boolean
+);
+
+CREATE TABLE tb_servicos (
+    servico_id serial PRIMARY KEY,
+    servico_nome varchar(30),
+    servico_desc varchar(100),
+    servico_preco numeric(5, 2)
+);
+
+CREATE TABLE tb_pecas (
+    id_peca serial PRIMARY KEY,
+    desc_peca varchar(20),
+    fab_peca varchar(20),
+    preco_peca numeric(5, 2),
+    estoque_peca numeric(4, 2)
+);

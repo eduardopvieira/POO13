@@ -1,6 +1,7 @@
 package controller;
 
 import Exceptions.InfoNaoCompativelException;
+import model.VO.UsuarioAutenticado;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -47,12 +48,13 @@ public class TelaLoginController {
             	Gerente ger = new Gerente();
             	ger.setCPF(autenticado.getCPF());
             	ger.setNome(autenticado.getNome());
-                Telas.telaMenuClientesGerente(ger);
+            	UsuarioAutenticado.setGerenteAutenticado(ger);
+            	Telas.telaMenuClientesGerente(ger);
             }
             else
             {
-                //TODO
-                Telas.telaMenuClientesFuncionario(autenticado);
+                UsuarioAutenticado.setFuncAutenticado(autenticado);
+            	Telas.telaMenuClientesFuncionario(autenticado);
             }
         }
         catch(Exception e)

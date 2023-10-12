@@ -4,6 +4,10 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import model.VO.Funcionario;
+import model.VO.Gerente;
+import model.VO.UsuarioAutenticado;
+import view.Telas;
 
 public class EditarPecasGerenteController {
 
@@ -32,7 +36,13 @@ public class EditarPecasGerenteController {
 
     @FXML
     void voltar(ActionEvent event) {
-
+    	Gerente ger = UsuarioAutenticado.getGerenteAutenticado();
+    	if (ger != null) {
+    		Telas.EditarPecaGerente(ger);
+    	} else {
+    		Funcionario func = UsuarioAutenticado.getFuncAutenticado();
+    		Telas.telaMenuServicoFuncionario(func);
+    	}
     }
 
 }

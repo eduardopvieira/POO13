@@ -5,6 +5,10 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TextField;
+import model.VO.Funcionario;
+import model.VO.Gerente;
+import model.VO.UsuarioAutenticado;
+import view.Telas;
 
 public class MenuClienteGerenteController {
 
@@ -45,42 +49,34 @@ public class MenuClienteGerenteController {
     private TableColumn<?, ?> tableColumnPlaca;
 
     @FXML
-    private Button trocarMenuFuncionarios;
-
-    @FXML
-    void abrirCadastroCliente(ActionEvent event) {
-
+    void abrirCadastroCliente(ActionEvent event)throws Exception {
+    	Telas.telaCadastroCliente();
     }
 
     @FXML
-    void buscarCliente(ActionEvent event) {
-
+    void buscarCliente(ActionEvent event)throws Exception {
+    	
     }
 
     @FXML
-    void trocarParaMenuFuncionarios(ActionEvent event) {
-
+    void trocarParaMenuOrcamentos(ActionEvent event)throws Exception {
+    	Telas.telaMenuOrcamento();
     }
 
     @FXML
-    void trocarParaMenuOrcamentos(ActionEvent event) {
-
+    void trocarParaMenuPecas(ActionEvent event) throws Exception{
+    	Telas.telaMenuPecas();
     }
 
     @FXML
-    void trocarParaMenuPecas(ActionEvent event) {
-
-    }
-
-    @FXML
-    void trocarParaMenuServicos(ActionEvent event) {
-
-    }
-
-    @FXML
-    void trocarParaTelaLogin(ActionEvent event) {
-
+    void trocarParaMenuServicos(ActionEvent event)throws Exception {
+    	Gerente ger = UsuarioAutenticado.getGerenteAutenticado();
+    	if (ger != null) {
+    		Telas.telaMenuServicoGerente(ger);
+    	} else {
+    		Funcionario func = UsuarioAutenticado.getFuncAutenticado();
+    		Telas.telaMenuServicoFuncionario(func);
+    	}
     }
 
 }
-
