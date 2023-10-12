@@ -6,3 +6,15 @@
 /CadastrarPecaFuncController.class
 /CadastrarPecaGerController.class
 /VisualizarOrcamentoController.class
+/CadastrarPecasController.class
+/EditarPecasFuncionarioController.class
+/EditarPecasGerenteController.class
+/MenuClienteFuncionarioController.class
+/MenuClienteGerenteController.class
+/MenuFuncionarioGerenteController.class
+/MenuOrcamentoController.class
+/MenuPecasController.class
+/MenuServicoFuncionarioController.class
+/MenuServicoGerenteController.class
+/PopUpCadastrarAutoController.class
+/TelaLoginController.class
