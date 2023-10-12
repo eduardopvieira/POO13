@@ -42,7 +42,7 @@ public class FuncionarioBO<VO extends Funcionario>  implements FuncionarioInterB
 	                throw new AutenticationException("Senha incorreta.");
 	            }
 	        } else {
-	            throw new AutenticationException("CPF não cadastrado.");
+	            throw new AutenticationException("CPF não encontrado.");
 	        }
 	    } catch (SQLException e) {
 	        e.printStackTrace();
