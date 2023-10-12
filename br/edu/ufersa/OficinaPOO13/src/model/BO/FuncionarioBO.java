@@ -19,7 +19,7 @@ public class FuncionarioBO<VO extends Funcionario>  implements FuncionarioInterB
 	    try {
 	        if (trabalhadorRS.next()) {
 	            String senhaTrab = trabalhadorRS.getString("senha_func");
-	            boolean isGerente = trabalhadorRS.getBoolean("isGerente");
+	            boolean isGerente = trabalhadorRS.getBoolean("isgerente");
 
 	            if (vo.getSenha().equals(senhaTrab)) {
 	                if (isGerente) {
@@ -27,6 +27,7 @@ public class FuncionarioBO<VO extends Funcionario>  implements FuncionarioInterB
 	                    gerente.setCPF(vo.getCPF());
 	                    gerente.setNome(trabalhadorRS.getString("nome_func"));
 	                    gerente.setEndereco(trabalhadorRS.getString("endereco_func"));
+	                    gerente.setSenha(trabalhadorRS.getString("senha_func"));
 	                    gerente.setIsGerente(true);
 	                    
 	                    return (T) gerente;
@@ -35,6 +36,7 @@ public class FuncionarioBO<VO extends Funcionario>  implements FuncionarioInterB
 	                    funcionario.setCPF(vo.getCPF());
 	                    funcionario.setNome(trabalhadorRS.getString("nome_func"));
 	                    funcionario.setEndereco(trabalhadorRS.getString("endereco_func"));
+	                    funcionario.setSenha(trabalhadorRS.getString("senha_func"));
 	                    funcionario.setIsGerente(false);
 	                    return (T) funcionario;
 	                }

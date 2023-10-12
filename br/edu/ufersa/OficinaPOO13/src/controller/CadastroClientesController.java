@@ -7,6 +7,10 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TextField;
 import model.VO.Automovel;
 import model.VO.Cliente;
+import model.VO.Funcionario;
+import model.VO.Gerente;
+import model.VO.UsuarioAutenticado;
+import view.Telas;
 
 public class CadastroClientesController {
 	@FXML
@@ -53,7 +57,7 @@ public class CadastroClientesController {
 
     @FXML
     void abrirTelaCadastroVeiculo(ActionEvent event) {
-
+    	
     }
 
     @FXML
@@ -62,7 +66,13 @@ public class CadastroClientesController {
     }	
 
     @FXML
-    void cancelarCadastro(ActionEvent event) {
-
+    void cancelarCadastro(ActionEvent event) throws Exception {
+    	Gerente ger = UsuarioAutenticado.getGerenteAutenticado();
+    	if (ger != null) {
+    		Telas.telaMenuClientesGerente(ger);
+    	} else {
+    		Funcionario func = UsuarioAutenticado.getFuncAutenticado();
+    		Telas.telaMenuClientesFuncionario(func);
+    	}
     }
 }

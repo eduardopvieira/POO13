@@ -16,6 +16,7 @@ public class Orcamento {
   private List <Servico> listaServicos;
   private double totalOrcamento;
   private Date dataOrcamento;
+  private boolean isPago; 
 
   public Orcamento(){}
   public Orcamento(Cliente clienteOrcamento, Automovel automovelOrcamento, Pecas pecasOrcamento, Servico servicoOrcamento){
@@ -25,7 +26,7 @@ public class Orcamento {
       setDataOrcamento(dataOrcamento);
       listaPecas = new ArrayList<Pecas>();
       listaServicos = new ArrayList<Servico>();
-
+      setIsPago(false);
   }
   
 
@@ -94,6 +95,13 @@ public Date getDataOrcamento() {
 	  if (id >= 0) {
 		  this.idOrcamento = id;
 	  }
+  }
+ //========================GET E SET ISPAGO===========================================
+  
+  public boolean getIsPago() {return isPago;}
+  
+  public void setIsPago(boolean bool) {
+	  this.isPago = bool;
   }
   
 }

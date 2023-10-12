@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import view.Telas;
 
 public class PopUpCadastrarAutoController {
 
@@ -37,8 +38,8 @@ public class PopUpCadastrarAutoController {
     }
 
     @FXML
-    void voltar(ActionEvent event) {
-
+    void voltar(ActionEvent event) throws Exception {
+    	Telas.telaCadastroCliente();
     }
 
 }

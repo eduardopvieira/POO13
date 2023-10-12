@@ -35,14 +35,9 @@ public class EditarPecasGerenteController {
     }
 
     @FXML
-    void voltar(ActionEvent event) {
-    	Gerente ger = UsuarioAutenticado.getGerenteAutenticado();
-    	if (ger != null) {
-    		Telas.EditarPecaGerente(ger);
-    	} else {
-    		Funcionario func = UsuarioAutenticado.getFuncAutenticado();
-    		Telas.telaMenuServicoFuncionario(func);
+    void voltar(ActionEvent event) throws Exception {
+    	
+    		Telas.telaMenuPecas();
     	}
-    }
 
 }

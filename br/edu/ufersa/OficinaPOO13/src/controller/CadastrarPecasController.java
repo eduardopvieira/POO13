@@ -27,13 +27,13 @@ public class CadastrarPecasController {
     private TextField textfieldValorPeça;
 
     @FXML
-    void cadastrarPeca(ActionEvent event) {
+    void cadastrarPeca(ActionEvent event) throws Exception {
     	Telas.telaCadastrarPecas();
     }
 
     @FXML
-    void voltar(ActionEvent event) {
-
+    void voltar(ActionEvent event) throws Exception {
+    	Telas.telaMenuPecas();
     }
 
 }

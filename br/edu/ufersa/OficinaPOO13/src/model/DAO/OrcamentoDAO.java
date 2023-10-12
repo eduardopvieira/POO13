@@ -15,7 +15,7 @@ public class OrcamentoDAO extends BaseDAOImpl <Orcamento>{
     public void inserir (Orcamento entity) {
 
         Connection con = getConnection();
-        String sql = "INSERT INTO tb_orcamentos (cpf_cliente, placa, id_pecas, id_servico, preco_orcamento, data_orcamento) " + "values (?,?,?,?,?,?)";
+        String sql = "INSERT INTO tb_orcamentos (cpf_cliente, placa, id_pecas, id_servico, preco_orcamento, data_orcamento, ispago) " + "values (?,?,?,?,?,?,?)";
 
         try {
             PreparedStatement ps = con.prepareStatement(sql);
@@ -25,6 +25,7 @@ public class OrcamentoDAO extends BaseDAOImpl <Orcamento>{
             ps.setInt(4, entity.getServicoOrcamento().getIdServico());
             ps.setDouble(5, entity.getTotalOrcamento());
             ps.setDate(6, (Date) entity.getDataOrcamento());
+            ps.setBoolean(7, entity.getIsPago());
             ps.execute();
             ps.close();
         
@@ -61,7 +62,7 @@ public class OrcamentoDAO extends BaseDAOImpl <Orcamento>{
 
     public void alterar (Orcamento entity) {
         Connection con = getConnection();
-        String sql = "UPDATE tb_orcamentos SET cpf_cliente = ?, placa = ?, id_pecas = ?, id_servico = ?, preco_orcamento = ?, data_orcamento = ? WHERE id_orcamento = ?";
+        String sql = "UPDATE tb_orcamentos SET cpf_cliente = ?, placa = ?, id_pecas = ?, id_servico = ?, preco_orcamento = ?, data_orcamento = ?, isPago = ?, WHERE id_orcamento = ?";
 
         try
         {
@@ -72,6 +73,7 @@ public class OrcamentoDAO extends BaseDAOImpl <Orcamento>{
             ps.setInt(4, entity.getServicoOrcamento().getIdServico());
             ps.setDouble(5, entity.getTotalOrcamento());
             ps.setDate(6, (Date) entity.getDataOrcamento());
+            ps.setBoolean(7, entity.getIsPago());
             ps.execute();
             ps.close();
         }

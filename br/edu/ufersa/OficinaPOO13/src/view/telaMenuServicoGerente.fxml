@@ -64,12 +64,7 @@
               <buttons>
                   <Button fx:id="botaoClientes" minWidth="69.0" mnemonicParsing="false" onAction="#irParaMenuOrcamentos" prefHeight="36.0" prefWidth="245.0" text="Orçamentos">
                      <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Button>
-                  <Button fx:id="botaoPecas" mnemonicParsing="false" onAction="#irParaMenuPecas" prefHeight="36.0" prefWidth="207.0" text="Peças">
-                     <font>
-                        <Font size="16.0" />
+                        <Font size="15.0" />
                      </font>
                   </Button>
                   <Button fx:id="botaoOrcamentos" mnemonicParsing="false" onAction="#irParaMenuClientes" prefHeight="36.0" prefWidth="111.0" text="Clientes">
@@ -77,7 +72,20 @@
                         <Font size="16.0" />
                      </font>
                   </Button>
-                  <Button fx:id="botaoSair" mnemonicParsing="false" onAction="#irParaTelaLogin" prefHeight="36.0" prefWidth="96.0" text="Sair" />
+                  <Button fx:id="botaoPecas" mnemonicParsing="false" onAction="#irParaMenuPecas" prefHeight="36.0" prefWidth="207.0" text="Peças">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Button>
+                  <Button mnemonicParsing="false" prefHeight="36.0" prefWidth="96.0" text="Serviços">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="botaoSair" mnemonicParsing="false" onAction="#irParaTelaLogin" prefHeight="36.0" prefWidth="96.0" text="Sair">
+                     <font>
+                        <Font size="16.0" />
+                     </font></Button>
               </buttons>
             </ButtonBar>
             <Label layoutX="259.0" layoutY="357.0" prefHeight="36.0" prefWidth="143.0" text="Serviços">

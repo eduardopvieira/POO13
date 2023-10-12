@@ -64,7 +64,12 @@
               <buttons>
                   <Button fx:id="botaoOrcamentos" minWidth="69.0" mnemonicParsing="false" onAction="#trocarParaMenuOrcamentos" prefHeight="36.0" prefWidth="245.0" text="Orçamentos">
                      <font>
-                        <Font size="14.0" />
+                        <Font size="15.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="botaoSair1" mnemonicParsing="false" prefHeight="36.0" prefWidth="96.0" text="Clientes">
+                     <font>
+                        <Font size="16.0" />
                      </font>
                   </Button>
                   <Button fx:id="botaoPecas" mnemonicParsing="false" onAction="#trocarParaMenuPecas" prefHeight="36.0" prefWidth="207.0" text="Peças">
@@ -77,7 +82,10 @@
                         <Font size="16.0" />
                      </font>
                   </Button>
-                  <Button fx:id="botaoSair" mnemonicParsing="false" onAction="#trocarParaTelaLogin" prefHeight="36.0" prefWidth="96.0" text="Sair" />
+                  <Button fx:id="botaoSair" mnemonicParsing="false" onAction="#trocarParaTelaLogin" prefHeight="36.0" prefWidth="96.0" text="Sair">
+                     <font>
+                        <Font size="16.0" />
+                     </font></Button>
               </buttons>
             </ButtonBar>
             <Label layoutX="271.0" layoutY="357.0" prefHeight="36.0" prefWidth="115.0" text="Clientes">
@@ -85,7 +93,6 @@
                   <Font size="26.0" />
                </font>
             </Label>
-            <Label layoutX="191.0" layoutY="44.0" prefHeight="16.0" prefWidth="103.0" text="Funcionario" />
       </children>
     </AnchorPane>
   </children>

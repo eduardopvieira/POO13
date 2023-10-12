@@ -26,7 +26,7 @@ public class Telas extends Application{
 		//telaVisualizarOrcamento();// <--TROQUE AQUI PELO MÉTODO DA TELA
 		//Telas funcionando:
 		telaLogin();
-		//telaMenuClientes();
+		//telaMenuClientesFuncionario();
 		//telaCadastroCliente();
 		//telaCadastrarServicoGerente();
 		//telaCadastropecaFunc();

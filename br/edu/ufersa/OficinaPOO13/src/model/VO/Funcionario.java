@@ -27,9 +27,9 @@ public class Funcionario extends Pessoa {
     }
     
     public void setSenha(String senha) throws InfoNaoCompativelException {
-        if (senha.length() >= 6 && senha != null && senha.isEmpty() == false) {
+        if (senha != null && senha.isEmpty() == false) {
             this.senha = senha;
-        } else {throw new InfoNaoCompativelException ("Senha vazia ou muito curta. Digite pelo menos 6 caracteres.");}
+        } else {throw new InfoNaoCompativelException ("Senha vazia. Digite algum caractere.");}
     }
 
     public String getSenha() {return senha;}

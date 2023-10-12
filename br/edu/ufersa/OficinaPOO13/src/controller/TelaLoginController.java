@@ -36,12 +36,12 @@ public class TelaLoginController {
         {
             func.setCPF(campoCPF.getText());
             func.setSenha(campoSenha.getText());
+            System.out.println(func.getSenha());
         }
         catch (InfoNaoCompativelException e)
         {
-            //colocar o alert dizendo que deu erro
-        	System.out.println("Campo nao pode ser vazio!");
-        	e.printStackTrace();
+        	Alerts.showAlert("Error", "Erro de autenticação", e.getMessage(), AlertType.WARNING);
+            e.printStackTrace();
         }
         try
         {
@@ -51,19 +51,24 @@ public class TelaLoginController {
             	Gerente ger = new Gerente();
             	ger.setCPF(autenticado.getCPF());
             	ger.setNome(autenticado.getNome());
+            	ger.setSenha(autenticado.getSenha());
+            	ger.setEndereco(autenticado.getEndereco());
             	UsuarioAutenticado.setGerenteAutenticado(ger);
             	Telas.telaMenuClientesGerente(ger);
             }
             else
             {
-                UsuarioAutenticado.setFuncAutenticado(autenticado);
-            	Telas.telaMenuClientesFuncionario(autenticado);
+                Funcionario funcionario = new Funcionario();
+                funcionario.setCPF(autenticado.getCPF());
+                funcionario.setNome(autenticado.getNome());
+                funcionario.setSenha(autenticado.getSenha());
+                funcionario.setEndereco(autenticado.getEndereco());
+            	UsuarioAutenticado.setFuncAutenticado(funcionario);
+            	Telas.telaMenuClientesFuncionario(funcionario);
             }
         }
         catch(Exception e)
         {
-            //colocar o alert
-        	System.out.println("Usuário ou senha inválidos");
         	Alerts.showAlert("Error", "Erro de autenticação", e.getMessage(), AlertType.WARNING);
             e.printStackTrace();
         }

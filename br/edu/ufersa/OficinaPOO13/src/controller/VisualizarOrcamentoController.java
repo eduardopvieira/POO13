@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
+import view.Telas;
 
 public class VisualizarOrcamentoController {
 
@@ -53,8 +54,8 @@ public class VisualizarOrcamentoController {
     }
 
     @FXML
-    void irParaTelaMenuOrcamento(ActionEvent event) {
-
+    void irParaTelaMenuOrcamento(ActionEvent event) throws Exception {
+    	Telas.telaMenuOrcamento();
     }
 
     @FXML

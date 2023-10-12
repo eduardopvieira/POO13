@@ -78,5 +78,10 @@ public class MenuClienteGerenteController {
     		Telas.telaMenuServicoFuncionario(func);
     	}
     }
+    
+    @FXML
+    void trocarParaTelaLogin(ActionEvent event) throws Exception {
+    	Telas.telaLogin();
+    }
 
 }
