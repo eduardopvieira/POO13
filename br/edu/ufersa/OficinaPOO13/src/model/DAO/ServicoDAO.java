@@ -12,10 +12,11 @@ import model.VO.Servico;
 
 public class ServicoDAO extends BaseDAOImpl <Servico>{
     	
+	@Override
 	public void inserir(Servico entity) {
             try {
                 Connection con = BaseDAOImpl.getConnection();
-                String sql = "INSERT INTO tb_servicos (servico_nome, servico_desc, servico_preco, id_servico) " + "values (?,?,?,?)";
+                String sql = "INSERT INTO tb_servicos (servico_nome, servico_desc, servico_preco, servico_id) " + "values (?,?,?,?)";
                 PreparedStatement statement = con.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
                 statement.setString(1, entity.getServicoNome());
                 statement.setString(2, entity.getServicoDescricao());
@@ -39,11 +40,11 @@ public class ServicoDAO extends BaseDAOImpl <Servico>{
     	}
  
 //=================================== Inserir ====================================================
-
+	@Override
     public void deletar(Servico entity) {
 
         Connection con = getConnection();
-        String sql = "DELETE FROM tb_servicos WHERE id_servico = ?";
+        String sql = "DELETE FROM tb_servicos WHERE servico_id = ?";
 
         try
         {
@@ -60,10 +61,10 @@ public class ServicoDAO extends BaseDAOImpl <Servico>{
         finally {closeConnection();}
     }
 //=======================================================================================
-
+	@Override
     public void alterar (Servico entity) {
         Connection con = getConnection();
-        String sql = "UPDATE tb_servicos SET servico_nome = ?, servico_desc = ?, servico_preco = ? WHERE id_servico = ?";
+        String sql = "UPDATE tb_servicos SET servico_nome = ?, servico_desc = ?, servico_preco = ? WHERE servico_id = ?";
 
         try
         {
@@ -82,8 +83,27 @@ public class ServicoDAO extends BaseDAOImpl <Servico>{
         finally {closeConnection();}
     }
 
-    //===================================Buscar por nome====================================================
-    public ResultSet buscar (Servico entity) {
+    //===============================BUSCAR POR ID====================================================
+	@Override
+	public ResultSet buscar(Servico entity) {
+
+        String sql = "SELECT * FROM tb_servicos WHERE servico_id = ?";
+        PreparedStatement ptst;
+        ResultSet rs = null;
+    
+        try {
+            ptst = getConnection().prepareStatement(sql);
+            ptst.setInt(1, entity.getServicoId());
+            System.out.println(ptst);
+            rs = ptst.executeQuery();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return rs;
+    }
+	
+//================================BUSCAR POR NOME=======================================
+	public ResultSet buscarPorNome (Servico entity) {
 
         String sql = "SELECT * FROM tb_servicos WHERE servico_nome = ?";
         PreparedStatement ptst;
@@ -101,7 +121,8 @@ public class ServicoDAO extends BaseDAOImpl <Servico>{
     }
 
     //====================================== LISTAR ==================================
-    public ResultSet listar() {
+	@Override
+	public ResultSet listar() {
         ResultSet rs = null;
         try {
             Connection con = BaseDAOImpl.getConnection();

@@ -36,7 +36,7 @@ public class AutomovelDAO extends BaseDAOImpl <Automovel>{
         finally {closeConnection();}
     }
     //=======================================================================================
-
+    @Override
     public void deletar(Automovel entity) {
 
         Connection con = getConnection();
@@ -57,7 +57,7 @@ public class AutomovelDAO extends BaseDAOImpl <Automovel>{
         finally {closeConnection();}
     }
 //=======================================================================================
-
+    @Override
     public void alterar (Automovel entity) {
         Connection con = getConnection();
         String sql = "UPDATE tb_automovel SET placa = ?, cor = ?, modelo = ?, ano = ?, quilometragem = ? WHERE dono = ?";
@@ -82,6 +82,7 @@ public class AutomovelDAO extends BaseDAOImpl <Automovel>{
     }
 
 //=======================================================================================
+    @Override
     public ResultSet buscar (Automovel entity) {
 
         String sql = "SELECT * FROM tb_automovel WHERE placa=?";

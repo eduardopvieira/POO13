@@ -12,6 +12,7 @@ public class GerenteDAO extends BaseDAOImpl<Gerente> {
 	
 
     //=================================== INSERIR ===========================================    
+	@Override
 	public void inserir(Gerente func) {
 		Connection con = BaseDAOImpl.getConnection();
 		String sql = "INSERT INTO tb_funcionarios (nome_func, cpf_func, senha_func, endereco_func, is_gerente) values (?, ?, ?, ?, ?)";
@@ -38,6 +39,7 @@ public class GerenteDAO extends BaseDAOImpl<Gerente> {
 	}
 	
     //==================================== DELETAR =========================================
+	@Override
 	public void deletar(Gerente func){
         Connection con = BaseDAOImpl.getConnection();
         String sql = "DELETE FROM tb_funcionarios WHERE cpf_func = ?";
@@ -55,6 +57,7 @@ public class GerenteDAO extends BaseDAOImpl<Gerente> {
 		}
     }
     //===================================== ALTERAR ========================================
+	@Override
 	public void alterar(Gerente func){
         Connection con = BaseDAOImpl.getConnection();
         String sql = "UPDATE tb_funcionarios SET nome_func = ?, senha_func = ?, endereco_func = ? WHERE cpf_func = ?";
@@ -74,7 +77,8 @@ public class GerenteDAO extends BaseDAOImpl<Gerente> {
 		}
     }
   //==================================== BUSCAR =============================================  
-	    public ResultSet buscar (Gerente entity) {
+	@Override    
+	public ResultSet buscar (Gerente entity) {
 
         String sql = "SELECT * FROM tb_funcionarios WHERE cpf_func = ?";
         PreparedStatement ptst;
@@ -109,6 +113,7 @@ public class GerenteDAO extends BaseDAOImpl<Gerente> {
         return rs;
     }
     //=================================== LISTAR ===========================================
+	    @Override
 	    public ResultSet listar() {
 	        ResultSet rs = null;
 	        try {

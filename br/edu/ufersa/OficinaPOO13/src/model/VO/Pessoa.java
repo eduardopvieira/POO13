@@ -18,15 +18,15 @@ public abstract class Pessoa {
         if (nome != null && nome.isEmpty() == false) {
             this.nome = nome;
         } else {
-            throw new InfoNaoCompativelException("Nome nao compativel.");
+            throw new InfoNaoCompativelException("Nome vazio.");
         }
     }
 
     public void setCPF(String cpf) throws InfoNaoCompativelException {
-        if (cpf != null && cpf.isEmpty() == false) {
+        if (cpf != null && cpf.isEmpty() == false && cpf.length() == 11) {
             this.cpf = cpf;
         } else {
-            throw new InfoNaoCompativelException("CPF nao compativel.");
+            throw new InfoNaoCompativelException("CPF vazio ou com pontuação. Digite o CPF apenas com números.");
         }
     }
 
@@ -40,7 +40,7 @@ public abstract class Pessoa {
         if (nome != null && nome.isEmpty() == false) {
             this.endereco = endereco;
         } else {
-            throw new InfoNaoCompativelException("Nome nao compativel.");
+            throw new InfoNaoCompativelException("Endereço vazio. Digite alguma informação.");
         }
     }
 

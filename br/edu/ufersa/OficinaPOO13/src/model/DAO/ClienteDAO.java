@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import model.VO.Automovel;
 import model.VO.Cliente;
 
 public class ClienteDAO extends BaseDAOImpl <Cliente>{
@@ -37,7 +38,7 @@ public class ClienteDAO extends BaseDAOImpl <Cliente>{
          
     }
     //=======================================================================================
-
+    @Override
     public void deletar(Cliente entity) {
 
         Connection con = getConnection();
@@ -58,7 +59,7 @@ public class ClienteDAO extends BaseDAOImpl <Cliente>{
         finally {closeConnection();}
     }
 //=======================================================================================
-
+    @Override
     public void alterar (Cliente entity) {
         Connection con = getConnection();
         String sql = "UPDATE tb_clientes SET nome_cliente = ?, endereco = ? WHERE cpf_cliente = ?";
@@ -80,6 +81,7 @@ public class ClienteDAO extends BaseDAOImpl <Cliente>{
     }
 
 //=======================================================================================
+    @Override
     public ResultSet buscar (Cliente entity) {
 
         String sql = "SELECT * FROM tb_clientes WHERE cpf_cliente = ?";
@@ -96,7 +98,23 @@ public class ClienteDAO extends BaseDAOImpl <Cliente>{
         }
         return rs;
     }
+//==================================BUSCAR POR NOME====================================
+    public ResultSet buscarPorNome (Cliente entity) {
+
+        String sql = "SELECT * FROM tb_clientes WHERE nome_cliente = ?";
+        PreparedStatement ptst;
+        ResultSet rs = null;
     
+        try {
+            ptst = getConnection().prepareStatement(sql);
+            ptst.setString(1, entity.getNome());
+            System.out.println(ptst);
+            rs = ptst.executeQuery();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return rs;
+    }
 //=======================================================================================
     @Override
     public ResultSet listar() {

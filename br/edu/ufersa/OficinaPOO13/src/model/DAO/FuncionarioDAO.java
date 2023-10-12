@@ -12,6 +12,7 @@ import java.util.ArrayList;
 public class FuncionarioDAO extends BaseDAOImpl<Funcionario> {
 	
 //=================================== INSERIR ===========================================    
+	@Override
 	public void inserir(Funcionario func) {
 		Connection con = BaseDAOImpl.getConnection();
 		String sql = "INSERT INTO tb_funcionarios (nome_func, cpf_func, senha_func, endereco_func, is_gerente) values (?, ?, ?, ?, ?)";
@@ -38,6 +39,7 @@ public class FuncionarioDAO extends BaseDAOImpl<Funcionario> {
 	}
 	
 //==================================== DELETAR =========================================
+	@Override
 	public void deletar(Funcionario func){
         Connection con = BaseDAOImpl.getConnection();
         String sql = "DELETE FROM tb_funcionarios WHERE cpf_func = ?";
@@ -55,6 +57,7 @@ public class FuncionarioDAO extends BaseDAOImpl<Funcionario> {
 		}
     }
 //===================================== ALTERAR ========================================
+	@Override
 	public void alterar(Funcionario func){
         Connection con = BaseDAOImpl.getConnection();
         String sql = "UPDATE tb_funcionarios SET nome_func = ?, senha_func = ?, endereco_func = ? WHERE cpf_func = ?";
@@ -74,7 +77,8 @@ public class FuncionarioDAO extends BaseDAOImpl<Funcionario> {
 		}
     }
 //==================================== BUSCAR =============================================  
-	    public ResultSet buscar (Funcionario entity) {
+	@Override    
+	public ResultSet buscar (Funcionario entity) {
 
         String sql = "SELECT * FROM tb_funcionarios WHERE cpf_func= ?";
         PreparedStatement ptst;
@@ -100,7 +104,7 @@ public class FuncionarioDAO extends BaseDAOImpl<Funcionario> {
     
         try {
             ptst = getConnection().prepareStatement(sql);
-            ptst.setString(1, entity.getNome()); // Parâmetro para o CPF
+            ptst.setString(1, entity.getNome());
             System.out.println(ptst);
             rs = ptst.executeQuery();
         } catch (SQLException e) {
@@ -109,6 +113,7 @@ public class FuncionarioDAO extends BaseDAOImpl<Funcionario> {
         return rs;
     }
 //=================================== LISTAR ===========================================
+	    @Override
 	    public ResultSet listar() {
 	        ResultSet rs = null;
 	        try {
