@@ -10,8 +10,7 @@ public class Servico {
 
   public Servico(){}
 
-  public Servico(int idServico, String servicoNome, String servicoDescricao, double servicoPreco) throws InfoNaoCompativelException{
-    setServicoId(idServico);
+  public Servico(String servicoNome, String servicoDescricao, double servicoPreco) throws InfoNaoCompativelException{
     setServicoNome(servicoNome);
     setServicoDescricao(servicoDescricao);
     setServicoPreco(servicoPreco);

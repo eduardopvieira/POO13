@@ -8,6 +8,10 @@ public abstract class Pessoa {
     private String cpf;
     
     public Pessoa () {};
+    public Pessoa (String cpf, String nome) throws InfoNaoCompativelException {
+    	setNome(nome);
+    	setCPF(cpf);
+    }
     public Pessoa(String nome, String endereco, String cpf) throws InfoNaoCompativelException {
         setNome(nome);
         setEndereco(endereco);

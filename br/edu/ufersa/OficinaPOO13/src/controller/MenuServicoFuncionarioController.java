@@ -44,12 +44,12 @@ public class MenuServicoFuncionarioController {
 
     @FXML
     void irParaMenuClienteFuncionario(ActionEvent event) throws Exception {
-    	Telas.telaMenuClientesFuncionario(UsuarioAutenticado.getFuncAutenticado());
+    	Telas.telaMenuClientes();
     }
 
     @FXML
     void irParaMenuOrcamentos(ActionEvent event) throws Exception {
-    	Telas.telaMenuOrcamento();
+    	Telas.telaMenuOrcamentos();
     }
 
     @FXML

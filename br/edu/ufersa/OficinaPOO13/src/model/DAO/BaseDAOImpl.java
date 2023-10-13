@@ -40,14 +40,14 @@ public abstract class BaseDAOImpl<E> implements BaseDAO<E> {
         }
     }
 
-    public abstract void inserir (E entity);
+    public abstract void inserir (E entity) throws SQLException;
 
-    public abstract void deletar (E entity);
+    public abstract void deletar (E entity) throws SQLException;
 
-    public abstract void alterar (E entity);
+    public abstract E alterar (E entity) throws SQLException;
 
-    public abstract ResultSet buscar (E entity);
+    public abstract ResultSet buscar (E entity)throws SQLException;
 
-    public abstract ResultSet listar ();
+    public abstract ResultSet listar ()throws SQLException;
 
 }

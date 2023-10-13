@@ -5,36 +5,37 @@ import java.sql.SQLException;
 
 import Exceptions.InsertException;
 import Exceptions.NotFoundException;
-import model.DAO.PecasDAO;
-import model.VO.Pecas;
+import model.DAO.ServicoDAO;
+import model.VO.Servico;
 
-public class PecasBO implements BaseInterBO<Pecas>{
+public class ServicoBO implements BaseInterBO<Servico>{
+
 	@Override
-	public void cadastrar(Pecas vo) throws InsertException {
-	    PecasDAO pecaDAO = new PecasDAO();
-	    pecaDAO.inserir(vo);
+	public void cadastrar(Servico vo) throws InsertException {
+		ServicoDAO servDAO = new ServicoDAO();
+		servDAO.inserir(vo);		
 	}
 
 	@Override
-	public ResultSet buscar(Pecas vo) throws NotFoundException {
-		PecasDAO pecaDAO = new PecasDAO();
-		return pecaDAO.buscar(vo);
+	public ResultSet buscar(Servico vo) throws NotFoundException {
+		ServicoDAO servDAO = new ServicoDAO();
+		return servDAO.buscar(vo);	
 	}
 
 	@Override
 	public ResultSet listar() throws InsertException {
-		PecasDAO pecaDAO = new PecasDAO();
-		return pecaDAO.listar();
+		ServicoDAO servDAO = new ServicoDAO();
+		return servDAO.listar();	
 	}
 
 	@Override
-	public void alterar(Pecas vo) throws InsertException {
-		PecasDAO pecaDAO = new PecasDAO();
-        ResultSet pecaRS = pecaDAO.buscar(vo);
+	public void alterar(Servico vo) throws InsertException {
+		ServicoDAO servDAO = new ServicoDAO();
+		ResultSet servRS = servDAO.buscar(vo);
         try {
-        if (pecaRS.next())
+        if (servRS.next())
         {
-            pecaDAO.alterar(vo);
+            servDAO.alterar(vo);
         }
         else
         {
@@ -44,23 +45,24 @@ public class PecasBO implements BaseInterBO<Pecas>{
             e.printStackTrace();
             throw new InsertException("Falha na alteração.");
         } finally {
-            if (pecaRS != null) {
+            if (servRS != null) {
                 try {
-                	pecaRS.close();
+                	servRS.close();
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
             }
-       }
+        }
 	}
+
 	@Override
-	public void deletar(Pecas vo) throws InsertException {
-		PecasDAO pecaDAO = new PecasDAO();
-        ResultSet pecaRS = pecaDAO.buscar(vo);
+	public void deletar(Servico vo) throws InsertException {
+		ServicoDAO servDAO = new ServicoDAO();
+		ResultSet servRS = servDAO.buscar(vo);
         try {
-        if (pecaRS.next())
+        if (servRS.next())
         {
-            pecaDAO.deletar(vo);
+            servDAO.deletar(vo);
         }
         else
         {
@@ -70,17 +72,13 @@ public class PecasBO implements BaseInterBO<Pecas>{
             e.printStackTrace();
             throw new InsertException("Falha na alteração.");
         } finally {
-            if (pecaRS != null) {
+            if (servRS != null) {
                 try {
-                	pecaRS.close();
+                	servRS.close();
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
             }
-       }
-		
+        }
 	}
-	
-	
-	
 }

@@ -36,3 +36,14 @@ CREATE TABLE tb_pecas (
     preco_peca numeric(5, 2),
     estoque_peca numeric(4, 2)
 );
+
+CREATE TABLE tb_orcamentos (
+    id_orcamento serial PRIMARY KEY,
+    cpf varchar(11) REFERENCES tb_clientes(cpf_cliente),
+    placa varchar(7) REFERENCES tb_automoveis(placa),
+    id_peca integer REFERENCES tb_pecas(id_peca),
+    id_servico integer REFERENCES tb_servicos(id_servico),
+    data_orc date,
+    precoTotal numeric(5,2),
+    isPago boolean
+);

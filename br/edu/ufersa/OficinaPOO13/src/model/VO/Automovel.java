@@ -10,17 +10,20 @@ public class Automovel {
     private String marca;
     private int ano;
     private int km;
-    private Cliente dono;
+    private String CPFdono;
 
     public Automovel () {};
-    public Automovel (String placa, String cor, String modelo, String marca, int ano, int km, Cliente dono) throws InfoNaoCompativelException {
+    public Automovel (String placa) throws InfoNaoCompativelException {
+    	setPlaca(placa);
+    }
+    public Automovel (String placa, String cor, String modelo, String marca, int ano, int km, String dono) throws InfoNaoCompativelException {
         setPlaca(placa);
         setCor(cor);
         setModelo(modelo);
         setMarca(marca);
         setAno(ano);
         setKm(km);
-        this.dono = dono;
+        this.CPFdono = dono;
     }
     
 //====================GET E SET PLACA=======================
@@ -84,12 +87,14 @@ public class Automovel {
         } else {throw new InfoNaoCompativelException("Quilometragem invalida.");}
     }
 //============================GET E SET DONO========
-public void setDono(Cliente dono) {
-    this.dono = dono;
+public void setCPFDono(String dono) {
+    if (dono != null && dono.isEmpty() == false && dono.length() == 11) {
+	this.CPFdono = dono;
+    }
 }
 
-public Cliente getDono() {
-    return dono;
+public String getCPFDono() {
+    return CPFdono;
 }
 //===================================GET E SET MARCA ============================
 

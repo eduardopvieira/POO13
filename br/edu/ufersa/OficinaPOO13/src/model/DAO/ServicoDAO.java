@@ -62,7 +62,7 @@ public class ServicoDAO extends BaseDAOImpl <Servico>{
     }
 //=======================================================================================
 	@Override
-    public void alterar (Servico entity) {
+    public Servico alterar (Servico entity) throws SQLException{
         Connection con = getConnection();
         String sql = "UPDATE tb_servicos SET servico_nome = ?, servico_desc = ?, servico_preco = ? WHERE servico_id = ?";
 
@@ -75,10 +75,11 @@ public class ServicoDAO extends BaseDAOImpl <Servico>{
             ps.setInt(4, entity.getServicoId());
             ps.execute();
             ps.close();
+            return entity;
         }
         catch(SQLException e)
         {
-            e.printStackTrace();
+        	throw e;
         }
         finally {closeConnection();}
     }

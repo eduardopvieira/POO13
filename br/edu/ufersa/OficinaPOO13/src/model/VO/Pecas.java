@@ -7,18 +7,16 @@ public class Pecas {
 	private String fabricante;
 	private double precoItem;
 	private int estoqueItem;
-	private int unidadeMedidaItem;
 	
 	
 	public Pecas(){}
 	
-	public Pecas(int idItem, String descricaoItem, String fabricante, double precoItem, int estoqueItem, int unidadeMedidaItem){
+	public Pecas(int idItem, String descricaoItem, String fabricante, double precoItem, int estoqueItem){
 		setIdItem(idItem);
 		setDescricaoItem(descricaoItem);
 		setFabricante(fabricante);
 		setPrecoItem(precoItem);
 		setEstoqueItem(estoqueItem);
-		setUnidadeMedidaItem(unidadeMedidaItem);
 	}
 	
 	
@@ -68,11 +66,4 @@ public class Pecas {
 		this.estoqueItem = estoqueItem;}
 	}
 	//----------------------------------------
-	public int getUnidadeMedidaItem() {
-		return unidadeMedidaItem;
-	}
-	public void setUnidadeMedidaItem(int unidadeMedidaItem) {
-		if (unidadeMedidaItem >= 0) { 
-		this.unidadeMedidaItem = unidadeMedidaItem;}
-	}
 }

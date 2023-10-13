@@ -54,7 +54,7 @@ public class TelaLoginController {
             	ger.setSenha(autenticado.getSenha());
             	ger.setEndereco(autenticado.getEndereco());
             	UsuarioAutenticado.setGerenteAutenticado(ger);
-            	Telas.telaMenuClientesGerente(ger);
+            	Telas.telaMenuClientes();
             }
             else
             {
@@ -64,7 +64,7 @@ public class TelaLoginController {
                 funcionario.setSenha(autenticado.getSenha());
                 funcionario.setEndereco(autenticado.getEndereco());
             	UsuarioAutenticado.setFuncAutenticado(funcionario);
-            	Telas.telaMenuClientesFuncionario(funcionario);
+            	Telas.telaMenuClientes();
             }
         }
         catch(Exception e)

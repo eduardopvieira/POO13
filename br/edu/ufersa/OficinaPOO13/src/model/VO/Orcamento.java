@@ -1,10 +1,6 @@
 package model.VO;
 
-import java.util.ArrayList;
-import java.util.Date;
-//import java.util.List;
-//import java.util.ArrayList;
-import java.util.List;
+import java.sql.Date;
 
 
 public class Orcamento {
@@ -12,53 +8,51 @@ public class Orcamento {
   private int idOrcamento;
   private Cliente clienteOrcamento;
   private Automovel automovelOrcamento;
-  private List <Pecas> listaPecas;
-  private List <Servico> listaServicos;
-  private double totalOrcamento;
+  private Pecas pecaOrcamento;
+  private Servico servicoOrcamento;
   private Date dataOrcamento;
-  private boolean isPago; 
+  private double totalOrcamento;
+  private boolean isPago;
 
   public Orcamento(){}
-  public Orcamento(Cliente clienteOrcamento, Automovel automovelOrcamento, Pecas pecasOrcamento, Servico servicoOrcamento){
+  public Orcamento(Cliente clienteOrcamento, Automovel automovelOrcamento, Pecas pecaOrcamento, Servico servicoOrcamento, Date dataOrcamento){
       
       setClienteOrcamento(clienteOrcamento);
       setAutomovelOrcamento(automovelOrcamento);
       setDataOrcamento(dataOrcamento);
-      listaPecas = new ArrayList<Pecas>();
-      listaServicos = new ArrayList<Servico>();
+      setPecaOrcamento(pecaOrcamento);
+      setServicoOrcamento(servicoOrcamento);
+      setTotalOrcamento(this.servicoOrcamento,this.pecaOrcamento);
       setIsPago(false);
   }
   
 
-//=========================GET LISTA PEÇA E SERVICO============================
- public List<Pecas> getPecas() {
-	 return listaPecas;
+//=========================== SET E GET PEÇA DO ORÇAMENTO ===========================
+ public void setPecaOrcamento (Pecas p) {
+	 this.pecaOrcamento = p;
  }
+  
+ public Pecas getPecaOrcamento () {return pecaOrcamento;}
+  
+  
+//=========================== SET E GET SERVIÇO DO ORÇAMENTO ===========================
+public void setServicoOrcamento (Servico s) {
+	this.servicoOrcamento = s;
+}
  
- public List<Servico> getServicos() {
-	 return listaServicos;
- }
-//=========================ADD E REMOVE PEÇAS E SERVICOS==================================================
- public void addPecas(Pecas peca) {
-	 listaPecas.add(peca);
- } 
+public Servico getServicoOrcamento() {return servicoOrcamento;}
  
- public void addServico (Servico servico) {
-	 listaServicos.add(servico);
- }
- 
- public void removePecas(Pecas peca) {
-	 listaPecas.remove(peca);
- } 
- 
- public void removeServico (Servico servico) {
-	 listaServicos.remove(servico);
- }
 //=========================== SET E GET TOTAL DO ORÇAMENTO ===========================
 public void setTotalOrcamento(Servico s, Pecas p) {
     if (s != null && p != null) {
       this.totalOrcamento = s.getServicoPreco() + p.getPrecoItem();
-    } 
+    } else {
+    	if (s!= null && p == null) {
+    		this.totalOrcamento = s.getServicoPreco();
+    	} else {
+    		this.totalOrcamento = p.getPrecoItem();
+    	}
+    }
 }
 
 public double getTotalOrcamento() {return this.totalOrcamento;}
@@ -85,7 +79,6 @@ public Date getDataOrcamento() {
   }
   public void setAutomovelOrcamento(Automovel automovelOrcamento){
     this.automovelOrcamento = automovelOrcamento;
-    System.out.println("Automovel atribuido.");
   }
 //=========================GET E SET ID DO ORÇAMENTO=====================================
  

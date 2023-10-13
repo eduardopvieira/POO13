@@ -38,6 +38,8 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Rectangle?>
@@ -48,17 +50,16 @@
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
       <children>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#4a4a4a" height="44.0" stroke="BLACK" strokeType="INSIDE" width="640.0" />
-            <Button fx:id="botaoCadastrarOrcamento" alignment="CENTER" contentDisplay="CENTER" layoutX="479.0" layoutY="359.0" mnemonicParsing="false" onAction="#irTelaCadastrarOrcamento" prefHeight="31.0" prefWidth="142.0" style="-fx-background-color: #;" text="Cadastrar" />
-            <TextField fx:id="botaoBuscar" layoutX="20.0" layoutY="359.0" onAction="#buscarOrcamento" prefHeight="31.0" prefWidth="163.0" promptText="Buscar" />
-            <TableView layoutX="20.0" layoutY="75.0" prefHeight="275.0" prefWidth="601.0">
+            <TableView layoutX="20.0" layoutY="87.0" prefHeight="268.0" prefWidth="601.0">
               <columns>
-                <TableColumn fx:id="tableColumnID" prefWidth="58.0" text="Id" />
-                <TableColumn fx:id="tableColumnCliente" prefWidth="89.0" text="Cliente" />
-                  <TableColumn fx:id="tableColumnPlaca" prefWidth="107.0" text="Placa" />
-                  <TableColumn fx:id="tableColumnServico" prefWidth="108.0" text="Serviço" />
-                  <TableColumn fx:id="tableColumnPeca" minWidth="0.0" prefWidth="83.0" text="Peça" />
-                  <TableColumn fx:id="tableColumnValorTotal" prefWidth="83.0" text="Total" />
-                  <TableColumn fx:id="dataOrcamento" prefWidth="72.0" text="Data" />
+                <TableColumn fx:id="tableColumnIdOrc" prefWidth="57.0" text="Id" />
+                <TableColumn fx:id="tableColumnCliente" prefWidth="96.0" text="Cliente" />
+                  <TableColumn fx:id="tableColumnPlacaOrc" prefWidth="72.0" text="Placa" />
+                  <TableColumn fx:id="tableColumnPecaOrc" prefWidth="76.0" text="Peça" />
+                  <TableColumn fx:id="tableColumnServicoOrc" minWidth="0.0" prefWidth="71.0" text="Serviço" />
+                  <TableColumn fx:id="tableColumnPrecoOrc" prefWidth="76.0" text="Valor" />
+                  <TableColumn fx:id="tableColumnDataOrc" prefWidth="75.0" text="Data" />
+                  <TableColumn fx:id="tableColumnIsPago" prefWidth="75.0" text="Pago?" />
               </columns>
             </TableView>
             <ButtonBar layoutY="2.0" prefHeight="40.0" prefWidth="621.0">
@@ -68,37 +69,49 @@
                         <Font size="15.0" />
                      </font>
                   </Button>
-                  <Button fx:id="botaoClientes" minWidth="69.0" mnemonicParsing="false" onAction="#mudarParaTelaMenuClientes" prefHeight="36.0" prefWidth="245.0" text="Clientes">
+                  <Button fx:id="botaoClientes" mnemonicParsing="false" onAction="#irTelaMenuClientes" prefHeight="36.0" prefWidth="96.0" text="Clientes">
                      <font>
                         <Font size="16.0" />
                      </font>
                   </Button>
-                  <Button fx:id="botaoPecas" mnemonicParsing="false" onAction="#mudarParaTelaMenuPecas" prefHeight="36.0" prefWidth="207.0" text="Peças">
+                  <Button fx:id="botaoPecas" mnemonicParsing="false" onAction="#irTelaMenuPecas" prefHeight="36.0" prefWidth="207.0" text="Peças">
                      <font>
                         <Font size="16.0" />
                      </font>
                   </Button>
-                  <Button fx:id="botaoServicos" mnemonicParsing="false" onAction="#mudarParaTelaMenuServicos" prefHeight="36.0" prefWidth="111.0" text="Serviços">
+                  <Button fx:id="botaoServicos" mnemonicParsing="false" onAction="#irTelaMenuServicos" prefHeight="36.0" prefWidth="111.0" text="Serviços">
                      <font>
                         <Font size="16.0" />
                      </font>
                   </Button>
-                  <Button fx:id="botaoSair" mnemonicParsing="false" onAction="#mudarParaTelaLogin" prefHeight="36.0" prefWidth="96.0" text="Sair">
+                  <Button fx:id="botaoSair" mnemonicParsing="false" onAction="#irTelaLogin" prefHeight="36.0" prefWidth="96.0" text="Sair">
                      <font>
                         <Font size="16.0" />
                      </font></Button>
               </buttons>
             </ButtonBar>
-            <Label layoutX="239.0" layoutY="357.0" prefHeight="36.0" prefWidth="163.0" text="Orçamentos">
+            <TextField fx:id="textfieldDataInicial" layoutX="44.0" layoutY="51.0" prefHeight="24.0" prefWidth="97.0" promptText="Data Inicial" />
+            <TextField fx:id="textfieldDataFinal" layoutX="181.0" layoutY="51.0" prefHeight="24.0" prefWidth="97.0" promptText="Data Final" />
+            <Label layoutX="14.0" layoutY="55.0" text="De:" />
+            <Label layoutX="151.0" layoutY="55.0" prefHeight="16.0" prefWidth="30.0" text="Até:" />
+            <Button fx:id="botaoGerarRelatorio" layoutX="502.0" layoutY="51.0" mnemonicParsing="false" onAction="#irTelaGerarRelatorio" prefHeight="24.0" prefWidth="119.0" text="Gerar Relatório" />
+            <TextField fx:id="buscarOrcamento" layoutX="20.0" layoutY="362.0" prefHeight="24.0" prefWidth="141.0" promptText="Buscar" />
+            <Button fx:id="botaoCadastrarOrcamento" layoutX="457.0" layoutY="362.0" mnemonicParsing="false" onAction="#irTelaCadastroOrc" prefHeight="30.0" prefWidth="164.0" text="Cadastrar Orçamento" />
+            <Label layoutX="230.0" layoutY="359.0" prefHeight="31.0" prefWidth="164.0" text="Orçamentos">
                <font>
                   <Font size="26.0" />
                </font>
             </Label>
-            <TextField fx:id="dataFinal" layoutX="183.0" layoutY="47.0" prefHeight="5.0" prefWidth="91.0" />
-            <TextField fx:id="dataInicial" layoutX="51.0" layoutY="47.0" prefHeight="24.0" prefWidth="91.0" />
-            <Label layoutX="28.0" layoutY="51.0" text="De:" />
-            <Label layoutX="156.0" layoutY="51.0" text="Ate:" />
-            <Button fx:id="botaoGerarRelatorio" layoutX="483.0" layoutY="47.0" mnemonicParsing="false" onAction="#irTelaGerarRelatorio" prefHeight="24.0" prefWidth="135.0" text="Gerar Relatorio" />
+            <ImageView fx:id="botaoBuscarEntreDatas" fitHeight="30.0" fitWidth="30.0" layoutX="290.0" layoutY="48.0" onMouseClicked="#buscarEntreDatas" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@VE/lupa.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="botaoBuscarOrcamento" fitHeight="30.0" fitWidth="30.0" layoutX="166.0" layoutY="359.0" onMouseClicked="#buscarOrcamento" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@VE/lupa.png" />
+               </image>
+            </ImageView>
       </children>
     </AnchorPane>
   </children>

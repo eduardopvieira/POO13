@@ -5,6 +5,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import model.VO.Funcionario;
 import model.VO.Gerente;
 import model.VO.UsuarioAutenticado;
@@ -13,8 +15,11 @@ import view.Telas;
 public class MenuOrcamentoController {
 
     @FXML
-    private TextField botaoBuscar;
+    private ImageView botaoBuscarEntreDatas;
 
+    @FXML
+    private ImageView botaoBuscarOrcamento;
+	
     @FXML
     private Button botaoCadastrarOrcamento;
 
@@ -34,65 +39,75 @@ public class MenuOrcamentoController {
     private Button botaoServicos;
 
     @FXML
-    private TextField dataFinal;
-
-    @FXML
-    private TextField dataInicial;
-
-    @FXML
-    private TableColumn<?, ?> dataOrcamento;
-
+    private TextField buscarOrcamento;
+    
     @FXML
     private TableColumn<?, ?> tableColumnCliente;
 
     @FXML
-    private TableColumn<?, ?> tableColumnID;
+    private TableColumn<?, ?> tableColumnDataOrc;
 
     @FXML
-    private TableColumn<?, ?> tableColumnPeca;
+    private TableColumn<?, ?> tableColumnIdOrc;
 
     @FXML
-    private TableColumn<?, ?> tableColumnPlaca;
+    private TableColumn<?, ?> tableColumnIsPago;
 
     @FXML
-    private TableColumn<?, ?> tableColumnServico;
+    private TableColumn<?, ?> tableColumnPecaOrc;
 
     @FXML
-    private TableColumn<?, ?> tableColumnValorTotal;
+    private TableColumn<?, ?> tableColumnPlacaOrc;
 
     @FXML
-    void buscarOrcamento(ActionEvent event) {
+    private TableColumn<?, ?> tableColumnPrecoOrc;
+
+    @FXML
+    private TableColumn<?, ?> tableColumnServicoOrc;
+
+    @FXML
+    private TextField textfieldDataFinal;
+
+    @FXML
+    private TextField textfieldDataInicial;
+
+    @FXML
+    void buscarEntreDatas(MouseEvent event) {
 
     }
 
     @FXML
-    void irTelaCadastrarOrcamento(ActionEvent event) {
+    void buscarOrcamento(MouseEvent event) {
+
+    }
+    
+    @FXML
+    void irTelaCadastroOrc(ActionEvent event)throws Exception{
 
     }
 
     @FXML
-    void mudarParaTelaLogin(ActionEvent event) throws Exception {
+    void irTelaGerarRelatorio(ActionEvent event) throws Exception{
+
+    }
+
+    @FXML
+    void irTelaLogin(ActionEvent event) throws Exception {
     	Telas.telaLogin();
     }
 
     @FXML
-    void mudarParaTelaMenuClientes(ActionEvent event) throws Exception {
-    	Gerente ger = UsuarioAutenticado.getGerenteAutenticado();
-    	if (ger != null) {
-    		Telas.telaMenuClientesGerente(ger);
-    	} else {
-    		Funcionario func = UsuarioAutenticado.getFuncAutenticado();
-    		Telas.telaMenuClientesFuncionario(func);
-    	}
+    void irTelaMenuClientes(ActionEvent event)throws Exception {
+    	Telas.telaMenuClientes();
     }
 
     @FXML
-    void mudarParaTelaMenuPecas(ActionEvent event) throws Exception {
+    void irTelaMenuPecas(ActionEvent event)throws Exception {
     	Telas.telaMenuPecas();
     }
 
     @FXML
-    void mudarParaTelaMenuServicos(ActionEvent event) throws Exception {
+    void irTelaMenuServicos(ActionEvent event) throws Exception{
     	Gerente ger = UsuarioAutenticado.getGerenteAutenticado();
     	if (ger != null) {
     		Telas.telaMenuServicoGerente(ger);

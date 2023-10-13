@@ -67,12 +67,6 @@ public class CadastroClientesController {
 
     @FXML
     void cancelarCadastro(ActionEvent event) throws Exception {
-    	Gerente ger = UsuarioAutenticado.getGerenteAutenticado();
-    	if (ger != null) {
-    		Telas.telaMenuClientesGerente(ger);
-    	} else {
-    		Funcionario func = UsuarioAutenticado.getFuncAutenticado();
-    		Telas.telaMenuClientesFuncionario(func);
-    	}
+    	Telas.telaMenuClientes();
     }
 }

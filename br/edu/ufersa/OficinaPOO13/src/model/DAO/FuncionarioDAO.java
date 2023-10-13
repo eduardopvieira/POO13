@@ -58,7 +58,7 @@ public class FuncionarioDAO extends BaseDAOImpl<Funcionario> {
     }
 //===================================== ALTERAR ========================================
 	@Override
-	public void alterar(Funcionario func){
+	public Funcionario alterar(Funcionario func) throws SQLException{
         Connection con = BaseDAOImpl.getConnection();
         String sql = "UPDATE tb_funcionarios SET nome_func = ?, senha_func = ?, endereco_func = ? WHERE cpf_func = ?";
         try {
@@ -69,8 +69,9 @@ public class FuncionarioDAO extends BaseDAOImpl<Funcionario> {
             ps.setString(4, func.getCPF());
 			ps.execute();
 			ps.close();
+			return func;
 		} catch (SQLException e) {
-			e.printStackTrace();
+			throw e;
 		}
 		finally {
             BaseDAOImpl.closeConnection();

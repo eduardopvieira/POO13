@@ -60,7 +60,7 @@ public class ClienteDAO extends BaseDAOImpl <Cliente>{
     }
 //=======================================================================================
     @Override
-    public void alterar (Cliente entity) {
+    public Cliente alterar (Cliente entity) throws SQLException  {
         Connection con = getConnection();
         String sql = "UPDATE tb_clientes SET nome_cliente = ?, endereco_cliente = ? WHERE cpf_cliente = ?";
 
@@ -72,10 +72,11 @@ public class ClienteDAO extends BaseDAOImpl <Cliente>{
             ps.setString(3, entity.getEndereco());
             ps.execute();
             ps.close();
+            return entity;
         }
         catch(SQLException e)
         {
-            e.printStackTrace();
+            throw e;
         }
         finally {closeConnection();}
     }
@@ -117,7 +118,7 @@ public class ClienteDAO extends BaseDAOImpl <Cliente>{
     }
 //=======================================================================================
     @Override
-    public ResultSet listar() {
+    public ResultSet listar() throws SQLException {
         ResultSet rs = null;
         try {
             Connection con = BaseDAOImpl.getConnection();

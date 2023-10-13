@@ -55,7 +55,7 @@ public class VisualizarOrcamentoController {
 
     @FXML
     void irParaTelaMenuOrcamento(ActionEvent event) throws Exception {
-    	Telas.telaMenuOrcamento();
+    	Telas.telaMenuOrcamentos();
     }
 
     @FXML

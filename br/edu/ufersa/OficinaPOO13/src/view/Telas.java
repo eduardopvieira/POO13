@@ -23,14 +23,9 @@ public class Telas extends Application{
 		setPrimaryStage(primaryStage);
 		primaryStage.setTitle("Oficina do Zezé");
 		primaryStage.show();
-		//telaVisualizarOrcamento();// <--TROQUE AQUI PELO MÉTODO DA TELA
-		//Telas funcionando:
+		//telaMenuOrcamento();
 		telaLogin();
-		//telaMenuClientesFuncionario();
-		//telaCadastroCliente();
-		//telaCadastrarServicoGerente();
-		//telaCadastropecaFunc();
-		//telaCadastroPecaGer();
+		
 	}
 	
 	public static void telaLogin() throws Exception{
@@ -39,17 +34,12 @@ public class Telas extends Application{
 		primaryStage.setScene(cena);
 	}
 	
-	public static void telaMenuClientesFuncionario(Funcionario func) throws Exception{
-		Parent root = FXMLLoader.load(Telas.class.getResource("telaMenuClientesFuncionario.fxml"));
+	public static void telaMenuClientes() throws Exception{
+		Parent root = FXMLLoader.load(Telas.class.getResource("telaMenuClientes.fxml"));
 		Scene cena = new Scene(root);
 		primaryStage.setScene(cena);
 	}
 	
-	public static void telaMenuClientesGerente(Gerente gerente) throws Exception{
-		Parent root = FXMLLoader.load(Telas.class.getResource("telaMenuClientesGerente.fxml"));
-		Scene cena = new Scene(root);
-		primaryStage.setScene(cena);
-	}
 	public static void telaCadastroCliente() throws Exception{
 		Parent root = FXMLLoader.load(Telas.class.getResource("telaCadastroCliente.fxml"));
 		Scene cena = new Scene(root);		
@@ -110,7 +100,7 @@ public class Telas extends Application{
 		primaryStage.setScene(cena);
 	}
 	
-	public static void telaMenuOrcamento() throws Exception{
+	public static void telaMenuOrcamentos() throws Exception {
 		Parent root = FXMLLoader.load(Telas.class.getResource("telaMenuOrcamento.fxml"));
 		Scene cena = new Scene(root);		
 		primaryStage.setScene(cena);

@@ -38,10 +38,10 @@ public class PecasDAO extends BaseDAOImpl <Pecas>{
     }
    //===================================ALTERAR=========================================
 	@Override	
-	public void alterar(Pecas entity) {
-	        try {
-	            Connection con = BaseDAOImpl.getConnection();
-	            String sql = "UPDATE tb_pecas SET desc_peca = ?, fab_peca = ?, preco_peca = ?, estoque_peca = ? WHERE id_peca = ?";
+	public Pecas alterar(Pecas entity) throws SQLException {
+		Connection con = BaseDAOImpl.getConnection();
+        String sql = "UPDATE tb_pecas SET desc_peca = ?, fab_peca = ?, preco_peca = ?, estoque_peca = ? WHERE id_peca = ?";    
+		try {
 	            PreparedStatement statement = con.prepareStatement(sql);
 	            statement.setString(1, entity.getDescricaoItem());
 	            statement.setString(2, entity.getFabricante());
@@ -50,11 +50,14 @@ public class PecasDAO extends BaseDAOImpl <Pecas>{
 	            statement.setInt(5, entity.getIdItem());
 	            statement.executeUpdate();
 	            statement.close();
-	            BaseDAOImpl.closeConnection();
-	        } catch (Exception e) {
-	            e.printStackTrace();
-	        }
-	    }
+	            return entity;
+		}
+        catch(SQLException e)
+        {
+			throw e;
+        }
+        finally {closeConnection();}
+    }
 //=====================================BUSCAR POR NOME==================================
 	@Override	
 	public ResultSet buscar (Pecas entity) {
