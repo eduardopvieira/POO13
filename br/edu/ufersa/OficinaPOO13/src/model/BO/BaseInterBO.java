@@ -12,5 +12,5 @@ public interface BaseInterBO<VO> {
 	public ArrayList<VO> buscarPorPK(VO vo) throws NotFoundException, InfoNaoCompativelException;
 	public ArrayList<VO> listar() throws InsertException;
 	public VO alterar(VO vo) throws InsertException;
-	public boolean deletar(VO vo) throws InsertException;
+	public boolean deletar(VO vo) throws InsertException;	
 }

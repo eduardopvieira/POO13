@@ -8,9 +8,19 @@ public class Funcionario extends Pessoa {
     private boolean isGerente;
     
     public Funcionario(){}
+    
+    public Funcionario (String cpf) throws InfoNaoCompativelException {
+    	setCPF(cpf);
+    }
     public Funcionario (String cpf, String nome, String endereco, String senha) throws InfoNaoCompativelException {
         super(nome, endereco, cpf);
         setSenha(senha);
+    }
+    
+    public Funcionario (String cpf, String nome, String endereco, String senha, boolean isGerente) throws InfoNaoCompativelException {
+        super(nome, endereco, cpf);
+        setSenha(senha);
+        setIsGerente(isGerente);
     }
     public Funcionario (String cpf, String senha) throws InfoNaoCompativelException {
         super.setCPF(cpf);

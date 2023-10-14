@@ -15,10 +15,10 @@ public class OrcamentoDAO extends BaseDAOImpl <Orcamento>{
                 Connection con = BaseDAOImpl.getConnection();
                 String sql = "INSERT INTO tb_orcamentos (cpf, placa, id_peca, servico_id, data_orc, precoTotal, isPago) " + "values (?,?,?,?,?,?,?)";
                 PreparedStatement statement = con.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
-                statement.setString(1, entity.getClienteOrcamento().getCPF());
-                statement.setString(2, entity.getAutomovelOrcamento().getPlaca());
-                statement.setInt(3, entity.getPecaOrcamento().getIdItem());
-                statement.setInt(4, entity.getServicoOrcamento().getServicoId());
+                statement.setString(1, entity.getCPFClienteOrcamento());
+                statement.setString(2, entity.getPlacaOrc());
+                statement.setInt(3, entity.getIdPecaOrcamento());
+                statement.setInt(4, entity.getIdServOrc());
                 statement.setDate(5, entity.getDataOrcamento());
                 statement.setDouble(6, entity.getTotalOrcamento());
                 statement.setBoolean(7, entity.getIsPago());
@@ -62,15 +62,15 @@ public class OrcamentoDAO extends BaseDAOImpl <Orcamento>{
 
     public Orcamento alterar (Orcamento entity) throws SQLException{
         Connection con = getConnection();
-        String sql = "UPDATE tb_orcamentos SET cpf = ?, placa = ?, id_peca = ?, id_servico = ?, preco_orcamento = ?, data_orcamento = ?, isPago = ?, WHERE id_orcamento = ?";
+        String sql = "UPDATE tb_orcamentos SET cpf = ?, placa = ?, id_peca = ?, id_servico = ?, precoTotal = ?, data_orc = ?, isPago = ?, WHERE id_orcamento = ?";
 
         try
         {
             PreparedStatement ps = con.prepareStatement(sql);
-            ps.setString(1, entity.getClienteOrcamento().getCPF());
-            ps.setString(2, entity.getAutomovelOrcamento().getPlaca());
-            ps.setInt(3, entity.getPecaOrcamento().getIdItem());
-            ps.setInt(4, entity.getServicoOrcamento().getServicoId());
+            ps.setString(1, entity.getCPFClienteOrcamento());
+            ps.setString(2, entity.getPlacaOrc());
+            ps.setInt(3, entity.getIdPecaOrcamento());
+            ps.setInt(4, entity.getIdServOrc());
             ps.setDouble(5, entity.getTotalOrcamento());
             ps.setDate(6, (Date) entity.getDataOrcamento());
             ps.setBoolean(7, entity.getIsPago());
@@ -95,7 +95,7 @@ public class OrcamentoDAO extends BaseDAOImpl <Orcamento>{
     
         try {
             ptst = getConnection().prepareStatement(sql);
-            ptst.setString(1, entity.getAutomovelOrcamento().getPlaca());
+            ptst.setString(1, entity.getPlacaOrc());
             rs = ptst.executeQuery();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -105,13 +105,30 @@ public class OrcamentoDAO extends BaseDAOImpl <Orcamento>{
 //=======================================================================================
     public ResultSet buscarPorCliente (Orcamento entity) {
 
-        String sql = "SELECT * FROM tb_orcamentos WHERE cpf_cliente = ?";
+        String sql = "SELECT * FROM tb_orcamentos WHERE cpf = ?";
         PreparedStatement ptst;
         ResultSet rs = null;
     
         try {
             ptst = getConnection().prepareStatement(sql);
-            ptst.setString(1, entity.getClienteOrcamento().getCPF());
+            ptst.setString(1, entity.getCPFClienteOrcamento());
+            rs = ptst.executeQuery();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return rs;
+    }
+
+//=======================================================================================
+    public ResultSet buscarPorPlaca (Orcamento entity) {
+
+        String sql = "SELECT * FROM tb_orcamentos WHERE placa = ?";
+        PreparedStatement ptst;
+        ResultSet rs = null;
+    
+        try {
+            ptst = getConnection().prepareStatement(sql);
+            ptst.setString(1, entity.getPlacaOrc());
             rs = ptst.executeQuery();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -122,7 +139,7 @@ public class OrcamentoDAO extends BaseDAOImpl <Orcamento>{
     //=======================================================================================
     public ResultSet buscarPorData (Orcamento entity) {
 
-        String sql = "SELECT * FROM tb_orcamentos WHERE data_orcamento = ?";
+        String sql = "SELECT * FROM tb_orcamentos WHERE data_orc = ?";
         PreparedStatement ptst;
         ResultSet rs = null;
     
@@ -159,7 +176,7 @@ public class OrcamentoDAO extends BaseDAOImpl <Orcamento>{
         ResultSet rs = null;
         try {
             Connection con = BaseDAOImpl.getConnection();
-            String sql = "SELECT * FROM tb_automovel";
+            String sql = "SELECT * FROM tb_orcamentos";
             PreparedStatement statement = con.prepareStatement(sql);
             rs = statement.executeQuery();
             BaseDAOImpl.closeConnection();

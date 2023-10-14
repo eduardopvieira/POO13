@@ -9,6 +9,14 @@ public class Servico {
 	private double servicoPreco;
 
   public Servico(){}
+  
+  public Servico (int id) {
+		setServicoId(id);
+	}
+  
+  public Servico (String nome) throws InfoNaoCompativelException {
+	  setServicoNome(nome);
+  }
 
   public Servico(String servicoNome, String servicoDescricao, double servicoPreco) throws InfoNaoCompativelException{
     setServicoNome(servicoNome);
@@ -16,6 +24,13 @@ public class Servico {
     setServicoPreco(servicoPreco);
     
   }
+  
+  public Servico(String servicoNome, String servicoDescricao, double servicoPreco, int id) throws InfoNaoCompativelException{
+	    setServicoNome(servicoNome);
+	    setServicoDescricao(servicoDescricao);
+	    setServicoPreco(servicoPreco);
+	    setServicoId(id);
+	  }
 
 //get id:
 public int getServicoId() {

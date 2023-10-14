@@ -57,14 +57,15 @@ public class AutomovelBO implements BaseInterBO<Automovel>{
 				ArrayList<Automovel> veiculos = new ArrayList<>();		            
 				    try {
 				    	while(veiculosBuscados.next()) {
-						veiculos.add(new Automovel(veiculosBuscados.getString("placa"),
-						veiculosBuscados.getString("cor"),
+						veiculos.add(new Automovel(veiculosBuscados.getString("dono"),
+						veiculosBuscados.getString("placa"),
 						veiculosBuscados.getString("modelo"),
 						veiculosBuscados.getString("marca"),
 						veiculosBuscados.getInt("ano"),
-						veiculosBuscados.getInt("km"),
-						veiculosBuscados.getString("cpfDono")));
+						veiculosBuscados.getInt("quilometragem"),
+						veiculosBuscados.getString("cor")));
 				    	}
+				    	
 				    } catch (InfoNaoCompativelException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();

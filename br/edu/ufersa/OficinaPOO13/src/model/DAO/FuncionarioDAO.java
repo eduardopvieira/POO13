@@ -97,7 +97,7 @@ public class FuncionarioDAO extends BaseDAOImpl<Funcionario> {
     }
 
 //================================ BUSCAR POR NOME =============================================  
-	    public ResultSet buscarPorNome (Funcionario entity) {
+	    public ResultSet buscarPorNome (String nome) {
 
         String sql = "SELECT * FROM tb_funcionarios WHERE nome_func= ?";
         PreparedStatement ptst;
@@ -105,7 +105,7 @@ public class FuncionarioDAO extends BaseDAOImpl<Funcionario> {
     
         try {
             ptst = getConnection().prepareStatement(sql);
-            ptst.setString(1, entity.getNome());
+            ptst.setString(1, nome);
             System.out.println(ptst);
             rs = ptst.executeQuery();
         } catch (SQLException e) {

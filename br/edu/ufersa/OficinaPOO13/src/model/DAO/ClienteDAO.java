@@ -100,7 +100,7 @@ public class ClienteDAO extends BaseDAOImpl <Cliente>{
         return rs;
     }
 //==================================BUSCAR POR NOME====================================
-    public ResultSet buscarPorNome (Cliente entity) {
+    public ResultSet buscarPorNome (String nome) {
 
         String sql = "SELECT * FROM tb_clientes WHERE nome_cliente = ?";
         PreparedStatement ptst;
@@ -108,7 +108,7 @@ public class ClienteDAO extends BaseDAOImpl <Cliente>{
     
         try {
             ptst = getConnection().prepareStatement(sql);
-            ptst.setString(1, entity.getNome());
+            ptst.setString(1, nome);
             System.out.println(ptst);
             rs = ptst.executeQuery();
         } catch (SQLException e) {

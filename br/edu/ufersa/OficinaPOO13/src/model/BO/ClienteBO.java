@@ -4,13 +4,17 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import Exceptions.InfoNaoCompativelException;
 import Exceptions.InsertException;
 import Exceptions.NotFoundException;
+import model.DAO.AutomovelDAO;
 import model.DAO.ClienteDAO;
+import model.VO.Automovel;
 import model.VO.Cliente;
 
 public class ClienteBO implements BaseInterBO<Cliente> {
-
+	ClienteDAO cliDAO = new ClienteDAO();
+	
 	@Override
     public boolean cadastrar(Cliente vo) throws InsertException{
         ClienteDAO cliDAO = new ClienteDAO();
@@ -27,11 +31,7 @@ public class ClienteBO implements BaseInterBO<Cliente> {
             }throw new InsertException("Falha no cadastro.");
 }
 	
-	@Override
-	public ResultSet buscar(Cliente vo) throws NotFoundException {
-		// TODO Auto-generated method stub
-		return null;
-	}
+
 
 	@Override
 	public ArrayList<Cliente> listar() throws InsertException {
@@ -47,25 +47,97 @@ public class ClienteBO implements BaseInterBO<Cliente> {
 
 	            return clientes;
 	        } catch (Exception e) {
-	            throw new InsertException("erro ao buscar veiculos");
+	            throw new InsertException("erro ao buscar cliente");
 	        }
 	    }
 	
 
 	@Override
-	public Object alterar(Cliente vo) throws InsertException {
-		return vo;
-		// TODO Auto-generated method stub
-		
-	}
+	public Cliente alterar(Cliente vo) throws InsertException {
+		try {
+			ResultSet verificarCliente = cliDAO.buscar(vo);
+
+	            if (!verificarCliente.next() || vo.getCPF() == null) {
+	                throw new InsertException("Cliente não encontrado");
+	            }
+
+	            return cliDAO.alterar(vo);
+	            
+	        }
+	        catch (Exception e) {
+	            throw new InsertException(e.getMessage());
+	        }
+	    }
 
 	@Override
 	public boolean deletar(Cliente vo) throws InsertException {
-		return false;
+	        ResultSet cliRS = cliDAO.buscar(vo);
+	        try {
+	        if (cliRS.next())
+	        {
+	        	cliDAO.deletar(vo);
+	        	return true;
+	        }
+	        else
+	        {
+	            throw new NotFoundException("Placa não encontrada.");
+	        }
+	        }catch (SQLException e) {
+	            e.printStackTrace();
+	            throw new InsertException("Falha na alteração.");
+	        } finally {
+	            if (cliRS != null) {
+	                try {
+	                	cliRS.close();
+	                } catch (SQLException e) {
+	                    e.printStackTrace();
+	                }
+	            }
+	       }
 		
 	}
 
+
+
+	@Override
+	public ArrayList<Cliente> buscarPorPK(Cliente vo) throws NotFoundException, InfoNaoCompativelException {
+			ResultSet clientesBuscados = cliDAO.buscar(new Cliente(vo.getCPF()));
+			ArrayList<Cliente> clientes = new ArrayList<>();		            
+			    try {
+			    	while(clientesBuscados.next()) {
+			    	clientes.add(new Cliente(clientesBuscados.getString("cpf_cliente"),
+			    	clientesBuscados.getString("nome_cliente"),
+			    	clientesBuscados.getString("endereco_cliente")));
+			    	}
+			    	
+			    } catch (InfoNaoCompativelException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			    return clientes;
+	}	
 	
-	
+	public ArrayList<Cliente> buscarPorNome(Cliente vo) throws NotFoundException, InfoNaoCompativelException {
+		ResultSet clientesBuscados = cliDAO.buscarPorNome(vo.getNome());
+		ArrayList<Cliente> clientes = new ArrayList<>();		            
+		    try {
+		    	while(clientesBuscados.next()) {
+		    	clientes.add(new Cliente(clientesBuscados.getString("cpf_cliente"),
+		    	clientesBuscados.getString("nome_cliente"),
+		    	clientesBuscados.getString("endereco_cliente")));
+		    	}
+		    	
+		    } catch (InfoNaoCompativelException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		    return clientes;
+}	
 }
 

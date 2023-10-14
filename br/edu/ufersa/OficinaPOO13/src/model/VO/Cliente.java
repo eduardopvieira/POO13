@@ -9,10 +9,15 @@ public class Cliente extends Pessoa{
     private List <Automovel> ListaAuto;
     
     public Cliente(){};
+    
+    public Cliente(String cpf) throws InfoNaoCompativelException {
+    	setCPF(cpf);
+    }
+    
     public Cliente (String cpf, String nome) throws InfoNaoCompativelException{
     	super(nome, cpf);
     }
-    public Cliente(String nome,String endereco, String cpf) throws InfoNaoCompativelException {
+    public Cliente(String cpf,String nome, String endereco) throws InfoNaoCompativelException {
         super(nome, endereco, cpf);
         //ListaAuto = new ArrayList<Automovel>();
     }

@@ -11,6 +11,14 @@ public class Pecas {
 	
 	public Pecas(){}
 	
+	public Pecas (String fab) {
+		setFabricante(fab);
+	}
+	
+	public Pecas (int id) {
+		setIdItem(id);
+	}
+	
 	public Pecas(int idItem, String descricaoItem, String fabricante, double precoItem, int estoqueItem){
 		setIdItem(idItem);
 		setDescricaoItem(descricaoItem);

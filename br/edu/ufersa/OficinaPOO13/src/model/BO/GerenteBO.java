@@ -9,27 +9,29 @@ import Exceptions.InfoNaoCompativelException;
 import Exceptions.InsertException;
 import Exceptions.NotFoundException;
 import model.DAO.FuncionarioDAO;
+import model.DAO.GerenteDAO;
 import model.VO.Funcionario;
+import model.VO.Gerente;
 
-public class FuncionarioBO implements FuncionarioInterBO<Funcionario>{
+public class GerenteBO implements FuncionarioInterBO<Gerente>{
 
 	
 //=================================================AUTENTICAR=========================================================
 	@Override
-	public Funcionario autenticar(Funcionario vo) throws AutenticationException, InfoNaoCompativelException {
-		FuncionarioDAO funcDAO = new FuncionarioDAO();
-		ResultSet trabalhadorRS = funcDAO.buscar(vo);
+	public Gerente autenticar(Gerente vo) throws AutenticationException, InfoNaoCompativelException {
+		GerenteDAO gerDAO = new GerenteDAO();
+		ResultSet trabalhadorRS = gerDAO.buscar(vo);
 	    try {
 	        if (trabalhadorRS.next()) {
 	            String senhaTrab = trabalhadorRS.getString("senha_func");
 
 	            if (vo.getSenha().equals(senhaTrab)) {
-	                    Funcionario funcionario = new Funcionario();
+	                    Gerente funcionario = new Gerente();
 	                    funcionario.setCPF(vo.getCPF());
 	                    funcionario.setNome(trabalhadorRS.getString("nome_func"));
 	                    funcionario.setEndereco(trabalhadorRS.getString("endereco_func"));
 	                    funcionario.setSenha(trabalhadorRS.getString("senha_func"));
-	                    funcionario.setIsGerente(false);
+	                    funcionario.setIsGerente(true);
 	                    return funcionario;
 	            } else {
 	                throw new AutenticationException("Senha incorreta.");
@@ -46,9 +48,9 @@ public class FuncionarioBO implements FuncionarioInterBO<Funcionario>{
 //==========================================CADASTRAR===============================================================
 
 	@Override
-	public boolean cadastrar(Funcionario vo) throws InsertException{
-		FuncionarioDAO funcDAO = new FuncionarioDAO();
-		ResultSet trabalhadorRS = funcDAO.buscar(vo);
+	public boolean cadastrar(Gerente vo) throws InsertException{
+		GerenteDAO gerDAO = new GerenteDAO();
+		ResultSet trabalhadorRS = gerDAO.buscar(vo);
 		try {
 			//encontrou usuario
 			if(trabalhadorRS.next()) {
@@ -56,7 +58,7 @@ public class FuncionarioBO implements FuncionarioInterBO<Funcionario>{
 			}
 			else
 			{
-				funcDAO.inserir(vo);
+				gerDAO.inserir(vo);
 				return true;
 			}
 		}
@@ -68,15 +70,15 @@ public class FuncionarioBO implements FuncionarioInterBO<Funcionario>{
 //=================================================LISTAR=============================================================
 
 	@Override
-	public ArrayList<Funcionario> listar() throws InsertException {
+	public ArrayList<Gerente> listar() throws InsertException {
 	    try {
 	    	FuncionarioDAO funDAO = new FuncionarioDAO();
 	        ResultSet funcBuscados = funDAO.listar();
-	        ArrayList<Funcionario> trabalhadores = new ArrayList<>();
+	        ArrayList<Gerente> trabalhadores = new ArrayList<>();
 
 	        while (funcBuscados.next()) {
 	                try {
-						trabalhadores.add(new Funcionario(funcBuscados.getString("cpf_func"),
+						trabalhadores.add(new Gerente(funcBuscados.getString("cpf_func"),
 						funcBuscados.getString("nome_func"),
 						funcBuscados.getString("endereco_func"),
 						funcBuscados.getString("senha_func"),
@@ -96,13 +98,13 @@ public class FuncionarioBO implements FuncionarioInterBO<Funcionario>{
 
 	
 	@Override
-	 public Funcionario alterar(Funcionario vo) throws InsertException 	 {
-	            FuncionarioDAO funcDAO = new FuncionarioDAO();
-	            ResultSet funcRS = funcDAO.buscar(vo);
+	 public Gerente alterar(Gerente vo) throws InsertException 	 {
+		GerenteDAO gerDAO = new GerenteDAO();
+	            ResultSet funcRS = gerDAO.buscar(vo);
 	            try {
 	            if (funcRS.next())
 	            {
-	            	return (funcDAO.alterar(vo));
+	            	return (gerDAO.alterar(vo));
 	            }
 	            else
 	            {
@@ -124,8 +126,8 @@ public class FuncionarioBO implements FuncionarioInterBO<Funcionario>{
 //========================================DELETAR=====================================================================
 
 	@Override
-	public boolean deletar(Funcionario vo) throws InsertException {
-		FuncionarioDAO funcDAO = new FuncionarioDAO();
+	public boolean deletar(Gerente vo) throws InsertException {
+		GerenteDAO funcDAO = new GerenteDAO();
         ResultSet funcRS = funcDAO.buscar(vo);
         try {
         if (funcRS.next())
@@ -153,13 +155,13 @@ public class FuncionarioBO implements FuncionarioInterBO<Funcionario>{
 //========================================BUSCAR POR PK=================================================================
 
 	@Override
-	public ArrayList<Funcionario> buscarPorPK(Funcionario vo) throws NotFoundException, InfoNaoCompativelException {
-	    FuncionarioDAO funcDAO = new FuncionarioDAO();
-	    ResultSet funcsBuscados = funcDAO.buscar(new Funcionario(vo.getCPF()));
-	    ArrayList<Funcionario> funcs = new ArrayList<>();		            
+	public ArrayList<Gerente> buscarPorPK(Gerente vo) throws NotFoundException, InfoNaoCompativelException {
+		GerenteDAO gerDAO = new GerenteDAO();
+	    ResultSet funcsBuscados = gerDAO.buscar(new Gerente(vo.getCPF()));
+	    ArrayList<Gerente> funcs = new ArrayList<>();		            
 	    try {
 	        while (funcsBuscados.next()) {
-	            Funcionario funcionario = new Funcionario(
+	        	Gerente funcionario = new Gerente(
 	                funcsBuscados.getString("cpf_func"),
 	                funcsBuscados.getString("nome_func"),
 	                funcsBuscados.getString("endereco_func"),
@@ -175,16 +177,17 @@ public class FuncionarioBO implements FuncionarioInterBO<Funcionario>{
 	    return funcs;
 	}
 //========================================BUSCAR POR NOME=================================================================
-	public ArrayList<Funcionario> buscarPorNome(Funcionario vo) throws NotFoundException, InfoNaoCompativelException {
+	public ArrayList<Gerente> buscarPorNome(Gerente vo) throws NotFoundException, InfoNaoCompativelException {
 		FuncionarioDAO funcDAO = new FuncionarioDAO();
 		ResultSet funcsBuscados = funcDAO.buscarPorNome((vo.getNome()));
-		ArrayList<Funcionario> funcs = new ArrayList<>();		            
+		ArrayList<Gerente> funcs = new ArrayList<>();		            
 		    try {
 		    	while(funcsBuscados.next()) {
-		    	funcs.add(new Funcionario(funcsBuscados.getString("cpf_func"),
+		    	funcs.add(new Gerente(funcsBuscados.getString("cpf_func"),
 		    	funcsBuscados.getString("nome_func"),
 		    	funcsBuscados.getString("endereco_func"),
-		    	funcsBuscados.getString("senha_func")));
+		    	funcsBuscados.getString("senha_func"),
+                funcsBuscados.getBoolean("isGerente")));
 		    	}
 		    	
 		    } catch (InfoNaoCompativelException e) {

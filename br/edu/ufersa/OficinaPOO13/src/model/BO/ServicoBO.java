@@ -2,67 +2,95 @@ package model.BO;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
+import Exceptions.InfoNaoCompativelException;
 import Exceptions.InsertException;
 import Exceptions.NotFoundException;
+import model.DAO.PecasDAO;
 import model.DAO.ServicoDAO;
+import model.VO.Pecas;
 import model.VO.Servico;
 
 public class ServicoBO implements BaseInterBO<Servico>{
+    ServicoDAO servDAO = new ServicoDAO();
 
+//======================================CADASTRAR====================================================================
+	
 	@Override
-	public void cadastrar(Servico vo) throws InsertException {
-		ServicoDAO servDAO = new ServicoDAO();
-		servDAO.inserir(vo);		
+	public boolean cadastrar(Servico vo) throws InsertException {
+	    servDAO.inserir(vo);
+	    return true;
+}
+
+//======================================BUSCAR POR ID================================================================
+	@Override
+	public ArrayList<Servico> buscarPorPK(Servico s) throws NotFoundException, InfoNaoCompativelException {
+				ResultSet servBuscado = servDAO.buscar(new Servico(s.getServicoId()));
+				ArrayList<Servico> servs = new ArrayList<>();		            
+				    try {
+				    	while(servBuscado.next()) {
+						servs.add(new Servico(
+						servBuscado.getString("servico_nome"),
+						servBuscado.getString("servico_desc"),
+						servBuscado.getDouble("servico_preco"),
+						servBuscado.getInt("servico_id")));
+				    	}
+				    } catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+         return servs;
+	}
+	
+//======================================BUSCAR POR NOME================================================================
+
+	public ArrayList<Servico> buscarPorNome(Servico s) throws NotFoundException, InfoNaoCompativelException {
+				ResultSet servBuscado = servDAO.buscar(new Servico(s.getServicoNome()));
+				ArrayList<Servico> servs = new ArrayList<>();		            
+				    try {
+				    	while(servBuscado.next()) {
+							servs.add(new Servico(
+							servBuscado.getString("servico_nome"),
+							servBuscado.getString("servico_desc"),
+							servBuscado.getDouble("servico_preco"),
+							servBuscado.getInt("servico_id")));
+					    	}
+				    } catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+         return servs;
 	}
 
-	@Override
-	public ResultSet buscar(Servico vo) throws NotFoundException {
-		ServicoDAO servDAO = new ServicoDAO();
-		return servDAO.buscar(vo);	
-	}
+//======================================ALTERAR=======================================================================
 
 	@Override
-	public ResultSet listar() throws InsertException {
-		ServicoDAO servDAO = new ServicoDAO();
-		return servDAO.listar();	
-	}
+	public Servico alterar(Servico vo) throws InsertException {
+		try {  
+			ResultSet verificarServico = servDAO.buscar(vo);
+
+	            if (!verificarServico.next() || vo.getServicoId() == 0) {
+	                throw new InsertException("Peca não encontrada");
+	            }
+
+	            return servDAO.alterar(vo);
+	            
+	        }
+	        catch (Exception e) {
+	            throw new InsertException(e.getMessage());
+	        }
+	    }
+//=========================================DELETAR===================================================================
 
 	@Override
-	public void alterar(Servico vo) throws InsertException {
-		ServicoDAO servDAO = new ServicoDAO();
-		ResultSet servRS = servDAO.buscar(vo);
+	public boolean deletar(Servico vo) throws InsertException {
+        ResultSet pecaRS = servDAO.buscar(vo);
         try {
-        if (servRS.next())
-        {
-            servDAO.alterar(vo);
-        }
-        else
-        {
-            throw new NotFoundException("ID não encontrado.");
-        }
-        }catch (SQLException e) {
-            e.printStackTrace();
-            throw new InsertException("Falha na alteração.");
-        } finally {
-            if (servRS != null) {
-                try {
-                	servRS.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-	}
-
-	@Override
-	public void deletar(Servico vo) throws InsertException {
-		ServicoDAO servDAO = new ServicoDAO();
-		ResultSet servRS = servDAO.buscar(vo);
-        try {
-        if (servRS.next())
+        if (pecaRS.next())
         {
             servDAO.deletar(vo);
+            return true;
         }
         else
         {
@@ -72,13 +100,40 @@ public class ServicoBO implements BaseInterBO<Servico>{
             e.printStackTrace();
             throw new InsertException("Falha na alteração.");
         } finally {
-            if (servRS != null) {
+            if (pecaRS != null) {
                 try {
-                	servRS.close();
+                	pecaRS.close();
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
             }
+       }
+		
+	}
+//=============================================LISTAR===================================================================
+
+
+
+	@Override
+	public ArrayList<Servico> listar() throws InsertException {
+		try {
+            ResultSet servBuscado = servDAO.listar();
+            ArrayList<Servico> servs = new ArrayList<>();
+            try {
+            	while(servBuscado.next()) {
+					servs.add(new Servico(
+					servBuscado.getString("servico_nome"),
+					servBuscado.getString("servico_desc"),
+					servBuscado.getDouble("servico_preco"),
+					servBuscado.getInt("servico_id")));
+			    	}
+		    } catch (SQLException e) {            }
+            return servs;
+        } catch (Exception e) {
+            throw new InsertException("erro ao listar serviços");
         }
 	}
+	
+	
+	
 }

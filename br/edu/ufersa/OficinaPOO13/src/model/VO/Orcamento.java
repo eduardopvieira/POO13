@@ -6,53 +6,58 @@ import java.sql.Date;
 public class Orcamento {
 
   private int idOrcamento;
-  private Cliente clienteOrcamento;
-  private Automovel automovelOrcamento;
-  private Pecas pecaOrcamento;
-  private Servico servicoOrcamento;
+  private String cpfClienteOrc;
+  private String placaAutoOrc;
+  private int idPecaOrc;
+  private int idServicoOrc;
   private Date dataOrcamento;
   private double totalOrcamento;
   private boolean isPago;
 
   public Orcamento(){}
-  public Orcamento(Cliente clienteOrcamento, Automovel automovelOrcamento, Pecas pecaOrcamento, Servico servicoOrcamento, Date dataOrcamento){
+  
+  public Orcamento(int idOrcamento) {
+	  setIdOrcamento(idOrcamento);
+  }
+ 
+  
+  public Orcamento(String clienteOrcamento, String automovelOrcamento, int pecaOrcamento, int servicoOrcamento, Date dataOrcamento, double totalOrcamento, boolean isPago){
       
-      setClienteOrcamento(clienteOrcamento);
-      setAutomovelOrcamento(automovelOrcamento);
+      setCPFClienteOrcamento(clienteOrcamento);
+      setPlacaOrc(automovelOrcamento);
       setDataOrcamento(dataOrcamento);
-      setPecaOrcamento(pecaOrcamento);
-      setServicoOrcamento(servicoOrcamento);
-      setTotalOrcamento(this.servicoOrcamento,this.pecaOrcamento);
+      setIdPecaOrcamento(pecaOrcamento);
+      setIdServOrc(servicoOrcamento);
+      setTotalOrcamento(totalOrcamento);
       setIsPago(false);
   }
   
 
 //=========================== SET E GET PEÇA DO ORÇAMENTO ===========================
- public void setPecaOrcamento (Pecas p) {
-	 this.pecaOrcamento = p;
+ public void setIdPecaOrcamento (int id) {
+	 if (id != 0) {
+		 this.idPecaOrc = id;
+	 }
  }
   
- public Pecas getPecaOrcamento () {return pecaOrcamento;}
+ public int getIdPecaOrcamento () {return idPecaOrc;}
   
   
 //=========================== SET E GET SERVIÇO DO ORÇAMENTO ===========================
-public void setServicoOrcamento (Servico s) {
-	this.servicoOrcamento = s;
+public void setIdServOrc (int s) {
+	if (s != 0) {
+		 this.idServicoOrc = s;
+	 }
 }
  
-public Servico getServicoOrcamento() {return servicoOrcamento;}
+public int getIdServOrc() {return idServicoOrc;}
  
 //=========================== SET E GET TOTAL DO ORÇAMENTO ===========================
-public void setTotalOrcamento(Servico s, Pecas p) {
-    if (s != null && p != null) {
-      this.totalOrcamento = s.getServicoPreco() + p.getPrecoItem();
-    } else {
-    	if (s!= null && p == null) {
-    		this.totalOrcamento = s.getServicoPreco();
-    	} else {
-    		this.totalOrcamento = p.getPrecoItem();
-    	}
-    }
+
+public void setTotalOrcamento(double preco) {
+	if (preco >= 0) {
+		this.totalOrcamento = preco;
+	}
 }
 
 public double getTotalOrcamento() {return this.totalOrcamento;}
@@ -67,18 +72,22 @@ public Date getDataOrcamento() {
 }
 //=========================GET E SET CLIENTE NO ORÇAMENTO==========================================================
 
-  public Cliente getClienteOrcamento(){
-    return clienteOrcamento;
+  public String getCPFClienteOrcamento(){
+    return cpfClienteOrc;
   }
-  public void setClienteOrcamento(Cliente clienteOrcamento){
-    this.clienteOrcamento = clienteOrcamento;
+  public void setCPFClienteOrcamento(String cpf){
+	  if (cpf.isEmpty() == false && cpf.length() == 11) {
+		  this.cpfClienteOrc = cpf;
+	    }
   }
 //=========================GET E SET AUTOMOVEL NO ORÇAMENTO========================================
-  public Automovel getAutomovelOrcamento(){
-    return automovelOrcamento;
+  public String getPlacaOrc(){
+    return placaAutoOrc;
   }
-  public void setAutomovelOrcamento(Automovel automovelOrcamento){
-    this.automovelOrcamento = automovelOrcamento;
+  public void setPlacaOrc(String placa){
+    if (placa.isEmpty() == false && placa.length() == 7) {
+	  this.placaAutoOrc = placa;
+    }
   }
 //=========================GET E SET ID DO ORÇAMENTO=====================================
  
