@@ -30,7 +30,7 @@ public class AutomovelBO implements BaseInterBO<Automovel>{
 	}
 	
 	
-	public List<Automovel> listar() throws SQLException
+	public List<Automovel> listar() throws SQLException, InfoNaoCompativelException
     {
         BaseDAO<Automovel> autoDAO = new AutomovelDAO();
 

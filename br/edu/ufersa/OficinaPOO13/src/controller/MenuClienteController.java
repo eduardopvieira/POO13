@@ -2,6 +2,7 @@ package controller;
 
 import java.util.List;
 
+import Exceptions.InfoNaoCompativelException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -54,10 +55,11 @@ public class MenuClienteController {
     @FXML
     private ChoiceBox<String> choiceboxBusca;
 
-    @FXML private TableView<Cliente> tableviewClientes = new TableView<Cliente>();
-    @FXML private TableColumn <Cliente, String>tableColumnCPF = new TableColumn<Cliente, String>("cpf_cliente");
-    @FXML private TableColumn <Cliente, String>tableColumnNome = new TableColumn<Cliente, String>("nome_cliente");
-    @FXML private TableColumn <Cliente, String>tableColumnEndereco  = new TableColumn<Cliente, String>("endereco_cliente");
+    @FXML private TableView<Cliente> tableviewClientes = new TableView<>();
+    @FXML private TableColumn<Cliente, String> tableColumnCPF = new TableColumn<>("CPF");
+    @FXML private TableColumn<Cliente, String> tableColumnNome = new TableColumn<>("Nome");
+    @FXML private TableColumn<Cliente, String> tableColumnEndereco = new TableColumn<>("Endereço");
+
 
    
     @FXML
@@ -65,6 +67,7 @@ public class MenuClienteController {
     	Telas.telaCadastroCliente();
     }
 
+    
     @FXML
     void buscarCliente(ActionEvent event)throws Exception {
     	
@@ -101,10 +104,10 @@ public class MenuClienteController {
 	public void initialize() {
 		ClienteBO cliBO = new ClienteBO();
     	
-    	tableColumnCPF.setCellValueFactory(new PropertyValueFactory<Cliente, String>("cpf"));
-        tableColumnNome.setCellValueFactory(new PropertyValueFactory<Cliente, String>("nome"));
-        tableColumnEndereco.setCellValueFactory(new PropertyValueFactory<Cliente, String>("endereco"));
-        
+		tableColumnCPF.setCellValueFactory(new PropertyValueFactory<>("cpf"));
+		tableColumnNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
+		tableColumnEndereco.setCellValueFactory(new PropertyValueFactory<>("endereco"));
+		
         tableviewClientes.getColumns().add(tableColumnCPF);
         tableviewClientes.getColumns().add(tableColumnNome);
         tableviewClientes.getColumns().add(tableColumnEndereco);
@@ -168,10 +171,57 @@ public class MenuClienteController {
     void editar(ActionEvent event) {
 
     }
-
+//================================= BUSCAR POR NOME OU CPF ==========================================================
     @FXML
-    void realizarBusca(MouseEvent event) {
+    void realizarBusca(MouseEvent event) throws InfoNaoCompativelException {
+    	Cliente cli = new Cliente();
+        if (botaoBuscar.getText() != null && !botaoBuscar.getText().isEmpty())
+        {
+            cli.setCPF(botaoBuscar.getText());
+            cli.setNome(botaoBuscar.getText());
 
+            ClienteBO cliBO = new ClienteBO();
+            List<Cliente> cliCPF = null;
+            try
+            {
+                cliCPF = cliBO.buscarPorPK(cli);
+            }
+            catch (Exception e)
+            {
+                e.printStackTrace();
+            }
+
+            List<Cliente> cliNome = null;
+            try
+            {
+                cliNome = cliBO.buscarPorNome(cli);
+            }
+            catch (Exception e)
+            {
+                e.printStackTrace();
+            }
+
+            try
+            {
+                if (!cliCPF.isEmpty())
+                {
+                    updateTable(cliCPF);
+                }
+                else
+                {
+                    if (!cliNome.isEmpty())
+                    {
+                        updateTable(cliNome);
+                    }
+                }
+            } catch (NullPointerException e) {
+                e.printStackTrace();
+            }
+        }
+        else
+        {
+            stableTable();
+        }
     }
 
 

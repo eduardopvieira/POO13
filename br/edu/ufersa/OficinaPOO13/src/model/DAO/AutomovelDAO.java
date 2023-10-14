@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import model.VO.Automovel;
-import model.VO.Cliente;
 
 public class AutomovelDAO extends BaseDAOImpl <Automovel>{
     

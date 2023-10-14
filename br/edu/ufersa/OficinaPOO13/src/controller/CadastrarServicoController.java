@@ -4,10 +4,12 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import model.BO.ServicoBO;
 import model.VO.Servico;
 import model.VO.UsuarioAutenticado;
 import view.Telas;
+import view.util.Alerts;
 
 public class CadastrarServicoController {
 
@@ -37,6 +39,9 @@ public class CadastrarServicoController {
     	serv.setServicoPreco(preco);
     	
     	servBO.cadastrar(serv);
+    	
+    	Alerts.showAlert("Sucesso", "Servico cadastrado com sucesso"," " ,AlertType.INFORMATION);
+    	Telas.telaMenuServicoGerente(UsuarioAutenticado.getGerenteAutenticado());
     }
 
     @FXML

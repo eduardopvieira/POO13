@@ -45,7 +45,7 @@ public class Automovel {
     }
 
     public void setCor(String cor) throws InfoNaoCompativelException{
-        if (cor != null && cor.isEmpty() == false) {
+        if (cor.isEmpty() == false) {
             this.cor = cor;
         } else {
             throw new InfoNaoCompativelException("Cor inválida.");
@@ -57,8 +57,9 @@ public class Automovel {
     public String getModelo() {
         return modelo;
     }
+    
     public void setModelo(String modelo) throws InfoNaoCompativelException {
-        if (modelo != null && modelo.isEmpty() == false) {
+        if (modelo.isEmpty() == false) {
             this.modelo = modelo;
         } else {
             throw new InfoNaoCompativelException("modelo inválido.");
@@ -86,9 +87,9 @@ public class Automovel {
             this.km = km;
         } else {throw new InfoNaoCompativelException("Quilometragem invalida.");}
     }
-//============================GET E SET DONO========
+//====================================GET E SET DONO====================================================================
 public void setCPFDono(String dono) {
-    if (dono != null && dono.isEmpty() == false && dono.length() == 11) {
+    if (dono.isEmpty() == false && dono.length() == 11) {
 	this.CPFdono = dono;
     }
 }
@@ -99,7 +100,7 @@ public String getCPFDono() {
 //===================================GET E SET MARCA ============================
 
 public void setMarca(String marca) throws InfoNaoCompativelException {
-    if (modelo != null && marca.isEmpty() == false) {
+    if (marca.isEmpty() == false) {
         this.marca = marca;
     } else {
         throw new InfoNaoCompativelException("marca inválida.");
@@ -110,11 +111,5 @@ public String getMarca() {
 	return marca;
 }
 
-//======================== METODOS =====================
-    public void cadastrarAuto(Automovel auto) {};
-    public void excluirAuto(Automovel auto) {};
-    public void editarAuto(Automovel auto) {};
-    public void buscarPlaca(String placa) {};
-    public void buscarModelo(String modelo) {};
 }
 

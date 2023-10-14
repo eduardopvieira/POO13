@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import Exceptions.InfoNaoCompativelException;
 import model.VO.Cliente;
 
 public class ClienteDAO extends BaseDAOImpl <Cliente>{
@@ -117,7 +118,7 @@ public class ClienteDAO extends BaseDAOImpl <Cliente>{
     }
 //=======================================================================================
     @Override
-    public List<Cliente> listar()
+    public List<Cliente> listar() throws InfoNaoCompativelException
     {
         Connection con = getConnection();
         String sql = "SELECT * FROM tb_clientes";
@@ -130,18 +131,9 @@ public class ClienteDAO extends BaseDAOImpl <Cliente>{
             while(rs.next())
             {
             	Cliente usu = new Cliente();
-
-                try
-                {
-                	
-                    usu.setCPF(rs.getString("cpf_cliente"));
-                    usu.setNome(rs.getString("nome_cliente"));
-                    usu.setEndereco(rs.getString("endereco_cliente"));
-                }
-                catch (Exception e)
-                {
-                    e.printStackTrace();
-                }
+                usu.setCPF(rs.getString("cpf_cliente"));
+                usu.setNome(rs.getString("nome_cliente"));
+                usu.setEndereco(rs.getString("endereco_cliente"));
                 pc.add(usu);
             }
             ps.close();

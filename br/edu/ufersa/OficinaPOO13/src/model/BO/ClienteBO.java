@@ -33,7 +33,7 @@ public class ClienteBO implements BaseInterBO<Cliente> {
 	
 
 //===================================================================
-	 public List<Cliente> listar() throws SQLException
+	 public List<Cliente> listar() throws SQLException, InfoNaoCompativelException
 	    {
 	        BaseDAO<Cliente> cliDAO = new ClienteDAO();
 	        return cliDAO.listar();
