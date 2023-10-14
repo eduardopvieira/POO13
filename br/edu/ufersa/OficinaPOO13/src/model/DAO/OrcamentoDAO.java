@@ -4,7 +4,10 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
+import model.VO.Funcionario;
 import model.VO.Orcamento;
 
 public class OrcamentoDAO extends BaseDAOImpl <Orcamento>{
@@ -172,18 +175,46 @@ public class OrcamentoDAO extends BaseDAOImpl <Orcamento>{
 
     //====================================== LISTAR ==================================
     @Override
-    public ResultSet listar() {
-        ResultSet rs = null;
+    public List<Orcamento> listar()
+    {
+        Connection con = getConnection();
+        String sql = "SELECT * FROM tb_orcamento";
+        List<Orcamento> pc = new ArrayList<>();
+
         try {
-            Connection con = BaseDAOImpl.getConnection();
-            String sql = "SELECT * FROM tb_orcamentos";
-            PreparedStatement statement = con.prepareStatement(sql);
-            rs = statement.executeQuery();
-            BaseDAOImpl.closeConnection();
-        } catch (Exception e) {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+
+            while(rs.next())
+            {
+            	Orcamento usu = new Orcamento();
+
+                try
+                {
+                    usu.setIdOrcamento(rs.getInt("id_orcamento"));
+                	usu.setCPFClienteOrcamento(rs.getString("cpf"));
+                    usu.setPlacaOrc(rs.getString("placa"));
+                    usu.setIsPago(rs.getBoolean("ispago"));
+                    usu.setDataOrcamento(rs.getDate("data_orc"));
+                    usu.setTotalOrcamento(rs.getDouble("precototal"));
+                    usu.setIdServOrc(rs.getInt("id_peca"));
+                    usu.setIdServOrc(rs.getInt("id_servico"));
+                    
+                }
+                catch (Exception e)
+                {
+                    e.printStackTrace();
+                }
+                pc.add(usu);
+            }
+            ps.close();
+        }
+        catch (SQLException e)
+        {
             e.printStackTrace();
         }
-        return rs;
+        finally {closeConnection();}
+        return pc;
     }
 
 }

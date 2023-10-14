@@ -5,7 +5,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
+import model.VO.Orcamento;
 import model.VO.Pecas;
 
 public class PecasDAO extends BaseDAOImpl <Pecas>{
@@ -95,20 +98,44 @@ public class PecasDAO extends BaseDAOImpl <Pecas>{
 	        return rs;
 	    }
 //==================================LISTAR=============================================
-	@Override
-    public ResultSet listar() {
-        ResultSet rs = null;
-        try {
-            Connection con = BaseDAOImpl.getConnection();
-            String sql = "SELECT * FROM tb_pecas";
-            PreparedStatement statement = con.prepareStatement(sql);
-            rs = statement.executeQuery();
-            BaseDAOImpl.closeConnection();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return rs;
-    }
+	    @Override
+	    public List<Pecas> listar()
+	    {
+	        Connection con = getConnection();
+	        String sql = "SELECT * FROM tb_pecas";
+	        List<Pecas> pc = new ArrayList<>();
+
+	        try {
+	            PreparedStatement ps = con.prepareStatement(sql);
+	            ResultSet rs = ps.executeQuery();
+
+	            while(rs.next())
+	            {
+	            	Pecas usu = new Pecas();
+
+	                try
+	                {
+	                    usu.setIdItem(rs.getInt("id_peca"));
+	                	usu.setDescricaoItem(rs.getString("desc_peca"));
+	                    usu.setFabricante(rs.getString("fab_peca"));
+	                	usu.setPrecoItem(rs.getDouble("preco_peca"));
+	                    usu.setEstoqueItem(rs.getInt("estoque_peca"));
+	                }
+	                catch (Exception e)
+	                {
+	                    e.printStackTrace();
+	                }
+	                pc.add(usu);
+	            }
+	            ps.close();
+	        }
+	        catch (SQLException e)
+	        {
+	            e.printStackTrace();
+	        }
+	        finally {closeConnection();}
+	        return pc;
+	    }
 //=======================================DELETAR=========================================
 	@Override
 	public void deletar(Pecas entity) {

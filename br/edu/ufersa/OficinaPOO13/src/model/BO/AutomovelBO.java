@@ -3,11 +3,13 @@ package model.BO;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 import Exceptions.InfoNaoCompativelException;
 import Exceptions.InsertException;
 import Exceptions.NotFoundException;
 import model.DAO.AutomovelDAO;
+import model.DAO.BaseDAO;
 import model.VO.Automovel;
 
 public class AutomovelBO implements BaseInterBO<Automovel>{
@@ -28,25 +30,11 @@ public class AutomovelBO implements BaseInterBO<Automovel>{
 	}
 	
 	
-	
-	public ArrayList<Automovel> listar() throws InsertException {
-        try {
-        	AutomovelDAO autoDAO = new AutomovelDAO();
-            ResultSet veiculosBuscados = autoDAO.listar();
-            ArrayList<Automovel> veiculos = new ArrayList<>();
-            while(veiculosBuscados.next()) {
-                veiculos.add(new Automovel(veiculosBuscados.getString("placa"),
-                veiculosBuscados.getString("cor"),
-                veiculosBuscados.getString("modelo"),
-                veiculosBuscados.getString("marca"),
-                veiculosBuscados.getInt("ano"),
-                veiculosBuscados.getInt("km"),
-                veiculosBuscados.getString("CPFdono")));
-            }
-            return veiculos;
-        } catch (Exception e) {
-            throw new InsertException("erro ao buscar veiculos");
-        }
+	public List<Automovel> listar() throws SQLException
+    {
+        BaseDAO<Automovel> autoDAO = new AutomovelDAO();
+
+        return autoDAO.listar();
     }
 
 

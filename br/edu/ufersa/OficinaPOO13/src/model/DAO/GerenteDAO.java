@@ -3,6 +3,7 @@ package model.DAO;
 import java.sql.*;
 import java.util.List;
 
+import model.VO.Funcionario;
 import model.VO.Gerente;
 
 import java.util.ArrayList;
@@ -115,17 +116,41 @@ public class GerenteDAO extends BaseDAOImpl<Gerente> {
     }
     //=================================== LISTAR ===========================================
 	    @Override
-	    public ResultSet listar() {
-	        ResultSet rs = null;
+	    public List<Gerente> listar()
+	    {
+	        Connection con = getConnection();
+	        String sql = "SELECT * FROM tb_funcionarios WHERE isGerente = 1";
+	        List<Gerente> pc = new ArrayList<>();
+
 	        try {
-	            Connection con = BaseDAOImpl.getConnection();
-	            String sql = "SELECT * FROM tb_funcionarios WHERE isGerente = 1";
-	            PreparedStatement statement = con.prepareStatement(sql);
-	            rs = statement.executeQuery();
-	            BaseDAOImpl.closeConnection();
-	        } catch (Exception e) {
+	            PreparedStatement ps = con.prepareStatement(sql);
+	            ResultSet rs = ps.executeQuery();
+
+	            while(rs.next())
+	            {
+	            	Gerente usu = new Gerente();
+
+	                try
+	                {
+	                    usu.setCPF(rs.getString("cpf_func"));
+	                    usu.setNome(rs.getString("nome_func"));
+	                    usu.setEndereco(rs.getString("endereco_func"));
+	                    usu.setSenha(rs.getString("senha_func"));
+	                    usu.setIsGerente(rs.getBoolean("isGerente"));
+	                }
+	                catch (Exception e)
+	                {
+	                    e.printStackTrace();
+	                }
+	                pc.add(usu);
+	            }
+	            ps.close();
+	        }
+	        catch (SQLException e)
+	        {
 	            e.printStackTrace();
 	        }
-	        return rs;
+	        finally {closeConnection();}
+	        return pc;
 	    }
 }

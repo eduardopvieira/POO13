@@ -122,19 +122,42 @@ public class ServicoDAO extends BaseDAOImpl <Servico>{
     }
 
     //====================================== LISTAR ==================================
-	@Override
-	public ResultSet listar() {
-        ResultSet rs = null;
-        try {
-            Connection con = BaseDAOImpl.getConnection();
-            String sql = "SELECT * FROM tb_servicos";
-            PreparedStatement statement = con.prepareStatement(sql);
-            rs = statement.executeQuery();
-            BaseDAOImpl.closeConnection();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return rs;
-    }
+	 @Override
+	    public List<Servico> listar()
+	    {
+	        Connection con = getConnection();
+	        String sql = "SELECT * FROM tb_servicos";
+	        List<Servico> pc = new ArrayList<>();
+
+	        try {
+	            PreparedStatement ps = con.prepareStatement(sql);
+	            ResultSet rs = ps.executeQuery();
+
+	            while(rs.next())
+	            {
+	            	Servico usu = new Servico();
+
+	                try
+	                {
+	                    usu.setServicoId(rs.getInt("servico_id"));
+	                	usu.setServicoNome(rs.getString("servico_nome"));
+	                    usu.setServicoDescricao(rs.getString("servico_desc"));
+	                	usu.setServicoPreco(rs.getDouble("servico_preco"));
+	                }
+	                catch (Exception e)
+	                {
+	                    e.printStackTrace();
+	                }
+	                pc.add(usu);
+	            }
+	            ps.close();
+	        }
+	        catch (SQLException e)
+	        {
+	            e.printStackTrace();
+	        }
+	        finally {closeConnection();}
+	        return pc;
+	    }
 
 }

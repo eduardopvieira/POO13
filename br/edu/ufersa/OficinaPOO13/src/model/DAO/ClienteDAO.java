@@ -7,12 +7,11 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import model.VO.Automovel;
 import model.VO.Cliente;
 
 public class ClienteDAO extends BaseDAOImpl <Cliente>{
     
-    //====================================== INSERIR =======================================
+//====================================== INSERIR ====================================================================
     @Override
     public void inserir (Cliente entity) {
 
@@ -37,7 +36,7 @@ public class ClienteDAO extends BaseDAOImpl <Cliente>{
             System.out.println("Chegou aqui!"); }
          
     }
-    //=======================================================================================
+//===================================================================================================================
     @Override
     public void deletar(Cliente entity) {
 
@@ -58,7 +57,7 @@ public class ClienteDAO extends BaseDAOImpl <Cliente>{
         }
         finally {closeConnection();}
     }
-//=======================================================================================
+//====================================================================================================================
     @Override
     public Cliente alterar (Cliente entity) throws SQLException  {
         Connection con = getConnection();
@@ -81,7 +80,7 @@ public class ClienteDAO extends BaseDAOImpl <Cliente>{
         finally {closeConnection();}
     }
 
-//=======================================================================================
+//==================================================================================================================
     @Override
     public ResultSet buscar (Cliente entity) {
 

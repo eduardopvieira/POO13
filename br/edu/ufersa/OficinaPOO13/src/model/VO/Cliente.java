@@ -1,8 +1,8 @@
 package model.VO;
 
-import Exceptions.InfoNaoCompativelException;
-import java.util.ArrayList;
 import java.util.List;
+
+import Exceptions.InfoNaoCompativelException;
 
 public class Cliente extends Pessoa{
 

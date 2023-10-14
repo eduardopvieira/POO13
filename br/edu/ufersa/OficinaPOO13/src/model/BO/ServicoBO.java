@@ -3,6 +3,7 @@ package model.BO;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 import Exceptions.InfoNaoCompativelException;
 import Exceptions.InsertException;
@@ -112,28 +113,10 @@ public class ServicoBO implements BaseInterBO<Servico>{
 	}
 //=============================================LISTAR===================================================================
 
+	public List<Servico> listar() throws SQLException
+    {
+		ServicoDAO cliDAO = new ServicoDAO();
 
-
-	@Override
-	public ArrayList<Servico> listar() throws InsertException {
-		try {
-            ResultSet servBuscado = servDAO.listar();
-            ArrayList<Servico> servs = new ArrayList<>();
-            try {
-            	while(servBuscado.next()) {
-					servs.add(new Servico(
-					servBuscado.getString("servico_nome"),
-					servBuscado.getString("servico_desc"),
-					servBuscado.getDouble("servico_preco"),
-					servBuscado.getInt("servico_id")));
-			    	}
-		    } catch (SQLException e) {            }
-            return servs;
-        } catch (Exception e) {
-            throw new InsertException("erro ao listar serviços");
-        }
-	}
-	
-	
-	
+        return cliDAO.listar();
+    }		
 }

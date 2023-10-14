@@ -6,7 +6,6 @@ import java.util.List;
 import model.VO.Funcionario;
 
 import java.util.ArrayList;
-//import br.edu.ufersa.Oficina.src.model.entity.Funcionario;
 
 
 public class FuncionarioDAO extends BaseDAOImpl<Funcionario> {
@@ -115,19 +114,41 @@ public class FuncionarioDAO extends BaseDAOImpl<Funcionario> {
     }
 //=================================== LISTAR ===========================================
 	    @Override
-	    public ResultSet listar() {
-	        ResultSet rs = null;
+	    public List<Funcionario> listar()
+	    {
+	        Connection con = getConnection();
+	        String sql = "SELECT * FROM tb_funcionarios WHERE isGerente = 0";
+	        List<Funcionario> pc = new ArrayList<>();
+
 	        try {
-	            Connection con = BaseDAOImpl.getConnection();
-	            String sql = "SELECT * FROM tb_funcionarios WHERE isGerente = 0";
-	            PreparedStatement statement = con.prepareStatement(sql);
-	            rs = statement.executeQuery();
-	            statement.close();
-	            BaseDAOImpl.closeConnection();
-	        } catch (Exception e) {
+	            PreparedStatement ps = con.prepareStatement(sql);
+	            ResultSet rs = ps.executeQuery();
+
+	            while(rs.next())
+	            {
+	            	Funcionario usu = new Funcionario();
+
+	                try
+	                {
+	                    usu.setCPF(rs.getString("cpf_func"));
+	                    usu.setNome(rs.getString("nome_func"));
+	                    usu.setEndereco(rs.getString("endereco_func"));
+	                    usu.setSenha(rs.getString("senha_func"));
+	                    usu.setIsGerente(rs.getBoolean("isGerente"));
+	                }
+	                catch (Exception e)
+	                {
+	                    e.printStackTrace();
+	                }
+	                pc.add(usu);
+	            }
+	            ps.close();
+	        }
+	        catch (SQLException e)
+	        {
 	            e.printStackTrace();
 	        }
-	        return rs;
-	        
+	        finally {closeConnection();}
+	        return pc;
 	    }
 }

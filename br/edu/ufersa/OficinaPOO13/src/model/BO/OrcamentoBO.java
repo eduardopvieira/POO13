@@ -3,11 +3,14 @@ package model.BO;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 import Exceptions.InfoNaoCompativelException;
 import Exceptions.InsertException;
 import Exceptions.NotFoundException;
+import model.DAO.FuncionarioDAO;
 import model.DAO.OrcamentoDAO;
+import model.VO.Funcionario;
 import model.VO.Orcamento;
 import model.VO.Servico;
 
@@ -48,36 +51,63 @@ public class OrcamentoBO implements BaseInterBO<Orcamento>{
 	
 //======================================BUSCAR POR NOME================================================================
 
-	public ArrayList<Orcamento> buscarPorCliente(Orcamento orc) throws NotFoundException, InfoNaoCompativelException {
-				ResultSet servBuscado = orcDAO.buscarPorCliente(new Orcamento(orc.getCPFClienteOrcamento()));
-				ArrayList<Servico> servs = new ArrayList<>();		            
+	public ArrayList<Orcamento> buscarPorNome(Orcamento orc) throws NotFoundException, InfoNaoCompativelException {
+				ResultSet orcBuscado = orcDAO.buscarPorCliente(orc);
+				ArrayList<Orcamento> orcs = new ArrayList<>();		            
 				    try {
-				    	while(servBuscado.next()) {
-							servs.add(new Servico(
-							servBuscado.getString("servico_nome"),
-							servBuscado.getString("servico_desc"),
-							servBuscado.getDouble("servico_preco"),
-							servBuscado.getInt("servico_id")));
-					    	}
+				    	while(orcBuscado.next()) {
+				    		Orcamento orcamento = new Orcamento();
+				    	    orcamento.setIdOrcamento(orcBuscado.getInt("id_orcamento"));
+				    	    orcamento.setCPFClienteOrcamento(orcBuscado.getString("cpf"));
+				    	    orcamento.setPlacaOrc(orcBuscado.getString("placa"));
+				    	    orcamento.setIdPecaOrcamento(orcBuscado.getInt("id_peca"));
+				    	    orcamento.setIdServOrc(orcBuscado.getInt("id_servico"));
+				    	    orcamento.setDataOrcamento(orcBuscado.getDate("data_orc"));
+				    	    orcamento.setTotalOrcamento(orcBuscado.getDouble("precoTotal"));
+				    	    orcamento.setIsPago(orcBuscado.getBoolean("isPago"));
+				    	}
 				    } catch (SQLException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
-         return servs;
+         return orcs;
 	}
+	
+//======================================BUSCAR POR PLACA================================================================
 
+		public ArrayList<Orcamento> buscarPorPlaca(Orcamento orc) throws NotFoundException, InfoNaoCompativelException {
+					ResultSet orcBuscado = orcDAO.buscarPorPlaca(orc);
+					ArrayList<Orcamento> orcs = new ArrayList<>();		            
+					    try {
+					    	while(orcBuscado.next()) {
+					    		Orcamento orcamento = new Orcamento();
+					    	    orcamento.setIdOrcamento(orcBuscado.getInt("id_orcamento"));
+					    	    orcamento.setCPFClienteOrcamento(orcBuscado.getString("cpf"));
+					    	    orcamento.setPlacaOrc(orcBuscado.getString("placa"));
+					    	    orcamento.setIdPecaOrcamento(orcBuscado.getInt("id_peca"));
+					    	    orcamento.setIdServOrc(orcBuscado.getInt("id_servico"));
+					    	    orcamento.setDataOrcamento(orcBuscado.getDate("data_orc"));
+					    	    orcamento.setTotalOrcamento(orcBuscado.getDouble("precoTotal"));
+					    	    orcamento.setIsPago(orcBuscado.getBoolean("isPago"));
+					    	}
+					    } catch (SQLException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+	         return orcs;
+		}
 //======================================ALTERAR=======================================================================
 
 	@Override
-	public Servico alterar(Servico vo) throws InsertException {
+	public Orcamento alterar(Orcamento vo) throws InsertException {
 		try {  
-			ResultSet verificarServico = servDAO.buscar(vo);
+			ResultSet verificarServico = orcDAO.buscar(vo);
 
-	            if (!verificarServico.next() || vo.getServicoId() == 0) {
+	            if (!verificarServico.next() || vo.getIdOrcamento()== 0) {
 	                throw new InsertException("Peca não encontrada");
 	            }
 
-	            return servDAO.alterar(vo);
+	            return orcDAO.alterar(vo);
 	            
 	        }
 	        catch (Exception e) {
@@ -87,12 +117,12 @@ public class OrcamentoBO implements BaseInterBO<Orcamento>{
 //=========================================DELETAR===================================================================
 
 	@Override
-	public boolean deletar(Servico vo) throws InsertException {
-        ResultSet pecaRS = servDAO.buscar(vo);
+	public boolean deletar(Orcamento vo) throws InsertException {
+        ResultSet orcRS = orcDAO.buscar(vo);
         try {
-        if (pecaRS.next())
+        if (orcRS.next())
         {
-            servDAO.deletar(vo);
+            orcDAO.deletar(vo);
             return true;
         }
         else
@@ -103,9 +133,9 @@ public class OrcamentoBO implements BaseInterBO<Orcamento>{
             e.printStackTrace();
             throw new InsertException("Falha na alteração.");
         } finally {
-            if (pecaRS != null) {
+            if (orcRS != null) {
                 try {
-                	pecaRS.close();
+                	orcRS.close();
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
@@ -115,27 +145,13 @@ public class OrcamentoBO implements BaseInterBO<Orcamento>{
 	}
 //=============================================LISTAR===================================================================
 
+	 public List<Orcamento> listar() throws SQLException
+	    {
+		 OrcamentoDAO cliDAO = new OrcamentoDAO();
 
+	        return cliDAO.listar();
+	    }
 
-	@Override
-	public ArrayList<Servico> listar() throws InsertException {
-		try {
-            ResultSet servBuscado = servDAO.listar();
-            ArrayList<Servico> servs = new ArrayList<>();
-            try {
-            	while(servBuscado.next()) {
-					servs.add(new Servico(
-					servBuscado.getString("servico_nome"),
-					servBuscado.getString("servico_desc"),
-					servBuscado.getDouble("servico_preco"),
-					servBuscado.getInt("servico_id")));
-			    	}
-		    } catch (SQLException e) {            }
-            return servs;
-        } catch (Exception e) {
-            throw new InsertException("erro ao listar serviços");
-        }
-	}
 	
 	
 	

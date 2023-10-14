@@ -3,6 +3,7 @@ package model.BO;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 import Exceptions.AutenticationException;
 import Exceptions.InfoNaoCompativelException;
@@ -67,30 +68,12 @@ public class FuncionarioBO implements FuncionarioInterBO<Funcionario>{
 	}
 //=================================================LISTAR=============================================================
 
-	
-	public ArrayList<Funcionario> listar() throws InsertException {
-	    try {
-	    	FuncionarioDAO funDAO = new FuncionarioDAO();
-	        ResultSet funcBuscados = funDAO.listar();
-	        ArrayList<Funcionario> trabalhadores = new ArrayList<>();
+	 public List<Funcionario> listar() throws SQLException
+	    {
+	        FuncionarioDAO cliDAO = new FuncionarioDAO();
 
-	        while (funcBuscados.next()) {
-	                try {
-						trabalhadores.add(new Funcionario(funcBuscados.getString("cpf_func"),
-						funcBuscados.getString("nome_func"),
-						funcBuscados.getString("endereco_func"),
-						funcBuscados.getString("senha_func"),
-						funcBuscados.getBoolean("isGerente")));
-					} catch (InfoNaoCompativelException e) {
-						e.printStackTrace();
-					}
-	            }
-	        return trabalhadores;
-	    } catch (SQLException e) {
-	        e.printStackTrace();
-	        throw new InsertException("Falha ao listar funcionários/gerentes.");
+	        return cliDAO.listar();
 	    }
-	}
 
 //=================================================ALTERAR=============================================================
 

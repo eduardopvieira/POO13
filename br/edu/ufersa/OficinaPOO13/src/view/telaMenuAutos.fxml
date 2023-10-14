@@ -53,7 +53,7 @@
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#4a4a4a" height="44.0" stroke="BLACK" strokeType="INSIDE" width="640.0" />
             <Button fx:id="botaoCadastrarCliente" alignment="CENTER" contentDisplay="CENTER" layoutX="479.0" layoutY="359.0" mnemonicParsing="false" onAction="#abrirCadastroAuto" prefHeight="31.0" prefWidth="142.0" style="-fx-background-color: #;" text="Cadastrar" />
             <TextField fx:id="botaoBuscar" layoutX="121.0" layoutY="359.0" prefHeight="31.0" prefWidth="112.0" text="Buscar" />
-            <TableView fx:id="tableviewClientes" layoutX="14.0" layoutY="86.0" prefHeight="271.0" prefWidth="608.0">
+            <TableView fx:id="tableviewAuto" layoutX="14.0" layoutY="86.0" prefHeight="271.0" prefWidth="608.0">
               <columns>
                 <TableColumn fx:id="tableColumnModelo" prefWidth="93.0" text="Modelo" />
                 <TableColumn fx:id="tableColumnPlaca" minWidth="0.0" prefWidth="94.0" text="Placa" />
@@ -76,7 +76,7 @@
                         <Font size="15.0" />
                      </font>
                   </Button>
-                  <Button fx:id="botaoAutomovel" mnemonicParsing="false" onAction="#trocarParaTelaAuto" prefHeight="36.0" prefWidth="96.0" text="Automovel" />
+                  <Button mnemonicParsing="false" prefHeight="36.0" prefWidth="96.0" text="Automovel" />
                   <Button fx:id="botaoPecas" mnemonicParsing="false" onAction="#trocarParaMenuPecas" prefHeight="36.0" prefWidth="207.0" text="Peças">
                      <font>
                         <Font size="16.0" />

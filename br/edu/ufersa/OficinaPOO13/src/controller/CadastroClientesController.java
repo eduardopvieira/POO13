@@ -6,10 +6,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TextField;
 import model.VO.Automovel;
-import model.VO.Cliente;
-import model.VO.Funcionario;
-import model.VO.Gerente;
-import model.VO.UsuarioAutenticado;
 import view.Telas;
 
 public class CadastroClientesController {

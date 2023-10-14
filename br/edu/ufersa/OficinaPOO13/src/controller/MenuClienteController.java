@@ -176,8 +176,8 @@ public class MenuClienteController {
 
 
     @FXML
-    void trocarParaTelaAuto(ActionEvent event) {
-
+    void trocarParaTelaAuto(ActionEvent event) throws Exception {
+    	Telas.telaMenuAutos();
     }
 
 

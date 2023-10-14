@@ -4,8 +4,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import model.VO.Automovel;
+import model.VO.Cliente;
 
 public class AutomovelDAO extends BaseDAOImpl <Automovel>{
     
@@ -121,18 +124,43 @@ public class AutomovelDAO extends BaseDAOImpl <Automovel>{
 
     //====================================== LISTAR ==================================
     @Override
-    public ResultSet listar() {
-        ResultSet rs = null;
+    public List<Automovel> listar()
+    {
+        Connection con = getConnection();
+        String sql = "SELECT * FROM tb_automoveis";
+        List<Automovel> pc = new ArrayList<>();
+
         try {
-            Connection con = BaseDAOImpl.getConnection();
-            String sql = "SELECT * FROM tb_automovel";
-            PreparedStatement statement = con.prepareStatement(sql);
-            rs = statement.executeQuery();
-            BaseDAOImpl.closeConnection();
-        } catch (Exception e) {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+
+            while(rs.next())
+            {
+            	Automovel usu = new Automovel();
+
+                try
+                {
+                    usu.setPlaca(rs.getString("placa"));
+                    usu.setAno(rs.getInt("ano"));
+                    usu.setMarca(rs.getString("marca"));
+                    usu.setModelo(rs.getString("modelo"));
+                    usu.setKm(rs.getInt("quilometragem"));
+                    usu.setCPFDono(rs.getString("dono"));
+                    usu.setCor(rs.getString("cor"));
+                }
+                catch (Exception e)
+                {
+                    e.printStackTrace();
+                }
+                pc.add(usu);
+            }
+            ps.close();
+        }
+        catch (SQLException e)
+        {
             e.printStackTrace();
         }
-        return rs;
+        finally {closeConnection();}
+        return pc;
     }
-
 }
