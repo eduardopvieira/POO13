@@ -46,18 +46,22 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MenuClienteController">
+<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MenuAutoController">
   <children>
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
       <children>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#4a4a4a" height="44.0" stroke="BLACK" strokeType="INSIDE" width="640.0" />
-            <Button fx:id="botaoCadastrarCliente" alignment="CENTER" contentDisplay="CENTER" layoutX="479.0" layoutY="359.0" mnemonicParsing="false" onAction="#abrirCadastroCliente" prefHeight="31.0" prefWidth="142.0" style="-fx-background-color: #;" text="Cadastrar" />
-            <TextField fx:id="botaoBuscar" layoutX="136.0" layoutY="359.0" prefHeight="31.0" prefWidth="132.0" text="Buscar" />
-            <TableView fx:id="tableviewClientes" layoutX="14.0" layoutY="85.0" prefHeight="272.0" prefWidth="608.0">
+            <Button fx:id="botaoCadastrarCliente" alignment="CENTER" contentDisplay="CENTER" layoutX="479.0" layoutY="359.0" mnemonicParsing="false" onAction="#abrirCadastroAuto" prefHeight="31.0" prefWidth="142.0" style="-fx-background-color: #;" text="Cadastrar" />
+            <TextField fx:id="botaoBuscar" layoutX="121.0" layoutY="359.0" prefHeight="31.0" prefWidth="112.0" text="Buscar" />
+            <TableView fx:id="tableviewClientes" layoutX="14.0" layoutY="86.0" prefHeight="271.0" prefWidth="608.0">
               <columns>
-                <TableColumn fx:id="tableColumnCPF" prefWidth="175.0" text="CPF" />
-                <TableColumn fx:id="tableColumnNome" minWidth="0.0" prefWidth="232.0" text="Cliente" />
-                  <TableColumn fx:id="tableColumnEndereco" prefWidth="200.0" text="Endereço" />
+                <TableColumn fx:id="tableColumnModelo" prefWidth="93.0" text="Modelo" />
+                <TableColumn fx:id="tableColumnPlaca" minWidth="0.0" prefWidth="94.0" text="Placa" />
+                  <TableColumn fx:id="tableColumnMarca" prefWidth="91.0" text="Marca" />
+                  <TableColumn fx:id="tableColumnCor" prefWidth="94.0" text="Cor" />
+                  <TableColumn fx:id="tableColumnKm" prefWidth="75.0" text="KM" />
+                  <TableColumn fx:id="tableColumnAno" prefWidth="81.0" text="Ano" />
+                  <TableColumn fx:id="tableColumnCPFDono" prefWidth="79.0" text="Dono" />
               </columns>
             </TableView>
             <ButtonBar layoutY="2.0" prefHeight="40.0" prefWidth="621.0">
@@ -67,7 +71,7 @@
                         <Font size="12.0" />
                      </font>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="36.0" prefWidth="96.0" text="Clientes">
+                  <Button fx:id="botaoClientes" mnemonicParsing="false" onAction="#irTelaMenuClientes" prefHeight="36.0" prefWidth="96.0" text="Clientes">
                      <font>
                         <Font size="15.0" />
                      </font>
@@ -89,19 +93,19 @@
                      </font></Button>
               </buttons>
             </ButtonBar>
-            <Label layoutX="14.0" layoutY="47.0" prefHeight="36.0" prefWidth="115.0" text="Clientes">
+            <Label layoutX="14.0" layoutY="49.0" prefHeight="36.0" prefWidth="163.0" text="Automoveis">
                <font>
                   <Font size="26.0" />
                </font>
             </Label>
-            <ImageView fx:id="botaoParaBuscar" fitHeight="31.0" fitWidth="34.0" layoutX="280.0" layoutY="359.0" onMouseClicked="#realizarBusca" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="botaoParaBuscar" fitHeight="31.0" fitWidth="34.0" layoutX="239.0" layoutY="359.0" onMouseClicked="#realizarBusca" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@VE/lupa.png" />
                </image>
             </ImageView>
-            <ChoiceBox fx:id="choiceboxBusca" layoutX="14.0" layoutY="359.0" prefHeight="31.0" prefWidth="115.0" />
-            <Button fx:id="botaoDeletar" layoutX="544.0" layoutY="53.0" mnemonicParsing="false" onAction="#deletar" text="Deletar" />
-            <Button fx:id="botaoEditar" layoutX="467.0" layoutY="53.0" mnemonicParsing="false" onAction="#editar" text="Editar" />
+            <Button fx:id="botaoDeletar" layoutX="525.0" layoutY="55.0" mnemonicParsing="false" onAction="#deletar" prefHeight="24.0" prefWidth="83.0" text="Deletar" />
+            <Button fx:id="botaoEditar" layoutX="428.0" layoutY="55.0" mnemonicParsing="false" onAction="#editar" prefHeight="24.0" prefWidth="83.0" text="Editar" />
+            <ChoiceBox fx:id="choiceboxBusca" layoutX="14.0" layoutY="359.0" prefHeight="31.0" prefWidth="103.0" />
       </children>
     </AnchorPane>
   </children>

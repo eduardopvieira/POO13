@@ -118,17 +118,39 @@ public class ClienteDAO extends BaseDAOImpl <Cliente>{
     }
 //=======================================================================================
     @Override
-    public ResultSet listar() throws SQLException {
-        ResultSet rs = null;
+    public List<Cliente> listar()
+    {
+        Connection con = getConnection();
+        String sql = "SELECT * FROM tb_clientes";
+        List<Cliente> pc = new ArrayList<>();
+
         try {
-            Connection con = BaseDAOImpl.getConnection();
-            String sql = "SELECT * FROM tb_clientes";
-            PreparedStatement statement = con.prepareStatement(sql);
-            rs = statement.executeQuery();
-            BaseDAOImpl.closeConnection();
-        } catch (Exception e) {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+
+            while(rs.next())
+            {
+            	Cliente usu = new Cliente();
+
+                try
+                {
+                    usu.setCPF(rs.getString("cpf_cliente"));
+                    usu.setNome(rs.getString("nome_cliente"));
+                    usu.setEndereco(rs.getString("endereco_cliente"));
+                }
+                catch (Exception e)
+                {
+                    e.printStackTrace();
+                }
+                pc.add(usu);
+            }
+            ps.close();
+        }
+        catch (SQLException e)
+        {
             e.printStackTrace();
         }
-        return rs;
+        finally {closeConnection();}
+        return pc;
     }
 }

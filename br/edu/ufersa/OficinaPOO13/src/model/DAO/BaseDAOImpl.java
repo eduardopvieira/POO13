@@ -2,9 +2,9 @@ package model.DAO;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
-import java.sql.ResultSet;
 
 public abstract class BaseDAOImpl<E> implements BaseDAO<E> {
     final static String URL = "jdbc:postgresql://localhost:5432/Oficina";
@@ -48,6 +48,6 @@ public abstract class BaseDAOImpl<E> implements BaseDAO<E> {
 
     public abstract ResultSet buscar (E entity)throws SQLException;
 
-    public abstract ResultSet listar ()throws SQLException;
+    public abstract List<E> listar ()throws SQLException;
 
 }

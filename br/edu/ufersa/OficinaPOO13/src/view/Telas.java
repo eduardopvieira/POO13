@@ -63,6 +63,12 @@ public class Telas extends Application{
 		primaryStage.setScene(cena);
 	}
 	
+	public static void telaMenuAutos(Gerente ger) throws Exception{
+		Parent root = FXMLLoader.load(Telas.class.getResource("telaMenuAutos.fxml"));
+		Scene cena = new Scene(root);		
+		primaryStage.setScene(cena);
+	}
+	
 	/*public static void telaVisualizarServicoFuncionario() throws Exception{
 		Parent root = FXMLLoader.load(Telas.class.getResource("telaCadastroCliente.fxml"));
 		Scene cena = new Scene(root);		

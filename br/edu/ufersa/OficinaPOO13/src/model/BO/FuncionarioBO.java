@@ -67,7 +67,7 @@ public class FuncionarioBO implements FuncionarioInterBO<Funcionario>{
 	}
 //=================================================LISTAR=============================================================
 
-	@Override
+	
 	public ArrayList<Funcionario> listar() throws InsertException {
 	    try {
 	    	FuncionarioDAO funDAO = new FuncionarioDAO();

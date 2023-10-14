@@ -3,13 +3,13 @@ package model.BO;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 import Exceptions.InfoNaoCompativelException;
 import Exceptions.InsertException;
 import Exceptions.NotFoundException;
-import model.DAO.AutomovelDAO;
+import model.DAO.BaseDAO;
 import model.DAO.ClienteDAO;
-import model.VO.Automovel;
 import model.VO.Cliente;
 
 public class ClienteBO implements BaseInterBO<Cliente> {
@@ -32,25 +32,14 @@ public class ClienteBO implements BaseInterBO<Cliente> {
 }
 	
 
+//===================================================================
+	 public List<Cliente> listar() throws SQLException
+	    {
+	        BaseDAO<Cliente> cliDAO = new ClienteDAO();
 
-	@Override
-	public ArrayList<Cliente> listar() throws InsertException {
-	        try {
-	            ClienteDAO cliDAO = new ClienteDAO();
-	        	ResultSet clientesBuscados = cliDAO.listar();
-	            ArrayList<Cliente> clientes = new ArrayList<>();
-	            while(clientesBuscados.next()) {
-	                clientes.add(new Cliente(clientesBuscados.getString("cpf_cliente"),
-	                clientesBuscados.getString("nome_cliente"),
-	                clientesBuscados.getString("endereco_cliente")));
-	            }
-
-	            return clientes;
-	        } catch (Exception e) {
-	            throw new InsertException("erro ao buscar cliente");
-	        }
+	        return cliDAO.listar();
 	    }
-	
+//====================================================================	
 
 	@Override
 	public Cliente alterar(Cliente vo) throws InsertException {
