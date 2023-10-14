@@ -38,7 +38,9 @@ public abstract class Pessoa {
         return nome;
     }
 
-    public String getCPF(){return cpf;}
+    public String getCPF(){
+    	return cpf;
+    }
 
     public void setEndereco(String endereco) throws InfoNaoCompativelException{
         if (nome != null && nome.isEmpty() == false) {

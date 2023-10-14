@@ -34,10 +34,13 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Rectangle?>
@@ -48,28 +51,28 @@
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
       <children>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#4a4a4a" height="44.0" stroke="BLACK" strokeType="INSIDE" width="640.0" />
-            <TextField fx:id="botaoBuscar" layoutX="20.0" layoutY="359.0" onAction="#buscarServico" prefHeight="31.0" prefWidth="163.0" text="Buscar" />
-            <TableView layoutX="20.0" layoutY="56.0" prefHeight="294.0" prefWidth="601.0">
+            <TextField fx:id="textfieldBuscar" layoutX="90.0" layoutY="360.0" prefHeight="31.0" prefWidth="98.0" promptText="Buscar" />
+            <TableView fx:id="tabelaServicos" layoutX="20.0" layoutY="87.0" prefHeight="263.0" prefWidth="601.0">
               <columns>
-                <TableColumn fx:id="tableColumnIDServico" prefWidth="60.0" text="ID" />
-                <TableColumn fx:id="tableColumnNomeServico" prefWidth="150.0" text="Nome" />
-                  <TableColumn fx:id="tableColumnDescricaoServico" prefWidth="217.0" text="Descricao" />
-                  <TableColumn fx:id="tableColumnValorServico" prefWidth="89.0" text="Valor" />
-                  <TableColumn fx:id="tableColumnVIsualizar" minWidth="0.0" prefWidth="84.0" text="Visualizar" />
+                <TableColumn fx:id="tableColumnIDServico" prefWidth="68.0" text="ID" />
+                <TableColumn fx:id="tableColumnNomeServico" prefWidth="193.0" text="Nome" />
+                  <TableColumn fx:id="tableColumnDescricaoServico" prefWidth="235.0" text="Descricao" />
+                  <TableColumn fx:id="tableColumnValorServico" prefWidth="104.0" text="Valor" />
               </columns>
             </TableView>
             <ButtonBar layoutY="2.0" prefHeight="40.0" prefWidth="621.0">
               <buttons>
-                  <Button fx:id="botaoOrcamentos" minWidth="69.0" mnemonicParsing="false" onAction="#irParaMenuOrcamentos" prefHeight="36.0" prefWidth="245.0" text="Orçamentos">
+                  <Button fx:id="botaoClientes" minWidth="69.0" mnemonicParsing="false" onAction="#irParaMenuOrcamentos" prefHeight="36.0" prefWidth="245.0" text="Orçamentos">
                      <font>
-                        <Font size="15.0" />
+                        <Font size="12.0" />
                      </font>
                   </Button>
-                  <Button fx:id="botaoClientes" mnemonicParsing="false" onAction="#irParaMenuClienteFuncionario" prefHeight="36.0" prefWidth="111.0" text="Clientes">
+                  <Button fx:id="botaoOrcamentos" mnemonicParsing="false" onAction="#irParaMenuClientes" prefHeight="36.0" prefWidth="111.0" text="Clientes">
                      <font>
                         <Font size="16.0" />
                      </font>
                   </Button>
+                  <Button fx:id="botaoAutomovel" mnemonicParsing="false" onAction="#irParaMenuAuto" prefHeight="36.0" prefWidth="96.0" text="Automovel" />
                   <Button fx:id="botaoPecas" mnemonicParsing="false" onAction="#irParaMenuPecas" prefHeight="36.0" prefWidth="207.0" text="Peças">
                      <font>
                         <Font size="16.0" />
@@ -86,11 +89,17 @@
                      </font></Button>
               </buttons>
             </ButtonBar>
-            <Label layoutX="259.0" layoutY="357.0" prefHeight="36.0" prefWidth="143.0" text="Serviços">
+            <Label layoutX="20.0" layoutY="47.0" prefHeight="36.0" prefWidth="143.0" text="Serviços">
                <font>
                   <Font size="26.0" />
                </font>
             </Label>
+            <ChoiceBox fx:id="choiceboxBusca" layoutX="20.0" layoutY="360.0" prefHeight="31.0" prefWidth="63.0" />
+            <ImageView fx:id="botaoBuscar" fitHeight="31.0" fitWidth="33.0" layoutX="188.0" layoutY="360.0" onMouseClicked="#realizarBusca" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@VE/lupa.png" />
+               </image>
+            </ImageView>
       </children>
     </AnchorPane>
   </children>

@@ -3,6 +3,7 @@ package controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
@@ -14,12 +15,15 @@ import view.Telas;
 
 public class MenuOrcamentoController {
 
+	@FXML
+    private Button botaoAutomovel;
+
     @FXML
     private ImageView botaoBuscarEntreDatas;
 
     @FXML
     private ImageView botaoBuscarOrcamento;
-	
+
     @FXML
     private Button botaoCadastrarOrcamento;
 
@@ -40,7 +44,10 @@ public class MenuOrcamentoController {
 
     @FXML
     private TextField buscarOrcamento;
-    
+
+    @FXML
+    private ChoiceBox<?> choiceBox;
+
     @FXML
     private TableColumn<?, ?> tableColumnCliente;
 
@@ -70,7 +77,6 @@ public class MenuOrcamentoController {
 
     @FXML
     private TextField textfieldDataInicial;
-
     @FXML
     void buscarEntreDatas(MouseEvent event) {
 
@@ -116,5 +122,11 @@ public class MenuOrcamentoController {
     		Telas.telaMenuServicoFuncionario(func);
     	}
     }
+    
+    @FXML
+    void irTelaMenuAutomovel(ActionEvent event) throws Exception{
+    	Telas.telaMenuAutos();
+    }
+
 
 }

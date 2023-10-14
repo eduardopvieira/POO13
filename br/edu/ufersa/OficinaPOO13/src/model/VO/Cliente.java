@@ -36,5 +36,11 @@ public class Cliente extends Pessoa{
         this.ListaAuto.add(auto);
         }
     }
+    
+    public void removeAuto(Automovel auto) {
+    	if(auto != null) {
+    		this.ListaAuto.remove(auto);
+    	}
+    }
 
 }

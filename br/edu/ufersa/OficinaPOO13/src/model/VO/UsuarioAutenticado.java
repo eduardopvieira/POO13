@@ -1,7 +1,8 @@
 package model.VO;
 
 public class UsuarioAutenticado {
-    private static Gerente gerenteAutenticado;
+    
+	private static Gerente gerenteAutenticado;
     private static Funcionario funcAutenticado;
     
     public static Funcionario getFuncAutenticado() {

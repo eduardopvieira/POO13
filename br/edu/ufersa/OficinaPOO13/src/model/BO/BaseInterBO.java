@@ -1,7 +1,6 @@
 package model.BO;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import Exceptions.InfoNaoCompativelException;
 import Exceptions.InsertException;

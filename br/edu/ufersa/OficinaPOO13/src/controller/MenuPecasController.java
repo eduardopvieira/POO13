@@ -3,8 +3,11 @@ package controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import model.VO.Funcionario;
 import model.VO.Gerente;
 import model.VO.UsuarioAutenticado;
@@ -12,44 +15,68 @@ import view.Telas;
 
 public class MenuPecasController {
 
-    @FXML
-    private TextField botaoBuscar;
+	    @FXML
+	    private Button botaoAutomovel;
 
-    @FXML
-    private Button botaoCadastrarPeca;
+	    @FXML
+	    private ImageView botaoBuscar;
 
-    @FXML
-    private Button botaoClientes;
+	    @FXML
+	    private Button botaoCadastrarPeca;
 
-    @FXML
-    private Button botaoOrcamentos;
+	    @FXML
+	    private Button botaoClientes;
 
-    @FXML
-    private Button botaoSair;
+	    @FXML
+	    private Button botaoOrcamentos;
 
-    @FXML
-    private Button botaoServicos;
+	    @FXML
+	    private Button botaoSair;
 
-    @FXML
-    private TableColumn<?, ?> tableColumnDeletar;
+	    @FXML
+	    private Button botaoServicos;
 
-    @FXML
-    private TableColumn<?, ?> tableColumnEditar;
+	    @FXML
+	    private ChoiceBox<?> choiceboxBusca;
 
-    @FXML
-    private TableColumn<?, ?> tableColumnEstoquePeca;
+	    @FXML
+	    private TableColumn<?, ?> tableColumnDeletar;
 
-    @FXML
-    private TableColumn<?, ?> tableColumnFabricantePeca;
+	    @FXML
+	    private TableColumn<?, ?> tableColumnEditar;
 
-    @FXML
-    private TableColumn<?, ?> tableColumnIDPeca;
+	    @FXML
+	    private TableColumn<?, ?> tableColumnEstoquePeca;
 
-    @FXML
-    private TableColumn<?, ?> tableColumnNomePeca;
+	    @FXML
+	    private TableColumn<?, ?> tableColumnFabricantePeca;
 
-    @FXML
-    private TableColumn<?, ?> tableColumnValorPeca;
+	    @FXML
+	    private TableColumn<?, ?> tableColumnIDPeca;
+
+	    @FXML
+	    private TableColumn<?, ?> tableColumnNomePeca;
+
+	    @FXML
+	    private TableColumn<?, ?> tableColumnValorPeca;
+
+	    @FXML
+	    private TextField textfieldBusca;
+
+	  
+
+	    
+
+	    @FXML
+	    void irTelaMenuAutos(ActionEvent event) {
+
+	    }
+
+	    @FXML
+	    void realizarBusca(MouseEvent event) {
+
+	}
+
 
     @FXML
     void buscarPeca(ActionEvent event)throws Exception {

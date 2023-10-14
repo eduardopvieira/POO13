@@ -3,7 +3,7 @@
 	<classpathentry kind="src" path="br/edu/ufersa/OficinaPOO13/src"/>
 	<classpathentry kind="lib" path="/home/eduardo/Downloads/postgresql-42.6.0.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/JavaFX19"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/java-11-openjdk-amd64">
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jre">
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>

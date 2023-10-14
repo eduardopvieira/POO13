@@ -82,12 +82,12 @@ public class MenuClienteController {
 
     @FXML
     void trocarParaMenuServicos(ActionEvent event) throws Exception{
-    	Gerente ger = UsuarioAutenticado.getGerenteAutenticado();
-    	if (ger != null) {
+    	Funcionario f = UsuarioAutenticado.getFuncAutenticado();
+    	if (f == null) {
+    		Gerente ger = UsuarioAutenticado.getGerenteAutenticado();
     		Telas.telaMenuServicoGerente(ger);
     	} else {
-    		Funcionario func = UsuarioAutenticado.getFuncAutenticado();
-    		Telas.telaMenuServicoFuncionario(func);
+    		Telas.telaMenuServicoFuncionario(f);
     	}
     }
 

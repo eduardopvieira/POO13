@@ -3,44 +3,69 @@ package controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import model.VO.UsuarioAutenticado;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import view.Telas;
 
 public class MenuServicoFuncionarioController {
 
-	    @FXML
-	    private TextField botaoBuscar;
+    @FXML
+    private Button botaoAutomovel;
 
-	    @FXML
-	    private Button botaoClientes;
+    @FXML
+    private ImageView botaoBuscar;
 
-	    @FXML
-	    private Button botaoOrcamentos;
+    @FXML
+    private Button botaoClientes;
 
-	    @FXML
-	    private Button botaoPecas;
+    @FXML
+    private Button botaoOrcamentos;
 
-	    @FXML
-	    private Button botaoSair;
+    @FXML
+    private Button botaoPecas;
 
-	    @FXML
-	    private TableColumn<?, ?> tableColumnDescricaoServico;
+    @FXML
+    private Button botaoSair;
 
-	    @FXML
-	    private TableColumn<?, ?> tableColumnIDServico;
+    @FXML
+    private ChoiceBox<?> choiceboxBusca;
 
-	    @FXML
-	    private TableColumn<?, ?> tableColumnNomeServico;
+    @FXML
+    private TableView<?> tabelaServicos;
 
-	    @FXML
-	    private TableColumn<?, ?> tableColumnVIsualizar;
+    @FXML
+    private TableColumn<?, ?> tableColumnDescricaoServico;
 
-	    @FXML
-	    private TableColumn<?, ?> tableColumnValorServico;
+    @FXML
+    private TableColumn<?, ?> tableColumnIDServico;
 
-	   
+    @FXML
+    private TableColumn<?, ?> tableColumnNomeServico;
+
+    @FXML
+    private TableColumn<?, ?> tableColumnValorServico;
+
+    @FXML
+    private TextField textfieldBuscar;
+
+    @FXML
+    void irParaMenuAuto(ActionEvent event) {
+
+    }
+
+    @FXML
+    void irParaMenuClientes(ActionEvent event) {
+
+    }
+
+    @FXML
+    void realizarBusca(MouseEvent event) {
+
+    }
 
     @FXML
     void irParaMenuClienteFuncionario(ActionEvent event) throws Exception {
@@ -61,10 +86,4 @@ public class MenuServicoFuncionarioController {
     void irParaTelaLogin(ActionEvent event) throws Exception {
     	Telas.telaLogin();
     }
-    
-    @FXML
-    void buscarServico(ActionEvent event) throws Exception {
-    	
-    }
-
 }

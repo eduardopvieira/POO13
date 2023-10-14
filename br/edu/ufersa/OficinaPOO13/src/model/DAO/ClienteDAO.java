@@ -133,6 +133,7 @@ public class ClienteDAO extends BaseDAOImpl <Cliente>{
 
                 try
                 {
+                	
                     usu.setCPF(rs.getString("cpf_cliente"));
                     usu.setNome(rs.getString("nome_cliente"));
                     usu.setEndereco(rs.getString("endereco_cliente"));

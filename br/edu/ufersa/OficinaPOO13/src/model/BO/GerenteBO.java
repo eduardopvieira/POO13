@@ -32,7 +32,7 @@ public class GerenteBO implements FuncionarioInterBO<Gerente>{
 	                    funcionario.setNome(trabalhadorRS.getString("nome_func"));
 	                    funcionario.setEndereco(trabalhadorRS.getString("endereco_func"));
 	                    funcionario.setSenha(trabalhadorRS.getString("senha_func"));
-	                    funcionario.setIsGerente(true);
+	                    funcionario.setIsGerente(trabalhadorRS.getBoolean("isgerente"));
 	                    return funcionario;
 	            } else {
 	                throw new AutenticationException("Senha incorreta.");

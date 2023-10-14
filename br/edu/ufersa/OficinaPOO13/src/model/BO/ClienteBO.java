@@ -36,7 +36,6 @@ public class ClienteBO implements BaseInterBO<Cliente> {
 	 public List<Cliente> listar() throws SQLException
 	    {
 	        BaseDAO<Cliente> cliDAO = new ClienteDAO();
-
 	        return cliDAO.listar();
 	    }
 //====================================================================	

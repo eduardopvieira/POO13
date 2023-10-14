@@ -32,7 +32,7 @@ public class Automovel {
     }
 
     public void setPlaca(String placa) throws InfoNaoCompativelException {
-        if (placa != null && placa.isEmpty() == false && placa.length() == 7) {
+        if (placa.isEmpty() == false && placa.length() == 7) {
         this.placa = placa;
         } else {
             throw new InfoNaoCompativelException("Placa invalida");
