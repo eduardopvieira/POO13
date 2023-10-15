@@ -3,7 +3,6 @@ package controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
@@ -34,6 +33,9 @@ public class MenuOrcamentoController {
     private Button botaoGerarRelatorio;
 
     @FXML
+    private Button botaoVisualizar;
+    
+    @FXML
     private Button botaoPecas;
 
     @FXML
@@ -44,9 +46,6 @@ public class MenuOrcamentoController {
 
     @FXML
     private TextField buscarOrcamento;
-
-    @FXML
-    private ChoiceBox<?> choiceBox;
 
     @FXML
     private TableColumn<?, ?> tableColumnCliente;
@@ -126,6 +125,11 @@ public class MenuOrcamentoController {
     @FXML
     void irTelaMenuAutomovel(ActionEvent event) throws Exception{
     	Telas.telaMenuAutos();
+    }
+    
+    @FXML
+    void visualizarOrcamento(ActionEvent event) {
+
     }
 
 

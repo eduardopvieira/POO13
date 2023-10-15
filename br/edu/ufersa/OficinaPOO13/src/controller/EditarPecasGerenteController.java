@@ -70,7 +70,7 @@ public class EditarPecasGerenteController {
 
     @FXML
     void voltar(ActionEvent event) throws Exception{
-    	Telas.telaCadastrarPecas();
+    	Telas.telaMenuPecas();
     }
 
 

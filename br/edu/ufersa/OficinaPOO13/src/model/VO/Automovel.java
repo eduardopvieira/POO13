@@ -13,9 +13,11 @@ public class Automovel {
     private String CPFdono;
 
     public Automovel () {};
-    public Automovel (String placa) throws InfoNaoCompativelException {
-    	setPlaca(placa);
+   
+    public Automovel (String modelo) throws InfoNaoCompativelException {
+    	setModelo(modelo);
     }
+    
     public Automovel (String placa, String cor, String modelo, String marca, int ano, int km, String dono) throws InfoNaoCompativelException {
         setPlaca(placa);
         setCor(cor);
@@ -32,10 +34,12 @@ public class Automovel {
     }
 
     public void setPlaca(String placa) throws InfoNaoCompativelException {
-        if (placa.isEmpty() == false && placa.length() == 7) {
-        this.placa = placa;
+        placa = placa.replaceAll(" ", "");
+        //SÓ ACEITA FORMATOS: ABC1234 OU ABC1D23
+        if (placa.matches("[A-Za-z]{3}\\d{1}[A-Za-z]\\d{2}") || placa.matches("[A-Za-z]{3}\\d{4}")) {
+            this.placa = placa;
         } else {
-            throw new InfoNaoCompativelException("Placa invalida");
+            throw new InfoNaoCompativelException("Placa inválida");
         }
     }
 //=====================GET E SET COR=========================

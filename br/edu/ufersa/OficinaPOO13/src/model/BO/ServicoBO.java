@@ -89,7 +89,7 @@ public class ServicoBO implements BaseInterBO<Servico>{
 			ResultSet verificarServico = servDAO.buscar(vo);
 
 	            if (!verificarServico.next() || vo.getServicoId() == 0) {
-	                throw new InsertException("Peca não encontrada");
+	                throw new InsertException("Servico não encontrado");
 	            }
 
 	            return servDAO.alterar(vo);

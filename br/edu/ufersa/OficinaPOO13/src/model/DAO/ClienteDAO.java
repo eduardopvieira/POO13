@@ -68,8 +68,8 @@ public class ClienteDAO extends BaseDAOImpl <Cliente>{
         {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1, entity.getNome());
-            ps.setString(2, entity.getCPF());
-            ps.setString(3, entity.getEndereco());
+            ps.setString(2, entity.getEndereco());
+            ps.setString(3, entity.getCPF());
             ps.execute();
             ps.close();
             return entity;

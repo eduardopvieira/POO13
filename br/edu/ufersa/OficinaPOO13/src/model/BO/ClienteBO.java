@@ -56,7 +56,8 @@ public class ClienteBO implements BaseInterBO<Cliente> {
 	            throw new InsertException(e.getMessage());
 	        }
 	    }
-
+//====================================================================
+	
 	@Override
 	public boolean deletar(Cliente vo) throws InsertException {
 	        ResultSet cliRS = cliDAO.buscar(vo);

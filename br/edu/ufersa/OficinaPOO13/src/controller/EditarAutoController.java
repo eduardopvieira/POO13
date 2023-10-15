@@ -81,6 +81,7 @@ public class EditarAutoController {
         	
             autoBO.alterar(auto);
             
+            Alerts.showAlert("Sucesso", "Edição bem sucedida", "Seu automovel foi editado com suceso", AlertType.INFORMATION);
             Telas.telaMenuAutos();
         }
         catch (InfoNaoCompativelException e)

@@ -43,6 +43,7 @@ public class CadastrarServicoController {
     	Double preco = Double.parseDouble(textfieldPrecoServico.getText());
     	serv.setServicoPreco(preco);
     	servBO.cadastrar(serv);
+    	
     	Telas.telaMenuServicoGerente(UsuarioAutenticado.getGerenteAutenticado());
     	}catch (Exception e) {
     		Alerts.showAlert("ERRO", "Falha ao cadastrar serviço", "Erro ao cadastrar serviço. Nada foi cadastrado.", AlertType.ERROR);

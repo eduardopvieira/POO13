@@ -65,7 +65,7 @@ public class AutomovelBO implements BaseInterBO<Automovel>{
 	@Override
 	public ArrayList<Automovel> buscarPorPK(Automovel vo) throws NotFoundException, InfoNaoCompativelException {
 		        AutomovelDAO autoDAO = new AutomovelDAO();
-				ResultSet veiculosBuscados = autoDAO.buscar(new Automovel(vo.getPlaca()));
+				ResultSet veiculosBuscados = autoDAO.buscar(new Automovel(vo.getModelo()));
 				ArrayList<Automovel> veiculos = new ArrayList<>();		            
 				    try {
 				    	while(veiculosBuscados.next()) {
@@ -92,7 +92,7 @@ public class AutomovelBO implements BaseInterBO<Automovel>{
 	
 	public ArrayList<Automovel> buscarPorDono(Automovel vo) throws NotFoundException, InfoNaoCompativelException {
 		        AutomovelDAO autoDAO = new AutomovelDAO();
-				ResultSet veiculosBuscados = autoDAO.buscar(new Automovel(vo.getCPFDono()));
+				ResultSet veiculosBuscados = autoDAO.buscar(new Automovel(vo.getModelo()));
 				ArrayList<Automovel> veiculos = new ArrayList<>();		            
 				    try {
 				    	while(veiculosBuscados.next()) {
@@ -113,7 +113,35 @@ public class AutomovelBO implements BaseInterBO<Automovel>{
 					}
          return veiculos;
 	}
+	
+	
+	public ArrayList<Automovel> buscarPorPlacaOuDono(Automovel vo) throws NotFoundException, InfoNaoCompativelException {
+        AutomovelDAO autoDAO = new AutomovelDAO();
+		ResultSet veiculosBuscados = autoDAO.buscarPorPlacaOuDono(vo.getModelo());
+		ArrayList<Automovel> veiculos = new ArrayList<>();		            
+		    try {
+		    	while(veiculosBuscados.next()) {
+				veiculos.add(new Automovel(veiculosBuscados.getString("placa"),
+				veiculosBuscados.getString("cor"),
+				veiculosBuscados.getString("modelo"),
+				veiculosBuscados.getString("marca"),
+				veiculosBuscados.getInt("ano"),
+				veiculosBuscados.getInt("quilometragem"),
+				veiculosBuscados.getString("dono")));
+		    	}
+		    } catch (InfoNaoCompativelException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+ return veiculos;
+}
 
+	
+	
+	
 	
 
 	@Override
@@ -123,15 +151,10 @@ public class AutomovelBO implements BaseInterBO<Automovel>{
 			ResultSet verificarVeiculo = autoDAO.buscar(vo);
 
 	            if (!verificarVeiculo.next() || vo.getPlaca() == null) {
-	                throw new InsertException("Usuario não encontrado");
-	            }
-
-	            if (!this.validarPlaca(vo.getPlaca())) {
-	                throw new InsertException("O formato digitado está errado. Modelo: ABC-1234");
-	            }
-
+	                throw new InsertException("Placa não encontrada");
+	            } else {
 	            return autoDAO.alterar(vo);
-	            
+	            }
 	        }
 	        catch (Exception e) {
 	            throw new InsertException(e.getMessage());
@@ -166,10 +189,4 @@ public class AutomovelBO implements BaseInterBO<Automovel>{
             }
        }
 	}
-	
-	
-	private boolean validarPlaca(String placa) {
-        return placa.matches("[A-Za-z]{3}-\\d{4}");
-    }
-	
 }

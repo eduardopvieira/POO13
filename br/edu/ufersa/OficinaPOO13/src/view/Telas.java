@@ -1,8 +1,10 @@
 package view;
 
 import controller.EditarAutoController;
+import controller.EditarClienteController;
 import controller.EditarPecasFuncionarioController;
 import controller.EditarPecasGerenteController;
+import controller.EditarServicoController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -13,6 +15,7 @@ import model.VO.Cliente;
 import model.VO.Funcionario;
 import model.VO.Gerente;
 import model.VO.Pecas;
+import model.VO.Servico;
 
 
 public class Telas extends Application{
@@ -64,8 +67,13 @@ public class Telas extends Application{
 	}
 	
 	public static void telaEditarCliente(Cliente cli) throws Exception{
-		Parent root = FXMLLoader.load(Telas.class.getResource("telaEditarCliente.fxml"));
-		Scene cena = new Scene(root);		
+		FXMLLoader loader = new FXMLLoader(Telas.class.getResource("telaEditarCliente.fxml"));
+		Parent root = loader.load();
+		
+		EditarClienteController controller = loader.getController();
+		controller.Initialize(cli); 
+		
+		Scene cena = new Scene(root);
 		primaryStage.setScene(cena);
 	}
 	
@@ -137,7 +145,7 @@ public class Telas extends Application{
 	}
 	
 	public static void telaEditarAuto(Automovel auto) throws Exception {
-		FXMLLoader loader = new FXMLLoader(Telas.class.getResource("telaEditarAutoController.fxml"));
+		FXMLLoader loader = new FXMLLoader(Telas.class.getResource("telaEditarAuto.fxml"));
 		Parent root = loader.load();
 		
 		EditarAutoController controller = loader.getController();
@@ -147,6 +155,19 @@ public class Telas extends Application{
 		primaryStage.setScene(cena);
 		
 	}
+	
+	public static void telaEditarServico(Servico serv) throws Exception {
+		FXMLLoader loader = new FXMLLoader(Telas.class.getResource("telaEditarServico.fxml"));
+		Parent root = loader.load();
+		
+		EditarServicoController controller = loader.getController();
+		controller.Initialize(serv); 
+		
+		Scene cena = new Scene(root);
+		primaryStage.setScene(cena);
+		
+	}
+	
 	/*public static void telaCadastroOrcamento() throws Exception{
 		Parent root = FXMLLoader.load(Telas.class.getResource("telaCadastroCliente.fxml"));
 		Scene cena = new Scene(root);		

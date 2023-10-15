@@ -58,7 +58,7 @@ public class CadastrarAutoController {
         auto.setPlaca(textfieldPlacaAuto.getText());
         autoBO.cadastrar(auto);
     	try {
-			Telas.telaMenuPecas();
+			Telas.telaMenuAutos();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

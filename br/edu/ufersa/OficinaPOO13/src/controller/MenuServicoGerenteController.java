@@ -2,6 +2,7 @@ package controller;
 
 import java.util.List;
 
+import Exceptions.InfoNaoCompativelException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -12,9 +13,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import model.BO.PecasBO;
 import model.BO.ServicoBO;
-import model.VO.Pecas;
 import model.VO.Servico;
 import view.Telas;
 
@@ -61,7 +60,7 @@ public class MenuServicoGerenteController {
 
  public void initialize() {
     	
-    	tableColumnIDServico.setCellValueFactory(new PropertyValueFactory<Servico, Integer>("idServico"));
+    	tableColumnIDServico.setCellValueFactory(new PropertyValueFactory<Servico, Integer>("ServicoId"));
     	tableColumnNomeServico.setCellValueFactory(new PropertyValueFactory<Servico, String>("servicoNome"));
     	tableColumnDescricaoServico.setCellValueFactory(new PropertyValueFactory<Servico, String>("servicoDescricao"));
     	tableColumnValorServico.setCellValueFactory(new PropertyValueFactory<Servico, Double>("servicoPreco"));
@@ -89,7 +88,7 @@ public class MenuServicoGerenteController {
             e.printStackTrace();
         }	
 	}
-    
+
     @FXML
     void deletar(ActionEvent event) {
     	{
@@ -111,7 +110,14 @@ public class MenuServicoGerenteController {
 
     @FXML
     void editar(ActionEvent event) {
-    	
+    	try {
+            Servico pc = tabelaServicos.getSelectionModel().getSelectedItem();            
+            Telas.telaEditarServico(pc);
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
     }
 
     @FXML
@@ -122,8 +128,31 @@ public class MenuServicoGerenteController {
  
 
     @FXML
-    void realizarBusca(MouseEvent event) {
+    void realizarBusca(MouseEvent event) throws InfoNaoCompativelException {
+    	Servico serv = new Servico();
+        if (textfieldBuscar.getText() != null && !textfieldBuscar.getText().isEmpty())
+        {
+        	serv.setServicoNome(textfieldBuscar.getText());
 
+        	ServicoBO pcBO = new ServicoBO();
+            List<Servico> pcFab = null;
+            try
+            {
+                pcFab = pcBO.buscarPorNome(serv);
+            }
+            catch (Exception e)
+            {
+                e.printStackTrace();
+            }
+                if (!pcFab.isEmpty())
+                {
+                    updateTable(pcFab);
+                }
+        }
+        else
+        {
+            stableTable();
+        }
     }
 
 
@@ -174,4 +203,13 @@ public class MenuServicoGerenteController {
 
     }
 
+    public void updateTable(List<Servico> list)
+    {
+        tabelaServicos.getItems().clear();
+        while(!list.isEmpty())
+        {
+        	tabelaServicos.getItems().add(list.get(0));
+            list.remove(0);
+        }
+    }
 }

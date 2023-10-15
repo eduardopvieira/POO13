@@ -19,20 +19,18 @@
          <children>
             <Label layoutX="27.0" layoutY="12.0" prefHeight="16.0" prefWidth="56.0" text="Cliente:" />
             <Label layoutX="244.0" layoutY="12.0" prefHeight="16.0" prefWidth="143.0" text="Placa do Automovel:" />
-            <TableView layoutX="35.0" layoutY="80.0" prefHeight="200.0" prefWidth="189.0">
+            <TableView layoutX="35.0" layoutY="89.0" prefHeight="191.0" prefWidth="189.0">
               <columns>
-                <TableColumn fx:id="nomePecasOrc" prefWidth="75.0" text="Peças:" />
-                <TableColumn fx:id="qtdPecaOrc" prefWidth="42.0" text="QTD:" />
-                  <TableColumn fx:id="precoPecaOrc" prefWidth="71.0" text="Preço:" />
+                <TableColumn fx:id="nomePecasOrc" prefWidth="124.0" text="Peça:" />
+                  <TableColumn fx:id="precoPecaOrc" prefWidth="64.0" text="Preço:" />
               </columns>
             </TableView>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="23.0" layoutX="82.0" layoutY="9.0" stroke="BLACK" strokeType="INSIDE" width="120.0" />
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="23.0" layoutX="387.0" layoutY="9.0" stroke="BLACK" strokeType="INSIDE" width="120.0" />
-            <TableView layoutX="306.0" layoutY="80.0" prefHeight="200.0" prefWidth="200.0">
+            <TableView layoutX="306.0" layoutY="89.0" prefHeight="191.0" prefWidth="200.0">
               <columns>
-                <TableColumn fx:id="nomeServicoOrc" prefWidth="75.0" text="Serviços:" />
-                <TableColumn fx:id="qtdServicoOrc" prefWidth="47.0" text="QTD:" />
-                  <TableColumn fx:id="precoServicoOrc" prefWidth="77.0" text="Preço:" />
+                <TableColumn fx:id="nomeServicoOrc" prefWidth="130.0" text="Serviço:" />
+                  <TableColumn fx:id="precoServicoOrc" prefWidth="69.0" text="Preço:" />
               </columns>
             </TableView>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="23.0" layoutX="387.0" layoutY="48.0" stroke="BLACK" strokeType="INSIDE" width="120.0" />
@@ -50,15 +48,15 @@
             <Font size="17.0" />
          </font>
       </Button>
-      <Button fx:id="botaoDeletar" layoutX="62.0" layoutY="380.0" mnemonicParsing="false" onAction="#deletarOrcamento" prefHeight="42.0" prefWidth="111.0" style="-fx-background-color: FF6347;" text="Deletar">
-         <font>
-            <Font size="17.0" />
-         </font>
-      </Button>
       <Button fx:id="botaoPagar" layoutX="267.0" layoutY="380.0" mnemonicParsing="false" onAction="#pagarOrcamento" prefHeight="42.0" prefWidth="111.0" style="-fx-background-color: #5dd55d;" text="Pagar">
          <font>
             <Font size="17.0" />
          </font>
       </Button>
+      <Label fx:id="orcamentoEstaPago" layoutX="199.0" layoutY="384.0" prefHeight="34.0" prefWidth="230.0" text="O orçamento está pago!" textFill="#4eee40" visible="false">
+         <font>
+            <Font name="Manjari Regular" size="20.0" />
+         </font>
+      </Label>
    </children>
 </Pane>

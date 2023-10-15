@@ -185,6 +185,7 @@ public class MenuClienteController {
     void editar(ActionEvent event) {
     	 try {
              Cliente cli = tableviewClientes.getSelectionModel().getSelectedItem();
+             System.out.println(cli.getCPF());
              Telas.telaEditarCliente(cli);
          }
          catch(Exception e)

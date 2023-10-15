@@ -15,7 +15,7 @@ public class ServicoDAO extends BaseDAOImpl <Servico>{
 	public void inserir(Servico entity) {
 		
 		Connection con = getConnection();  
-        String sql = "INSERT INTO tb_servicos (servico_nome, servico_desc, servico_preco, servico_id) " + "values (?,?,?,?)";
+        String sql = "INSERT INTO tb_servicos (servico_nome, servico_desc, servico_preco, servico_id) values (?,?,?,?)";
 
 		try {
 				PreparedStatement statement = con.prepareStatement(sql);
@@ -23,8 +23,9 @@ public class ServicoDAO extends BaseDAOImpl <Servico>{
                 statement.setString(2, entity.getServicoDescricao());
                 statement.setDouble(3, entity.getServicoPreco());
                 statement.setInt(4, entity.getServicoId());
+                statement.execute();
                 statement.close();
-                System.out.println("EH PRA TER IDO");
+                System.out.println("Serviço adicionado com sucesso");
             } catch (Exception e) {
                 e.printStackTrace();
             }finally {closeConnection();}
@@ -87,7 +88,6 @@ public class ServicoDAO extends BaseDAOImpl <Servico>{
         try {
             ptst = getConnection().prepareStatement(sql);
             ptst.setInt(1, entity.getServicoId());
-            System.out.println(ptst);
             rs = ptst.executeQuery();
         } catch (SQLException e) {
             e.printStackTrace();

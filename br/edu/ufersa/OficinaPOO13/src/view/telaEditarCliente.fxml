@@ -20,10 +20,10 @@
             <Label layoutX="16.0" layoutY="53.0" />
             <Label layoutX="4.0" layoutY="53.0" text="Endereço" />
             <TextField fx:id="nomeCliente" layoutX="71.0" layoutY="11.0" style="-fx-background-color: FFFFFF;" />
-            <TextField fx:id="enderecoCliente" layoutX="71.0" layoutY="49.0" prefHeight="86.0" prefWidth="431.0" style="-fx-background-color: FFFFFF;" />
+            <TextField fx:id="enderecoCliente" layoutX="71.0" layoutY="49.0" prefHeight="89.0" prefWidth="431.0" style="-fx-background-color: FFFFFF;" />
             <Label layoutX="293.0" layoutY="14.0" text="CPF:" />
-            <Label fx:id="textoCPF" layoutX="331.0" layoutY="14.0" prefHeight="16.0" prefWidth="170.0" />
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="24.0" layoutX="331.0" layoutY="11.0" stroke="BLACK" strokeType="INSIDE" width="170.0" />
+            <Label fx:id="textoCPF" layoutX="331.0" layoutY="14.0" prefHeight="16.0" prefWidth="170.0" />
          </children>
       </Pane>
       <Button fx:id="botaoEditar" layoutX="352.0" layoutY="260.0" mnemonicParsing="false" onAction="#editar" prefHeight="39.0" prefWidth="129.0" text="Editar" />

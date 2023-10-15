@@ -67,7 +67,6 @@ public class PecasDAO extends BaseDAOImpl <Pecas>{
 	            ptst = getConnection().prepareStatement(sql);
 	            ptst.setString(1, entity.getDescricaoItem());
 	            ptst.setString(2, entity.getDescricaoItem());
-	            System.out.println(ptst);
 	            rs = ptst.executeQuery();
 	        } catch (SQLException e) {
 	            e.printStackTrace();

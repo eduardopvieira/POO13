@@ -94,24 +94,6 @@ public class AutomovelDAO extends BaseDAOImpl <Automovel>{
     
         try {
             ptst = getConnection().prepareStatement(sql);
-            ptst.setString(1, entity.getPlaca());
-            System.out.println(ptst);
-            rs = ptst.executeQuery();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return rs;
-    }
-
-//========================================= BUSCAR POR MODELO =========================================
-        public ResultSet buscarPorModelo (Automovel entity) {
-
-        String sql = "SELECT * FROM tb_automoveis WHERE modelo = ?";
-        PreparedStatement ptst;
-        ResultSet rs = null;
-    
-        try {
-            ptst = getConnection().prepareStatement(sql);
             ptst.setString(1, entity.getModelo());
             System.out.println(ptst);
             rs = ptst.executeQuery();
@@ -121,7 +103,41 @@ public class AutomovelDAO extends BaseDAOImpl <Automovel>{
         return rs;
     }
 
-    //====================================== LISTAR ==================================
+//========================================= BUSCAR POR DONO =========================================
+        public ResultSet buscarPorDono (Automovel entity) {
+
+        String sql = "SELECT * FROM tb_automoveis WHERE dono = ?";
+        PreparedStatement ptst;
+        ResultSet rs = null;
+    
+        try {
+            ptst = getConnection().prepareStatement(sql);
+            ptst.setString(1, entity.getModelo());
+            rs = ptst.executeQuery();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return rs;
+    }
+
+//========================================= BUSCAR POR MODELO =========================================
+        public ResultSet buscarPorPlacaOuDono (String entity) {
+
+        String sql = "SELECT * FROM tb_automoveis WHERE dono = ? OR placa = ?";
+        PreparedStatement ptst;
+        ResultSet rs = null;
+    
+        try {
+            ptst = getConnection().prepareStatement(sql);
+            ptst.setString(1, entity);
+            ptst.setString(2, entity);
+            rs = ptst.executeQuery();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return rs;
+    }
+//====================================== LISTAR ==================================
     @Override
     public List<Automovel> listar()
     {

@@ -4,8 +4,8 @@ import java.util.List;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -18,6 +18,7 @@ import model.VO.Funcionario;
 import model.VO.Gerente;
 import model.VO.UsuarioAutenticado;
 import view.Telas;
+import view.util.Alerts;
 
 public class MenuAutoController {
 
@@ -51,8 +52,6 @@ public class MenuAutoController {
     @FXML
     private Button botaoServicos;
 
-    @FXML
-    private ChoiceBox<?> choiceboxBusca;
     
     @FXML private TableView<Automovel> tableviewAuto = new TableView<Automovel>();
     @FXML private TableColumn <Automovel, String>tableColumnCPFDono = new TableColumn<Automovel, String>("dono");
@@ -130,6 +129,14 @@ public class MenuAutoController {
     void editar(ActionEvent event) throws Exception {
     	try {
             Automovel pc = tableviewAuto.getSelectionModel().getSelectedItem();
+            System.out.println(pc.getAno());
+            System.out.println(pc.getCor());
+            System.out.println(pc.getCPFDono());
+            System.out.println(pc.getKm());
+            System.out.println(pc.getMarca());
+            System.out.println(pc.getModelo());
+            System.out.println(pc.getPlaca());
+            
             Telas.telaEditarAuto(pc);
         }
         catch(Exception e)
@@ -145,7 +152,34 @@ public class MenuAutoController {
 
     @FXML
     void realizarBusca(MouseEvent event)throws Exception {
+    	Automovel pc = new Automovel();
+        if (botaoBuscar.getText() != null && !botaoBuscar.getText().isEmpty())
+        {
+        	pc.setModelo(botaoBuscar.getText());
 
+            AutomovelBO pcBO = new AutomovelBO();
+            List<Automovel> resultAuto = null;
+
+            try
+            {
+            	resultAuto = pcBO.buscarPorPlacaOuDono(pc);
+             
+            }
+            catch (Exception e)
+            {
+                e.printStackTrace();
+            }
+                if (!resultAuto.isEmpty())
+                {
+                    updateTable(resultAuto);
+                } else {
+                	Alerts.showAlert("Erro", "Não encontrado", "Nenhum resultado para a sua busca.", AlertType.ERROR);
+                }
+        }
+        else
+        {
+            stableTable();
+        }
     }
 
     @FXML
@@ -193,6 +227,16 @@ public class MenuAutoController {
             e.printStackTrace();
         }
 
+    }
+    
+    public void updateTable(List<Automovel> list)
+    {
+        tableviewAuto.getItems().clear();
+        while(!list.isEmpty())
+        {
+        	tableviewAuto.getItems().add(list.get(0));
+            list.remove(0);
+        }
     }
 
 }

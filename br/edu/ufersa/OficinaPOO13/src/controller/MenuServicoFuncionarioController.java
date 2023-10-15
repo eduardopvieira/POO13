@@ -2,6 +2,7 @@ package controller;
 
 import java.util.List;
 
+import Exceptions.InfoNaoCompativelException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -50,7 +51,7 @@ public class MenuServicoFuncionarioController {
    
     public void initialize() {
     	
-    	tableColumnIDServico.setCellValueFactory(new PropertyValueFactory<Servico, Integer>("idServico"));
+    	tableColumnIDServico.setCellValueFactory(new PropertyValueFactory<Servico, Integer>("ServicoId"));
     	tableColumnNomeServico.setCellValueFactory(new PropertyValueFactory<Servico, String>("servicoNome"));
     	tableColumnDescricaoServico.setCellValueFactory(new PropertyValueFactory<Servico, String>("servicoDescricao"));
     	tableColumnValorServico.setCellValueFactory(new PropertyValueFactory<Servico, Double>("servicoPreco"));
@@ -91,9 +92,33 @@ public class MenuServicoFuncionarioController {
     	Telas.telaMenuClientes();
     }
 
-    @FXML
-    void realizarBusca(MouseEvent event) {
 
+    @FXML
+    void realizarBusca(MouseEvent event) throws InfoNaoCompativelException {
+    	Servico serv = new Servico();
+        if (textfieldBuscar.getText() != null && !textfieldBuscar.getText().isEmpty())
+        {
+        	serv.setServicoNome(textfieldBuscar.getText());
+
+        	ServicoBO pcBO = new ServicoBO();
+            List<Servico> pcFab = null;
+            try
+            {
+                pcFab = pcBO.buscarPorNome(serv);
+            }
+            catch (Exception e)
+            {
+                e.printStackTrace();
+            }
+                if (!pcFab.isEmpty())
+                {
+                    updateTable(pcFab);
+                }
+        }
+        else
+        {
+            stableTable();
+        }
     }
 
     @FXML
@@ -114,5 +139,36 @@ public class MenuServicoFuncionarioController {
     @FXML
     void irParaTelaLogin(ActionEvent event) throws Exception {
     	Telas.telaLogin();
+    }
+    
+    public void stableTable()
+    {
+    	tabelaServicos.getItems().clear();
+    	ServicoBO pcBO = new ServicoBO();
+        try
+        {
+            List<Servico> pcList = pcBO.listar();
+
+            while(!pcList.isEmpty())
+            {
+            	tabelaServicos.getItems().add(pcList.get(0));
+            	pcList.remove(0);
+            }
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+
+    }
+
+    public void updateTable(List<Servico> list)
+    {
+        tabelaServicos.getItems().clear();
+        while(!list.isEmpty())
+        {
+        	tabelaServicos.getItems().add(list.get(0));
+            list.remove(0);
+        }
     }
 }

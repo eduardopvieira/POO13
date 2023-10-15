@@ -1,7 +1,6 @@
 package controller;
 
 import Exceptions.InfoNaoCompativelException;
-import Exceptions.InsertException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert.AlertType;
@@ -31,7 +30,7 @@ public class EditarClienteController {
     private Label textoCPF;
 
     
-    public void initialize(Cliente cli)
+    public void Initialize(Cliente cli)
     {
         try {
             nomeCliente.setText(cli.getNome());
@@ -50,7 +49,7 @@ public class EditarClienteController {
     }
 
     @FXML
-    void editar(ActionEvent event) throws InfoNaoCompativelException, InsertException {
+    void editar(ActionEvent event) throws Exception {
     	Cliente cl = new Cliente();
     	try {
     	cl.setCPF(textoCPF.getText());
@@ -59,6 +58,8 @@ public class EditarClienteController {
     	
     	ClienteBO cliBO = new ClienteBO();
     	cliBO.alterar(cl);
+    	Alerts.showAlert("Sucesso", "Alteração bem sucedida", "O cliente foi alterado com sucesso.", AlertType.INFORMATION);
+    	Telas.telaMenuClientes();
     	} catch (InfoNaoCompativelException e) {
     		Alerts.showAlert("Erro", "Campo não compatível", "Certifique-se de preencher todos os campos", AlertType.ERROR);
     	} 
