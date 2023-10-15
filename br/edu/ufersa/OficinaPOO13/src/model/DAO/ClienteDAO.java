@@ -184,4 +184,20 @@ public class ClienteDAO extends BaseDAOImpl <Cliente>{
         finally {closeConnection();}
         return pc;
     }
+//========================================================================================
+    public ResultSet buscarNomePorCPF(Cliente entity) {
+
+        String sql = "SELECT nome_cliente FROM tb_clientes WHERE cpf_cliente = ?";
+        PreparedStatement ptst;
+        ResultSet rs = null;
+    
+        try {
+            ptst = getConnection().prepareStatement(sql);
+            ptst.setString(1, entity.getCPF());
+            rs = ptst.executeQuery();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return rs;
+    }
 }

@@ -21,8 +21,21 @@ public class Orcamento {
   }
  
   
-  public Orcamento(String clienteOrcamento, String automovelOrcamento, int pecaOrcamento, int servicoOrcamento, Date dataOrcamento, double totalOrcamento, boolean isPago){
+  public Orcamento(int id, String clienteOrcamento, String automovelOrcamento, int pecaOrcamento, int servicoOrcamento, Date dataOrcamento, double totalOrcamento, boolean isPago){
       
+	  setIdOrcamento(id);
+      setCPFClienteOrcamento(clienteOrcamento);
+      setPlacaOrc(automovelOrcamento);
+      setDataOrcamento(dataOrcamento);
+      setIdPecaOrcamento(pecaOrcamento);
+      setIdServOrc(servicoOrcamento);
+      setTotalOrcamento(totalOrcamento);
+      setIsPago(isPago);
+  }
+  
+  public Orcamento(int id, String clienteOrcamento, String automovelOrcamento, int pecaOrcamento, int servicoOrcamento, Date dataOrcamento, double totalOrcamento){
+      
+	  setIdOrcamento(id);
       setCPFClienteOrcamento(clienteOrcamento);
       setPlacaOrc(automovelOrcamento);
       setDataOrcamento(dataOrcamento);
@@ -31,6 +44,7 @@ public class Orcamento {
       setTotalOrcamento(totalOrcamento);
       setIsPago(false);
   }
+  
   
 
 //=========================== SET E GET PEÇA DO ORÇAMENTO ===========================
@@ -43,7 +57,7 @@ public class Orcamento {
  public int getIdPecaOrcamento () {return idPecaOrc;}
   
   
-//=========================== SET E GET SERVIÇO DO ORÇAMENTO ===========================
+//=========================== SET E GET SERVIÇO DO ORÇAMENTO ===============================================
 public void setIdServOrc (int s) {
 	if (s != 0) {
 		 this.idServicoOrc = s;
@@ -52,7 +66,7 @@ public void setIdServOrc (int s) {
  
 public int getIdServOrc() {return idServicoOrc;}
  
-//=========================== SET E GET TOTAL DO ORÇAMENTO ===========================
+//=========================== SET E GET TOTAL DO ORÇAMENTO ==================================================
 
 public void setTotalOrcamento(double preco) {
 	if (preco >= 0) {

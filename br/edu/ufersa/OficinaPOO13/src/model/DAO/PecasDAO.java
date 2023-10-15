@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import model.VO.Pecas;
+import model.VO.Servico;
 
 public class PecasDAO extends BaseDAOImpl <Pecas>{
 	
@@ -26,7 +27,6 @@ public class PecasDAO extends BaseDAOImpl <Pecas>{
             statement.setInt(5, entity.getEstoqueItem());
             statement.execute();
             statement.close();
-            System.out.println("Peça adicionada com sucesso.");
         } catch (Exception e) {
             e.printStackTrace();
         }finally {closeConnection();
@@ -145,5 +145,21 @@ public class PecasDAO extends BaseDAOImpl <Pecas>{
             e.printStackTrace();
         }
 
+    }
+//======================================================================================
+	public ResultSet buscarNomePorIdPeca(int entity) {
+
+        String sql = "SELECT desc_peca FROM tb_pecas WHERE id_peca = ?";
+        PreparedStatement ptst;
+        ResultSet rs = null;
+    
+        try {
+            ptst = getConnection().prepareStatement(sql);
+            ptst.setInt(1, entity);
+            rs = ptst.executeQuery();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return rs;
     }
 }

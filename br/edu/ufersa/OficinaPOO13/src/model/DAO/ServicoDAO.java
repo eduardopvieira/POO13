@@ -151,5 +151,29 @@ public class ServicoDAO extends BaseDAOImpl <Servico>{
 	        finally {closeConnection();}
 	        return pc;
 	    }
+	 
+	//===============================================================================
+		
+	 public String buscarNomePorIdServico(int entity) {
+		    String sql = "SELECT servico_nome FROM tb_servicos WHERE servico_id = ?";
+		    PreparedStatement ptst;
+		    ResultSet rs = null;
+		    String nomeServico = null; 
 
+		    try {
+		        ptst = getConnection().prepareStatement(sql);
+		        ptst.setInt(1, entity);
+		        rs = ptst.executeQuery();
+
+		        if (rs.next()) {
+		            nomeServico = rs.getString("servico_nome");
+		        }
+		        ptst.close();
+		        rs.close();
+		    } catch (SQLException e) {
+		        e.printStackTrace();
+		    }
+		    return nomeServico;
+	 }
+	 
 }

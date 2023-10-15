@@ -2,9 +2,11 @@ package view;
 
 import controller.EditarAutoController;
 import controller.EditarClienteController;
+import controller.EditarOrcamentoController;
 import controller.EditarPecasFuncionarioController;
 import controller.EditarPecasGerenteController;
 import controller.EditarServicoController;
+import controller.VisualizarOrcamentoController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -14,6 +16,7 @@ import model.VO.Automovel;
 import model.VO.Cliente;
 import model.VO.Funcionario;
 import model.VO.Gerente;
+import model.VO.Orcamento;
 import model.VO.Pecas;
 import model.VO.Servico;
 
@@ -168,17 +171,33 @@ public class Telas extends Application{
 		
 	}
 	
-	/*public static void telaCadastroOrcamento() throws Exception{
-		Parent root = FXMLLoader.load(Telas.class.getResource("telaCadastroCliente.fxml"));
+	public static void telaCadastroOrcamento() throws Exception{
+		Parent root = FXMLLoader.load(Telas.class.getResource("telaCadastrarOrcamento.fxml"));
 		Scene cena = new Scene(root);		
 		primaryStage.setScene(cena);
-	}*/
+	}
 	
 	
 	
-	public static void telaVisualizarOrcamento() throws Exception {
-		Parent root = FXMLLoader.load(Telas.class.getResource("telaVisualizarOrcamento.fxml"));
-		Scene cena = new Scene(root);		
+	public static void telaVisualizarOrcamento(Orcamento orc) throws Exception {
+		FXMLLoader loader = new FXMLLoader(Telas.class.getResource("telaVisualizarOrcamento.fxml"));
+		Parent root = loader.load();
+		
+		VisualizarOrcamentoController controller = loader.getController();
+		controller.Initialize(orc); 
+		
+		Scene cena = new Scene(root);
+		primaryStage.setScene(cena);
+	}
+	
+	public static void telaEditarOrcamento(Orcamento orc) throws Exception {
+		FXMLLoader loader = new FXMLLoader(Telas.class.getResource("telaEditarOrcamento.fxml"));
+		Parent root = loader.load();
+		
+		EditarOrcamentoController controller = loader.getController();
+		controller.Initialize(orc); 
+		
+		Scene cena = new Scene(root);
 		primaryStage.setScene(cena);
 	}
 	

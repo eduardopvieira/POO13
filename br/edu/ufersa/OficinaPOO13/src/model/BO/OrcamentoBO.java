@@ -8,11 +8,10 @@ import java.util.List;
 import Exceptions.InfoNaoCompativelException;
 import Exceptions.InsertException;
 import Exceptions.NotFoundException;
-import model.DAO.FuncionarioDAO;
+import javafx.scene.control.Alert.AlertType;
 import model.DAO.OrcamentoDAO;
-import model.VO.Funcionario;
 import model.VO.Orcamento;
-import model.VO.Servico;
+import view.util.Alerts;
 
 public class OrcamentoBO implements BaseInterBO<Orcamento>{
     OrcamentoDAO orcDAO = new OrcamentoDAO();
@@ -99,22 +98,44 @@ public class OrcamentoBO implements BaseInterBO<Orcamento>{
 //======================================ALTERAR=======================================================================
 
 	@Override
-	public Orcamento alterar(Orcamento vo) throws InsertException {
+	public Orcamento alterar(Orcamento vo) {
+		
 		try {  
-			ResultSet verificarServico = orcDAO.buscar(vo);
+			ResultSet verificarOrcamento = orcDAO.buscar(vo);
 
-	            if (!verificarServico.next() || vo.getIdOrcamento()== 0) {
-	                throw new InsertException("Peca não encontrada");
-	            }
+	            if (!verificarOrcamento.next()) {
+	                throw new InsertException("Orçamento não encontrado");
+	            } else {
 
 	            return orcDAO.alterar(vo);
-	            
+	            }
 	        }
 	        catch (Exception e) {
-	            throw new InsertException(e.getMessage());
+	        	Alerts.showAlert("Erro", "Erro ao alterar", "Houve um erro ao alterar a informação no banco de dados.", AlertType.ERROR);
 	        }
+		return vo;
 	    }
-//=========================================DELETAR===================================================================
+
+	//======================================ALTERAR IS PAGO=======================================================================
+
+		public void alterarIsPago(Orcamento vo) {
+			
+			try {  
+				ResultSet verificarOrcamento = orcDAO.buscar(vo);
+
+		            if (!verificarOrcamento.next()) {
+		                throw new InsertException("Orçamento não encontrado");
+		            } else {
+		            	orcDAO.alterarIsPago(vo);
+		            }
+		        }
+		        catch (Exception e) {
+		        	Alerts.showAlert("Erro", "Erro ao alterar", "Houve um erro ao alterar a informação no banco de dados.", AlertType.ERROR);
+		        }
+		    }
+	
+	
+	//=========================================DELETAR===================================================================
 
 	@Override
 	public boolean deletar(Orcamento vo) throws InsertException {
@@ -151,8 +172,8 @@ public class OrcamentoBO implements BaseInterBO<Orcamento>{
 
 	        return cliDAO.listar();
 	    }
-
-	
-	
+	 
+//===========================================TRADUZIR ID SERVICO=====================================================
+	 	
 	
 }

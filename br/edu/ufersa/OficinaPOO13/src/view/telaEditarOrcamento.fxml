@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="362.0" prefWidth="627.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.EditarOrcamentoController">
+   <children>
+      <Label layoutX="54.0" layoutY="14.0" prefHeight="49.0" prefWidth="297.0" text="Editar Orçamento">
+         <font>
+            <Font size="33.0" />
+         </font>
+      </Label>
+      <Pane layoutX="54.0" layoutY="73.0" prefHeight="144.0" prefWidth="520.0" style="-fx-background-color: #DCDCDC;">
+         <children>
+            <Label layoutX="28.0" layoutY="12.0" prefHeight="16.0" prefWidth="49.0" text="Id Orc.:" />
+            <Label layoutX="24.0" layoutY="44.0" prefHeight="16.0" prefWidth="56.0" text="Id Peça:" />
+            <Label layoutX="295.0" layoutY="12.0" prefHeight="16.0" prefWidth="41.0" text="Data:" />
+            <Label layoutX="264.0" layoutY="44.0" prefHeight="16.0" prefWidth="74.0" text="Id Serviço:" />
+            <TextField fx:id="textfieldIdPeca" layoutX="80.0" layoutY="40.0" />
+            <TextField fx:id="textfieldData" layoutX="335.0" layoutY="8.0" />
+            <TextField fx:id="textfieldIdServico" layoutX="335.0" layoutY="40.0" />
+            <Label layoutX="36.0" layoutY="79.0" prefHeight="16.0" prefWidth="41.0" text="Placa:" />
+            <Label layoutX="302.0" layoutY="79.0" text="CPF:" />
+            <Label layoutX="32.0" layoutY="115.0" prefHeight="16.0" prefWidth="41.0" text="Preço:" />
+            <TextField fx:id="textfieldPrecoTotal" layoutX="80.0" layoutY="111.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="24.0" layoutX="335.0" layoutY="75.0" stroke="BLACK" strokeType="INSIDE" width="170.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="24.0" layoutX="80.0" layoutY="75.0" stroke="BLACK" strokeType="INSIDE" width="170.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="24.0" layoutX="80.0" layoutY="8.0" stroke="BLACK" strokeType="INSIDE" width="170.0" />
+            <Label fx:id="textoIdOrc" layoutX="90.0" layoutY="12.0" prefHeight="16.0" prefWidth="151.0" />
+            <Label fx:id="textoPlaca" layoutX="90.0" layoutY="79.0" prefHeight="16.0" prefWidth="151.0" />
+            <Label fx:id="textoCPF" layoutX="345.0" layoutY="79.0" prefHeight="16.0" prefWidth="151.0" />
+         </children>
+      </Pane>
+      <Button fx:id="botaoConcluir" layoutX="382.0" layoutY="258.0" mnemonicParsing="false" onAction="#realizarEdicao" prefHeight="42.0" prefWidth="111.0" style="-fx-background-color: #FF8C00;" text="Concluir">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Button>
+      <Button fx:id="botaoCancelar" layoutX="110.0" layoutY="258.0" mnemonicParsing="false" onAction="#voltar" prefHeight="42.0" prefWidth="111.0" style="-fx-background-color: FF6347;" text="Cancelar">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Button>
+   </children>
+</Pane>

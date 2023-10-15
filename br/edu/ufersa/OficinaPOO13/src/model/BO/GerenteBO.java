@@ -11,7 +11,6 @@ import Exceptions.InsertException;
 import Exceptions.NotFoundException;
 import model.DAO.FuncionarioDAO;
 import model.DAO.GerenteDAO;
-import model.VO.Funcionario;
 import model.VO.Gerente;
 
 public class GerenteBO implements FuncionarioInterBO<Gerente>{

@@ -108,7 +108,7 @@ public class MenuAutoController {
 
     @FXML
     void deletar(ActionEvent event) {
-    	{
+    	
             AutomovelBO autoBO = new AutomovelBO();
 
             try
@@ -122,7 +122,7 @@ public class MenuAutoController {
 
             tableviewAuto.getItems().removeAll(tableviewAuto.getSelectionModel().getSelectedItem());
             stableTable();
-        }
+        
     }
 
     @FXML
