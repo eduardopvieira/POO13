@@ -11,8 +11,8 @@ public class Pecas {
 	
 	public Pecas(){}
 	
-	public Pecas (String fab) {
-		setFabricante(fab);
+	public Pecas (String nome) {
+		setDescricaoItem(nome);
 	}
 	
 	public Pecas (int id) {
@@ -36,7 +36,7 @@ public class Pecas {
 
 
 	public void setIdItem(int idItem) {
-		if (idItem >= 0) {
+		if (idItem > 0) {
 			this.idItem = idItem;
 		}
 	}

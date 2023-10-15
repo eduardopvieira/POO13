@@ -1,13 +1,13 @@
 package model.VO;
 
-import java.util.List;
-
 import Exceptions.InfoNaoCompativelException;
 
-public class Cliente extends Pessoa{
-
-    private List <Automovel> ListaAuto;
+public class Cliente{
     
+	private String cpf;
+    private String nome;
+    private String endereco;
+
     public Cliente(){};
     
     public Cliente(String cpf) throws InfoNaoCompativelException {
@@ -15,32 +15,51 @@ public class Cliente extends Pessoa{
     }
     
     public Cliente (String cpf, String nome) throws InfoNaoCompativelException{
-    	super(nome, cpf);
+    	setCPF(cpf);
+    	setNome(nome);
+    	
     }
     public Cliente(String cpf,String nome, String endereco) throws InfoNaoCompativelException {
-        super(cpf, nome, endereco);
-        //ListaAuto = new ArrayList<Automovel>();
+    	setCPF(cpf);
+    	setNome(nome);
+    	setEndereco(endereco);
     }
 
-
-    public void setAuto (List<Automovel> ListaAuto) {
-        this.ListaAuto = ListaAuto;
- 
-    }
-    public List<Automovel> getAuto() {
-        return ListaAuto;
-    }
-
-    public void addAuto(Automovel auto){
-        if (auto != null) {
-        this.ListaAuto.add(auto);
+    
+    //========================SET GET CPF=========================================
+    public void setCPF(String cpf) throws InfoNaoCompativelException {
+        if (cpf.isEmpty() == false && cpf.length() == 11) {
+            this.cpf = cpf;
+        } else {
+           throw new InfoNaoCompativelException("CPF vazio ou com pontuação. Digite o CPF apenas com números.");
         }
     }
     
-    public void removeAuto(Automovel auto) {
-    	if(auto != null) {
-    		this.ListaAuto.remove(auto);
-    	}
+    public String getCPF(){
+    	return cpf;
+    }
+   //===============================SET GET ENDERECO ===================================
+    
+    public void setEndereco(String endereco) throws InfoNaoCompativelException{
+        if (endereco.isEmpty() == false) {
+            this.endereco = endereco;
+        } else {
+            throw new InfoNaoCompativelException("Endereço vazio. Digite alguma informação.");
+        }
     }
 
+    public String getEndereco(){return endereco;}
+   
+    //============================SET GET NOME==========================================
+    public void setNome(String nome) throws InfoNaoCompativelException{
+        if (nome != null && nome.isEmpty() == false) {
+            this.nome = nome;
+        } else {
+            throw new InfoNaoCompativelException("Nome vazio.");
+        }
+    }
+    
+    public String getNome() {
+        return nome;
+    }
 }

@@ -7,37 +7,29 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import model.VO.Pecas;
 import model.VO.Servico;
 
 public class ServicoDAO extends BaseDAOImpl <Servico>{
     	
 	@Override
 	public void inserir(Servico entity) {
-            try {
-                Connection con = BaseDAOImpl.getConnection();
-                String sql = "INSERT INTO tb_servicos (servico_nome, servico_desc, servico_preco, servico_id) " + "values (?,?,?,?)";
-                PreparedStatement statement = con.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
+		
+		Connection con = getConnection();  
+        String sql = "INSERT INTO tb_servicos (servico_nome, servico_desc, servico_preco, servico_id) " + "values (?,?,?,?)";
+
+		try {
+				PreparedStatement statement = con.prepareStatement(sql);
                 statement.setString(1, entity.getServicoNome());
                 statement.setString(2, entity.getServicoDescricao());
                 statement.setDouble(3, entity.getServicoPreco());
                 statement.setInt(4, entity.getServicoId());
-                int affectedRows = statement.executeUpdate();
-                if (affectedRows == 0) {
-                    throw new Exception("A inserção falhou. Nenhuma linha foi alterada.");
-                }
-                ResultSet generatedKeys = statement.getGeneratedKeys();
-                if (generatedKeys.next()) {
-                    entity.setServicoId(generatedKeys.getInt(1));
-                } else {
-                    throw new Exception("A inserção falhou. Nenhum id foi retornado.");
-                }
                 statement.close();
-                BaseDAOImpl.closeConnection();
+                System.out.println("EH PRA TER IDO");
             } catch (Exception e) {
                 e.printStackTrace();
-            }
+            }finally {closeConnection();}
     	}
+	
  
 //=================================== Inserir ====================================================
 	@Override

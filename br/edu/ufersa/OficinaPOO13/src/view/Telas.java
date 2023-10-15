@@ -1,12 +1,16 @@
 package view;
 
+import controller.EditarPecasFuncionarioController;
+import controller.EditarPecasGerenteController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import model.VO.Cliente;
 import model.VO.Funcionario;
 import model.VO.Gerente;
+import model.VO.Pecas;
 
 
 public class Telas extends Application{
@@ -57,6 +61,12 @@ public class Telas extends Application{
 		primaryStage.setScene(cena);
 	}
 	
+	public static void telaEditarCliente(Cliente cli) throws Exception{
+		Parent root = FXMLLoader.load(Telas.class.getResource("telaEditarCliente.fxml"));
+		Scene cena = new Scene(root);		
+		primaryStage.setScene(cena);
+	}
+	
 	public static void telaMenuServicoGerente(Gerente ger) throws Exception{
 		Parent root = FXMLLoader.load(Telas.class.getResource("telaMenuServicoGerente.fxml"));
 		Scene cena = new Scene(root);		
@@ -68,13 +78,6 @@ public class Telas extends Application{
 		Scene cena = new Scene(root);		
 		primaryStage.setScene(cena);
 	}
-	
-	/*public static void telaVisualizarServicoFuncionario() throws Exception{
-		Parent root = FXMLLoader.load(Telas.class.getResource("telaCadastroCliente.fxml"));
-		Scene cena = new Scene(root);		
-		primaryStage.setScene(cena);
-	}*/
-	
 	
 	public static void telaCadastrarServicoGerente() throws Exception {
 		Parent root = FXMLLoader.load(Telas.class.getResource("telaCadastrarServicoGerente.fxml"));
@@ -95,15 +98,28 @@ public class Telas extends Application{
 	}
 	
 	
-	public static void telaEditarPecasFuncionario(Funcionario func) throws Exception {
-		Parent root = FXMLLoader.load(Telas.class.getResource("telaEditarPecasFuncionario.fxml"));
-		Scene cena = new Scene(root);		
+	public static void telaEditarPecasFuncionario(Pecas pc) throws Exception {
+		FXMLLoader loader = new FXMLLoader(Telas.class.getResource("telaEditarPecasFuncionario.fxml"));
+		Parent root = loader.load();
+		
+		EditarPecasFuncionarioController controller = loader.getController();
+		controller.Initialize(pc); 
+		
+		Scene cena = new Scene(root);
 		primaryStage.setScene(cena);
+		
+		
 	}
-	public static void telaEditarPecasGerente(Gerente ger) throws Exception {
-		Parent root = FXMLLoader.load(Telas.class.getResource("telaEditarPecasGerente.fxml"));
-		Scene cena = new Scene(root);		
+	public static void telaEditarPecasGerente(Pecas pc) throws Exception {
+		FXMLLoader loader = new FXMLLoader(Telas.class.getResource("telaEditarPecasGerente.fxml"));
+		Parent root = loader.load();
+		
+		EditarPecasGerenteController controller = loader.getController();
+		controller.Initialize(pc); 
+		
+		Scene cena = new Scene(root);
 		primaryStage.setScene(cena);
+		
 	}
 	
 	public static void telaMenuOrcamentos() throws Exception {

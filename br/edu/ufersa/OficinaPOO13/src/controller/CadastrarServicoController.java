@@ -2,9 +2,9 @@ package controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Alert.AlertType;
 import model.BO.ServicoBO;
 import model.VO.Servico;
 import model.VO.UsuarioAutenticado;
@@ -26,22 +26,27 @@ public class CadastrarServicoController {
     private TextField textfieldNomeServico;
 
     @FXML
+    private TextField textfieldID;
+    
+    @FXML
     private TextField textfieldPrecoServico;
 
     @FXML
     void cadastrarServico(ActionEvent event) throws Exception {
+    try {
     	ServicoBO servBO = new ServicoBO();
     	Servico serv = new Servico();
-    	
+    	int id = Integer.parseInt(textfieldID.getText());
+    	serv.setServicoId(id);
     	serv.setServicoNome(textfieldNomeServico.getText());
     	serv.setServicoDescricao(textfieldDescricaoServico.getText());
     	Double preco = Double.parseDouble(textfieldPrecoServico.getText());
     	serv.setServicoPreco(preco);
-    	
     	servBO.cadastrar(serv);
-    	
-    	Alerts.showAlert("Sucesso", "Servico cadastrado com sucesso"," " ,AlertType.INFORMATION);
     	Telas.telaMenuServicoGerente(UsuarioAutenticado.getGerenteAutenticado());
+    	}catch (Exception e) {
+    		Alerts.showAlert("ERRO", "Falha ao cadastrar serviço", "Erro ao cadastrar serviço. Nada foi cadastrado.", AlertType.ERROR);
+    	}
     }
 
     @FXML

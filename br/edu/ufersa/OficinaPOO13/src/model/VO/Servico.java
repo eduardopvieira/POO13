@@ -38,10 +38,9 @@ public int getServicoId() {
 }
 
 public void setServicoId(int l) {
-  if(l > 0)
-    this.idServico = l;
-  else
-    this.idServico = 0;
+  if (l > 0) {
+	this.idServico = l;
+  }
 }
 
 /*==>GET/SET (servicoNome)<==*/

@@ -13,22 +13,24 @@
             <Font size="33.0" />
          </font>
       </Label>
-      <Pane layoutX="49.0" layoutY="82.0" prefHeight="137.0" prefWidth="516.0" style="-fx-background-color: #DCDCDC;">
+      <Pane layoutX="49.0" layoutY="82.0" prefHeight="110.0" prefWidth="516.0" style="-fx-background-color: #DCDCDC;">
          <children>
             <Label layoutX="41.0" layoutY="14.0" prefHeight="16.0" prefWidth="63.0" text="Nome:" />
             <Label layoutX="286.0" layoutY="12.0" prefHeight="16.0" prefWidth="45.0" text="Preço:" />
             <TextField fx:id="textfieldNomeServico" layoutX="88.0" layoutY="10.0" />
             <TextField fx:id="textfieldPrecoServico" layoutX="331.0" layoutY="10.0" />
-            <TextField fx:id="textfieldDescricaoServico" layoutX="88.0" layoutY="48.0" prefHeight="77.0" prefWidth="412.0" />
-            <Label layoutX="14.0" layoutY="48.0" text="Descriçao:" />
+            <TextField fx:id="textfieldDescricaoServico" layoutX="88.0" layoutY="40.0" prefHeight="24.0" prefWidth="412.0" />
+            <Label layoutX="14.0" layoutY="44.0" text="Descriçao:" />
+            <Label layoutX="62.0" layoutY="76.0" prefHeight="16.0" prefWidth="22.0" text="ID:" />
+            <TextField fx:id="textfieldID" layoutX="88.0" layoutY="72.0" prefHeight="24.0" prefWidth="63.0" />
          </children>
       </Pane>
-      <Button fx:id="botaoConcluir" layoutX="368.0" layoutY="242.0" mnemonicParsing="false" onAction="#cadastrarServico" style="-fx-background-color: #FF8C00;" text="Concluir">
+      <Button fx:id="botaoConcluir" layoutX="373.0" layoutY="238.0" mnemonicParsing="false" onAction="#cadastrarServico" style="-fx-background-color: #FF8C00;" text="Concluir">
          <font>
             <Font size="17.0" />
          </font>
       </Button>
-      <Button fx:id="botaoCancelar" layoutX="154.0" layoutY="242.0" mnemonicParsing="false" onAction="#voltar" prefHeight="33.0" prefWidth="93.0" style="-fx-background-color: FF6347;" text="Cancelar">
+      <Button fx:id="botaoCancelar" layoutX="126.0" layoutY="238.0" mnemonicParsing="false" onAction="#voltar" prefHeight="33.0" prefWidth="93.0" style="-fx-background-color: FF6347;" text="Cancelar">
          <font>
             <Font size="16.0" />
          </font>

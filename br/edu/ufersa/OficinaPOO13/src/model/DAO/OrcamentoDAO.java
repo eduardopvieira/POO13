@@ -7,7 +7,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import model.VO.Funcionario;
 import model.VO.Orcamento;
 
 public class OrcamentoDAO extends BaseDAOImpl <Orcamento>{

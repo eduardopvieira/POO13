@@ -29,7 +29,8 @@ public class CadastroClientesController {
     
     @FXML    
     void cadastrarCliente(ActionEvent event) throws Exception {
-        Cliente cli = new Cliente();
+        
+    	Cliente cli = new Cliente();
         ClienteBO cliBO = new ClienteBO();
     	cli.setCPF(cpfCliente.getText());
     	cli.setNome(nomeCliente.getText());

@@ -34,7 +34,7 @@ public class ClienteDAO extends BaseDAOImpl <Cliente>{
             
         }
         finally {closeConnection();
-            System.out.println("Chegou aqui!"); }
+            }
          
     }
 //===================================================================================================================

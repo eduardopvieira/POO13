@@ -8,37 +8,31 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import model.VO.Orcamento;
 import model.VO.Pecas;
 
 public class PecasDAO extends BaseDAOImpl <Pecas>{
 	
 	@Override
 	public void inserir(Pecas entity) {
-        try {
-            Connection con = BaseDAOImpl.getConnection();
-            String sql = "INSERT INTO tb_pecas (desc_peca, fab_peca, preco_peca, estoque_peca, id_peca) " + "values (?,?,?,?,?)";
-            PreparedStatement statement = con.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
-            statement.setString(1, entity.getDescricaoItem());
-            statement.setString(2, entity.getFabricante());
-            statement.setDouble(3, entity.getPrecoItem());
-            statement.setInt(4, entity.getEstoqueItem());
-            int affectedRows = statement.executeUpdate();
-            if (affectedRows == 0) {
-                throw new Exception("A inserção falhou. Nenhuma linha foi alterada.");
-            }
-            ResultSet generatedKeys = statement.getGeneratedKeys();
-            if (generatedKeys.next()) {
-                entity.setIdItem(generatedKeys.getInt(1));
-            } else {
-                throw new Exception("A inserção falhou. Nenhum id foi retornado.");
-            }
+		Connection con = getConnection();
+        String sql = "INSERT INTO tb_pecas (id_peca, desc_peca, fab_peca, preco_peca, estoque_peca) values (?,?,?,?,?)";
+
+		try {
+            PreparedStatement statement = con.prepareStatement(sql);
+            statement.setInt(1, entity.getIdItem());
+            statement.setString(2, entity.getDescricaoItem());
+            statement.setString(3, entity.getFabricante());
+            statement.setDouble(4, entity.getPrecoItem());
+            statement.setInt(5, entity.getEstoqueItem());
+            statement.execute();
             statement.close();
-            BaseDAOImpl.closeConnection();
+            System.out.println("Peça adicionada com sucesso.");
         } catch (Exception e) {
             e.printStackTrace();
+        }finally {closeConnection();
         }
     }
+     
    //===================================ALTERAR=========================================
 	@Override	
 	public Pecas alterar(Pecas entity) throws SQLException {
@@ -63,15 +57,16 @@ public class PecasDAO extends BaseDAOImpl <Pecas>{
     }
 //=====================================BUSCAR POR NOME==================================
 	@Override	
-	public ResultSet buscar (Pecas entity) {
+	public ResultSet buscar(Pecas entity) {
 
-	        String sql = "SELECT * FROM tb_pecas WHERE nome_peca = ?";
+	        String sql = "SELECT * FROM tb_pecas WHERE desc_peca = ? OR fab_peca = ?";
 	        PreparedStatement ptst;
 	        ResultSet rs = null;
 	    
 	        try {
 	            ptst = getConnection().prepareStatement(sql);
 	            ptst.setString(1, entity.getDescricaoItem());
+	            ptst.setString(2, entity.getDescricaoItem());
 	            System.out.println(ptst);
 	            rs = ptst.executeQuery();
 	        } catch (SQLException e) {
@@ -81,15 +76,15 @@ public class PecasDAO extends BaseDAOImpl <Pecas>{
 	    }
 
 //==================================BUSCAR POR FAB=====================================================
-	    public ResultSet buscarPorFab (Pecas entity) {
+	    public ResultSet buscarPorPK (Pecas entity) {
 
-	        String sql = "SELECT * FROM tb_pecas WHERE fab_peca = ?";
+	        String sql = "SELECT * FROM tb_pecas WHERE id_peca = ?";
 	        PreparedStatement ptst;
 	        ResultSet rs = null;
 	    
 	        try {
 	            ptst = getConnection().prepareStatement(sql);
-	            ptst.setString(1, entity.getFabricante());
+	            ptst.setInt(1, entity.getIdItem());
 	            System.out.println(ptst);
 	            rs = ptst.executeQuery();
 	        } catch (SQLException e) {

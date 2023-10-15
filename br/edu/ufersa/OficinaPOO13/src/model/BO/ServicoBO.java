@@ -8,21 +8,38 @@ import java.util.List;
 import Exceptions.InfoNaoCompativelException;
 import Exceptions.InsertException;
 import Exceptions.NotFoundException;
-import model.DAO.PecasDAO;
+import javafx.scene.control.Alert.AlertType;
 import model.DAO.ServicoDAO;
-import model.VO.Pecas;
 import model.VO.Servico;
+import view.util.Alerts;
 
 public class ServicoBO implements BaseInterBO<Servico>{
     ServicoDAO servDAO = new ServicoDAO();
 
 //======================================CADASTRAR====================================================================
 	
-	@Override
-	public boolean cadastrar(Servico vo) throws InsertException {
-	    servDAO.inserir(vo);
-	    return true;
-}
+    @Override
+    public boolean cadastrar(Servico vo) throws SQLException {
+        try {
+            ResultSet rs = servDAO.buscar(vo);
+            if (rs.next()) {
+                // Serviço já existe
+                Alerts.showAlert("Erro", "ID já existe", "O serviço com ID " + vo.getServicoId() + " já está cadastrado.", AlertType.ERROR);
+                return false;
+            } else {
+                // Serviço não existe, cadastre-o
+                servDAO.inserir(vo);
+                Alerts.showAlert("Sucesso", "Serviço cadastrado com sucesso", "O serviço foi cadastrado com sucesso.", AlertType.INFORMATION);
+                return true;
+            }
+        } catch (SQLException e) {
+            // Trate a exceção ou exiba uma mensagem de erro
+            e.printStackTrace();
+            Alerts.showAlert("Erro", "Erro no cadastro do serviço", "Ocorreu um erro ao cadastrar o serviço.", AlertType.ERROR);
+            return false;
+        }
+    }
+
 
 //======================================BUSCAR POR ID================================================================
 	@Override

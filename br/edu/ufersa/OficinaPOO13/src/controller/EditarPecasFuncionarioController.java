@@ -5,11 +5,14 @@ import java.io.IOException;
 import Exceptions.InfoNaoCompativelException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import model.BO.PecasBO;
 import model.VO.Pecas;
 import view.Telas;
+import view.util.Alerts;
 
 public class EditarPecasFuncionarioController {
 
@@ -26,17 +29,25 @@ public class EditarPecasFuncionarioController {
     private TextField textfieldNomePeca;
 
     @FXML
+    private Label textoEstoque;
+    
+    @FXML
+    private Label textoID;
+    
+    @FXML
     private TextField textfieldValorPeca;
-
-    public void Initialize(Pecas p) throws Exception{
+    
+    public void Initialize(Pecas p) {
     	 try {
              textfieldNomePeca.setText(p.getDescricaoItem());
              textfieldFabricantePeca.setText(p.getFabricante());
-             textfieldValorPeca.setText(String.valueOf(p.getPrecoItem()));
-             }catch (Exception e)
+             textfieldValorPeca.setText(Double.toString(p.getPrecoItem()));
+             textoEstoque.setText(Integer.toString(p.getEstoqueItem()));
+             textoID.setText(Integer.toString(p.getIdItem()));
+             } catch (Exception e)
          {
              e.printStackTrace();
-             //colocar alert "Não foi possível carregar as informações da peça."
+             Alerts.showAlert("Erro", "Falha ao carregar", "Não foi possível carregar as informações da peça.", AlertType.ERROR);
          }
     }
     
@@ -48,17 +59,25 @@ public class EditarPecasFuncionarioController {
 
             try
             {
-                peca.setDescricaoItem(textfieldNomePeca.getText());
+                int ID = Integer.parseInt(textoID.getText());
+            	peca.setIdItem(ID);
+            	
+            	double preco = Double.parseDouble(textfieldValorPeca.getText());
+            	peca.setPrecoItem(preco);
+            	
+            	int estoque = Integer.parseInt(textoEstoque.getText());
+            	peca.setEstoqueItem(estoque);
+            	
+            	peca.setDescricaoItem(textfieldNomePeca.getText());
                 peca.setFabricante(textfieldFabricantePeca.getText());
-                peca.setPrecoItem(Double.valueOf(textfieldValorPeca.getText()));
 
                 pecaBO.alterar(peca);
-
+                
                 Telas.telaMenuPecas();
             }
             catch (InfoNaoCompativelException e)
             {
-            	//alert "nenhum campo pode ser deixado vazio.";
+            	Alerts.showAlert("Erro", "Campo vazio", "Nenhum campo pode ser deixado vazio.", AlertType.ERROR);
             }
             catch (Exception e)
             {

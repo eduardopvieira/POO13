@@ -164,13 +164,35 @@ public class MenuClienteController {
 
     @FXML
     void deletar(ActionEvent event) {
+    	{
+            ClienteBO cliBO = new ClienteBO();
 
+            try
+            {
+            	cliBO.deletar(tableviewClientes.getSelectionModel().getSelectedItem());
+            }
+            catch (Exception e)
+            {
+                e.printStackTrace();
+            }
+
+            tableviewClientes.getItems().removeAll(tableviewClientes.getSelectionModel().getSelectedItem());
+            stableTable();
+        }
     }
 
     @FXML
     void editar(ActionEvent event) {
+    	 try {
+             Cliente cli = tableviewClientes.getSelectionModel().getSelectedItem();
+             Telas.telaEditarCliente(cli);
+         }
+         catch(Exception e)
+         {
+             e.printStackTrace();
+         }
+     }
 
-    }
 //================================= BUSCAR POR NOME OU CPF ==========================================================
     @FXML
     void realizarBusca(MouseEvent event) throws InfoNaoCompativelException {

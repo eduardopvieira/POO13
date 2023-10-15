@@ -5,7 +5,6 @@ import java.util.List;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -21,38 +20,36 @@ import view.Telas;
 
 public class MenuPecasController {
 
-	    @FXML
-	    private Button botaoAutomovel;
+    @FXML
+    private Button botaoAutomovel;
 
-	    @FXML
-	    private ImageView botaoBuscar;
+    @FXML
+    private ImageView botaoBuscar;
 
-	    @FXML
-	    private Button botaoCadastrarPeca;
+    @FXML
+    private Button botaoCadastrarPeca;
 
-	    @FXML
-	    private Button botaoClientes;
+    @FXML
+    private Button botaoClientes;
 
-	    @FXML
-	    private Button botaoOrcamentos;
+    @FXML
+    private Button botaoDeletar;
 
-	    @FXML
-	    private Button botaoSair;
+    @FXML
+    private Button botaoEditar;
 
-	    @FXML
-	    private Button botaoServicos;
+    @FXML
+    private Button botaoOrcamentos;
 
-	    @FXML
-	    private ChoiceBox<?> choiceboxBusca;
+    @FXML
+    private Button botaoSair;
 
-	    @FXML
-	    private TableColumn<?, ?> tableColumnDeletar;
+    @FXML
+    private Button botaoServicos;
 
-	    @FXML
-	    private TableColumn<?, ?> tableColumnEditar;
+    @FXML
+    private TextField textfieldBusca;
 
-	    @FXML
-	    private TextField textfieldBusca;
 
 	    @FXML private TableView<Pecas> tableviewPecas = new TableView<Pecas>();
 	    @FXML private TableColumn <Pecas, Integer>tableColumnIDPeca = new TableColumn<Pecas, Integer>("id_peca");
@@ -62,6 +59,9 @@ public class MenuPecasController {
 	    @FXML private TableColumn <Pecas, Double>tableColumnValorPeca = new TableColumn<Pecas, Double>("modelo");
 	    
 	    public void initialize() {
+	    	
+	        tableviewPecas.getColumns().clear();
+
 	    	
 	    	tableColumnIDPeca.setCellValueFactory(new PropertyValueFactory<Pecas, Integer>("idItem"));
 	    	tableColumnNomePeca.setCellValueFactory(new PropertyValueFactory<Pecas, String>("descricaoItem"));
@@ -96,13 +96,36 @@ public class MenuPecasController {
 	    
 
 	    @FXML
-	    void irTelaMenuAutos(ActionEvent event) {
-
+	    void irTelaMenuAutos(ActionEvent event)throws Exception {
+	    	Telas.telaMenuAutos();
 	    }
 
-	    @FXML
-	    void realizarBusca(MouseEvent event) {
+	@FXML
+	void realizarBusca(MouseEvent event) {
+		Pecas pc = new Pecas();
+        if (textfieldBusca.getText() != null && !textfieldBusca.getText().isEmpty())
+        {
+        	pc.setDescricaoItem(textfieldBusca.getText());
 
+            PecasBO pcBO = new PecasBO();
+            List<Pecas> pcFab = null;
+            try
+            {
+                pcFab = pcBO.buscarPorNomeOuFab(pc);
+            }
+            catch (Exception e)
+            {
+                e.printStackTrace();
+            }
+                if (!pcFab.isEmpty())
+                {
+                    updateTable(pcFab);
+                }
+        }
+        else
+        {
+            stableTable();
+        }
 	}
 
 
@@ -142,4 +165,77 @@ public class MenuPecasController {
     	Telas.telaCadastrarPecas();
     }
 
+    public void updateTable(List<Pecas> list)
+    {
+        tableviewPecas.getItems().clear();
+        while(!list.isEmpty())
+        {
+        	tableviewPecas.getItems().add(list.get(0));
+            list.remove(0);
+        }
+    }
+    
+    @FXML
+    void deletarLinha(ActionEvent event) {
+    	{
+            PecasBO pcBO = new PecasBO();
+
+            try
+            {
+            	pcBO.deletar(tableviewPecas.getSelectionModel().getSelectedItem());
+            }
+            catch (Exception e)
+            {
+                e.printStackTrace();
+            }
+
+            tableviewPecas.getItems().removeAll(tableviewPecas.getSelectionModel().getSelectedItem());
+            stableTable();
+        }
+    }
+    
+    
+    @FXML
+    void irTelaEditarPeca(ActionEvent event) {
+    	
+    	try {
+            Pecas pc = tableviewPecas.getSelectionModel().getSelectedItem();
+            /*System.out.println(pc.getDescricaoItem());
+            System.out.println(pc.getEstoqueItem());
+            System.out.println(pc.getIdItem());
+            System.out.println(pc.getFabricante());*/
+
+        if (UsuarioAutenticado.getGerenteAutenticado() != null) {
+            Telas.telaEditarPecasGerente(pc);
+        } else {
+        	Telas.telaEditarPecasFuncionario(pc);
+        }
+        
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+    }
+    
+    public void stableTable()
+    {
+    	tableviewPecas.getItems().clear();
+    	PecasBO pcBO = new PecasBO();
+        try
+        {
+            List<Pecas> pcList = pcBO.listar();
+
+            while(!pcList.isEmpty())
+            {
+            	tableviewPecas.getItems().add(pcList.get(0));
+            	pcList.remove(0);
+            }
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+
+    }
 }

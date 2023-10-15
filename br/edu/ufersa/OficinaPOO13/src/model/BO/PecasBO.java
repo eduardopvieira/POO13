@@ -8,8 +8,10 @@ import java.util.List;
 import Exceptions.InfoNaoCompativelException;
 import Exceptions.InsertException;
 import Exceptions.NotFoundException;
+import javafx.scene.control.Alert.AlertType;
 import model.DAO.PecasDAO;
 import model.VO.Pecas;
+import view.util.Alerts;
 
 public class PecasBO implements BaseInterBO<Pecas>{
 	PecasDAO pDAO = new PecasDAO();
@@ -17,38 +19,32 @@ public class PecasBO implements BaseInterBO<Pecas>{
 //======================================CADASTRAR=====================================================================
 
 	@Override
-	public boolean cadastrar(Pecas vo) throws InsertException {
-	    PecasDAO pecaDAO = new PecasDAO();
-	    pecaDAO.inserir(vo);
-	    return true;
-}
+	public boolean cadastrar(Pecas vo) throws SQLException {
+	    try {
+	        ResultSet rs = pDAO.buscarPorPK(vo);
+	        if (rs.next()) {
+	            // Peça já existe
+	            Alerts.showAlert("Erro", "ID já existe", "A peça com ID " + vo.getIdItem() + " já está cadastrada.", AlertType.ERROR);
+	            return false;
+	        } else {
+	            // Serviço não existe, cadastre-o
+	            pDAO.inserir(vo);
+	            Alerts.showAlert("Sucesso", "Peça cadastrado com sucesso", "A peça foi cadastrada com sucesso.", AlertType.INFORMATION);
+	            return true;
+	        }
+	    } catch (SQLException e) {
+	        // Trate a exceção ou exiba uma mensagem de erro
+	        e.printStackTrace();
+	        Alerts.showAlert("Erro", "Erro no cadastro da peça", "Ocorreu um erro ao cadastrar a peça.", AlertType.ERROR);
+	        return false;
+	    }
+	}
 	
 //======================================BUSCAR POR PK=====================================================================
 
-
-	@Override
-	public ArrayList<Pecas> buscarPorPK(Pecas p) throws NotFoundException, InfoNaoCompativelException {
-				ResultSet pecaBuscada = pDAO.buscar(new Pecas(p.getIdItem()));
-				ArrayList<Pecas> pecas = new ArrayList<>();		            
-				    try {
-				    	while(pecaBuscada.next()) {
-						pecas.add(new Pecas(pecaBuscada.getInt("id_peca"),
-						pecaBuscada.getString("desc_peca"),
-						pecaBuscada.getString("fab_peca"),
-						pecaBuscada.getDouble("preco_peca"),
-						pecaBuscada.getInt("estoque_peca")));
-				    	}
-				    } catch (SQLException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-         return pecas;
-	}
-
-//======================================BUSCAR POR FAB=====================================================================
-
-	public ArrayList<Pecas> buscarPorFab(Pecas p) throws NotFoundException, InfoNaoCompativelException {
-				ResultSet pecaBuscada = pDAO.buscar(new Pecas(p.getFabricante()));
+	
+	public ArrayList<Pecas> buscarPorNomeOuFab(Pecas p) throws NotFoundException, InfoNaoCompativelException {
+				ResultSet pecaBuscada = pDAO.buscar(new Pecas(p.getDescricaoItem()));
 				ArrayList<Pecas> pecas = new ArrayList<>();		            
 				    try {
 				    	while(pecaBuscada.next()) {
@@ -70,10 +66,10 @@ public class PecasBO implements BaseInterBO<Pecas>{
 	@Override
 	public Pecas alterar(Pecas vo) throws InsertException {
 		try {  
-			ResultSet verificarPeca = pDAO.buscar(vo);
+			ResultSet verificarPeca = pDAO.buscarPorPK(vo);
 
 	            if (!verificarPeca.next() || vo.getIdItem() == 0) {
-	                throw new InsertException("Peca não encontrada");
+	            	Alerts.showAlert("Erro", "Not Found", "Peça nao encontrada", AlertType.ERROR);
 	            }
 
 	            return pDAO.alterar(vo);
@@ -123,5 +119,11 @@ public class PecasBO implements BaseInterBO<Pecas>{
 	 PecasDAO cliDAO = new PecasDAO();
 
         return cliDAO.listar();
-    }	
+    }
+
+@Override
+public ArrayList<Pecas> buscarPorPK(Pecas vo) throws NotFoundException, InfoNaoCompativelException {
+	// TODO Auto-generated method stub
+	return null;
+}	
 }
