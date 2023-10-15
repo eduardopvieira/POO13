@@ -108,6 +108,27 @@ public class ClienteBO implements BaseInterBO<Cliente> {
 			    return clientes;
 	}	
 	
+	public ArrayList<Cliente> buscarPorPK(String vo) throws NotFoundException, InfoNaoCompativelException {
+		ResultSet clientesBuscados = cliDAO.buscar(vo);
+		ArrayList<Cliente> clientes = new ArrayList<>();		            
+		    try {
+		    	while(clientesBuscados.next()) {
+		    	clientes.add(new Cliente(clientesBuscados.getString("cpf_cliente"),
+		    	clientesBuscados.getString("nome_cliente"),
+		    	clientesBuscados.getString("endereco_cliente")));
+		    	}
+		    	
+		    } catch (InfoNaoCompativelException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		    return clientes;
+}	
+	
+	
 	public ArrayList<Cliente> buscarPorNome(Cliente vo) throws NotFoundException, InfoNaoCompativelException {
 		ResultSet clientesBuscados = cliDAO.buscarPorNome(vo.getNome());
 		ArrayList<Cliente> clientes = new ArrayList<>();		            
@@ -127,5 +148,27 @@ public class ClienteBO implements BaseInterBO<Cliente> {
 			}
 		    return clientes;
 }	
+	
+	public ArrayList<Cliente> buscarPorNomeOuPK(Cliente vo) throws NotFoundException, InfoNaoCompativelException {
+		ResultSet clientesBuscados = cliDAO.buscarPorNomeOuPK(vo.getNome());
+		ArrayList<Cliente> clientes = new ArrayList<>();		            
+		    try {
+		    	while(clientesBuscados.next()) {
+		    	clientes.add(new Cliente(clientesBuscados.getString("cpf_cliente"),
+		    	clientesBuscados.getString("nome_cliente"),
+		    	clientesBuscados.getString("endereco_cliente")));
+		    	}
+		    	
+		    } catch (InfoNaoCompativelException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		    return clientes;
+}	
+	
+	
 }
 

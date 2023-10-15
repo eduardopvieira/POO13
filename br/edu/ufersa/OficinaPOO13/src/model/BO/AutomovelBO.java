@@ -8,27 +8,51 @@ import java.util.List;
 import Exceptions.InfoNaoCompativelException;
 import Exceptions.InsertException;
 import Exceptions.NotFoundException;
+import javafx.scene.control.Alert.AlertType;
 import model.DAO.AutomovelDAO;
 import model.DAO.BaseDAO;
 import model.VO.Automovel;
+import model.VO.Cliente;
+import view.util.Alerts;
 
 public class AutomovelBO implements BaseInterBO<Automovel>{
 	
 	@Override
     public boolean cadastrar(Automovel vo) throws InsertException{
-        AutomovelDAO autoDAO = new AutomovelDAO();
+		try {
+		AutomovelDAO autoDAO = new AutomovelDAO();
         ResultSet autoRS = autoDAO.buscar(vo);
-        try {
-            if (autoRS.next()) {
-                throw new InsertException("Placa já cadastrada.");
+        if (autoRS.next()) {
+        	//AUTO JA EXISTE
+        	 Alerts.showAlert("Erro", "Placa já existe", "O automovel com Placa " + vo.getPlaca() + " já está cadastrado.", AlertType.ERROR);
+        	 return false;
+        } else {
+        	ClienteBO cliBO = new ClienteBO();
+        	List<Cliente> lista = cliBO.buscarPorPK(vo.getCPFDono());
+              	if (!lista.isEmpty()) {
+        		autoDAO.inserir(vo);
+              	Alerts.showAlert("Sucesso", "Automovel cadastrado com sucesso", "Automovel foi cadastrado com sucesso.", AlertType.INFORMATION);
+	            return true;
               	} else {
-              	autoDAO.inserir(vo);
+              		Alerts.showAlert("Erro", "CPF não existe", "Cadastre um cliente com esse CPF antes de linká-lo a um automóvel.", AlertType.ERROR);
+              		return false;
+              	}
               	}
             } catch (SQLException e) {
-            	e.printStackTrace();
-            }throw new InsertException("Falha no cadastro.");
+    	        // Trate a exceção ou exiba uma mensagem de erro
+    	        e.printStackTrace();
+    	        Alerts.showAlert("Erro", "Erro no cadastro do automovel.", "Ocorreu um erro ao cadastrar o auto.", AlertType.ERROR);
+    	        return false;
+    	    } catch (InfoNaoCompativelException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		return false;
 	}
 	
+	
+	
+//=======================================LISTAR======================================================================
 	
 	public List<Automovel> listar() throws SQLException, InfoNaoCompativelException
     {

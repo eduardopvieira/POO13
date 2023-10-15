@@ -27,11 +27,9 @@ public class Cliente{
 
     
     //========================SET GET CPF=========================================
-    public void setCPF(String cpf) throws InfoNaoCompativelException {
+    public void setCPF(String cpf) {
         if (cpf.isEmpty() == false && cpf.length() == 11) {
             this.cpf = cpf;
-        } else {
-           throw new InfoNaoCompativelException("CPF vazio ou com pontuação. Digite o CPF apenas com números.");
         }
     }
     

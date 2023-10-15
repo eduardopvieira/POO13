@@ -104,7 +104,7 @@ public class MenuClienteController {
 	public void initialize() {
 		ClienteBO cliBO = new ClienteBO();
     	
-		tableColumnCPF.setCellValueFactory(new PropertyValueFactory<>("cpf"));
+		tableColumnCPF.setCellValueFactory(new PropertyValueFactory<>("CPF"));
 		tableColumnNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
 		tableColumnEndereco.setCellValueFactory(new PropertyValueFactory<>("endereco"));
 		
@@ -196,55 +196,32 @@ public class MenuClienteController {
 //================================= BUSCAR POR NOME OU CPF ==========================================================
     @FXML
     void realizarBusca(MouseEvent event) throws InfoNaoCompativelException {
-    	Cliente cli = new Cliente();
         if (botaoBuscar.getText() != null && !botaoBuscar.getText().isEmpty())
         {
-            cli.setCPF(botaoBuscar.getText());
-            cli.setNome(botaoBuscar.getText());
+        	Cliente cli = new Cliente(botaoBuscar.getText(), botaoBuscar.getText());
 
             ClienteBO cliBO = new ClienteBO();
-            List<Cliente> cliCPF = null;
+            List<Cliente> cliResult = null;
             try
             {
-                cliCPF = cliBO.buscarPorPK(cli);
+                cliResult = cliBO.buscarPorNomeOuPK(cli);
             }
             catch (Exception e)
             {
                 e.printStackTrace();
             }
 
-            List<Cliente> cliNome = null;
-            try
-            {
-                cliNome = cliBO.buscarPorNome(cli);
-            }
-            catch (Exception e)
-            {
-                e.printStackTrace();
-            }
-
-            try
-            {
-                if (!cliCPF.isEmpty())
-                {
-                    updateTable(cliCPF);
-                }
-                else
-                {
-                    if (!cliNome.isEmpty())
-                    {
-                        updateTable(cliNome);
-                    }
-                }
-            } catch (NullPointerException e) {
-                e.printStackTrace();
-            }
-        }
-        else
-        {
-            stableTable();
-        }
+            if (!cliResult.isEmpty())
+			{
+			    updateTable(cliResult);
+			}
+			else
+			{
+				stableTable();
+			}
     }
+}
+       
 
 
     @FXML

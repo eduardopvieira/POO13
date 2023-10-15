@@ -65,7 +65,6 @@ public class TelaLoginController {
 	            	UsuarioAutenticado.setFuncAutenticado(autenticado);
 	                Telas.telaMenuClientes();
 	                System.out.println("Entrou func");
-	                System.out.println(autenticado.getIsGerente());
 
 	            }	        
 	           

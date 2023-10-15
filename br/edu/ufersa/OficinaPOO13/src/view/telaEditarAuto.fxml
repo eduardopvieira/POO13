@@ -4,9 +4,10 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="362.0" prefWidth="627.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CadastrarAutoController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="362.0" prefWidth="627.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.EditarAutoController">
    <children>
       <Label layoutX="54.0" layoutY="14.0" prefHeight="49.0" prefWidth="402.0" text="Cadastrar Auto">
          <font>
@@ -22,16 +23,18 @@
             <TextField fx:id="textfieldModeloAuto" layoutX="80.0" layoutY="8.0" />
             <TextField fx:id="textfieldMarcaAuto" layoutX="80.0" layoutY="40.0" />
             <TextField fx:id="textfieldKMAuto" layoutX="335.0" layoutY="8.0" />
-            <TextField fx:id="textfieldPlacaAuto" layoutX="335.0" layoutY="40.0" />
             <TextField fx:id="textfieldAnoAuto" layoutX="80.0" layoutY="75.0" />
             <TextField fx:id="textfieldCorAuto" layoutX="335.0" layoutY="75.0" />
             <Label layoutX="42.0" layoutY="79.0" prefHeight="16.0" prefWidth="35.0" text="Ano:" />
             <Label layoutX="302.0" layoutY="79.0" text="Cor:" />
-            <TextField fx:id="textfieldCPF" layoutX="80.0" layoutY="109.0" />
             <Label layoutX="3.0" layoutY="113.0" prefHeight="16.0" prefWidth="74.0" text="CPF Dono:" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="24.0" layoutX="80.0" layoutY="109.0" stroke="BLACK" strokeType="INSIDE" width="170.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="24.0" layoutX="335.0" layoutY="40.0" stroke="BLACK" strokeType="INSIDE" width="170.0" />
+            <Label fx:id="textoCPFDono" layoutX="80.0" layoutY="113.0" prefHeight="16.0" prefWidth="161.0" />
+            <Label fx:id="textoPlaca" layoutX="340.0" layoutY="44.0" prefHeight="16.0" prefWidth="161.0" />
          </children>
       </Pane>
-      <Button fx:id="botaoConcluir" layoutX="366.0" layoutY="252.0" mnemonicParsing="false" onAction="#cadastrarAuto" prefHeight="42.0" prefWidth="111.0" style="-fx-background-color: #FF8C00;" text="Concluir">
+      <Button fx:id="botaoConcluir" layoutX="366.0" layoutY="252.0" mnemonicParsing="false" onAction="#editarAuto" prefHeight="42.0" prefWidth="111.0" style="-fx-background-color: #FF8C00;" text="Concluir">
          <font>
             <Font size="17.0" />
          </font>

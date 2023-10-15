@@ -14,6 +14,9 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import model.BO.AutomovelBO;
 import model.VO.Automovel;
+import model.VO.Funcionario;
+import model.VO.Gerente;
+import model.VO.UsuarioAutenticado;
 import view.Telas;
 
 public class MenuAutoController {
@@ -64,7 +67,7 @@ public class MenuAutoController {
 		
     	AutomovelBO autoBO = new AutomovelBO();
     	
-		tableColumnCPFDono.setCellValueFactory(new PropertyValueFactory<Automovel, String>("CPFdono"));
+		tableColumnCPFDono.setCellValueFactory(new PropertyValueFactory<Automovel, String>("CPFDono"));
 		tableColumnAno.setCellValueFactory(new PropertyValueFactory<Automovel, Integer>("ano"));
 		tableColumnCor.setCellValueFactory(new PropertyValueFactory<Automovel, String>("cor"));
 		tableColumnMarca.setCellValueFactory(new PropertyValueFactory<Automovel, String>("marca"));
@@ -101,17 +104,38 @@ public class MenuAutoController {
     
     @FXML
     void abrirCadastroAuto(ActionEvent event)throws Exception {
-
+    	Telas.telaCadastroAuto();
     }
 
     @FXML
     void deletar(ActionEvent event) {
+    	{
+            AutomovelBO autoBO = new AutomovelBO();
 
+            try
+            {
+            	autoBO.deletar(tableviewAuto.getSelectionModel().getSelectedItem());
+            }
+            catch (Exception e)
+            {
+                e.printStackTrace();
+            }
+
+            tableviewAuto.getItems().removeAll(tableviewAuto.getSelectionModel().getSelectedItem());
+            stableTable();
+        }
     }
 
     @FXML
-    void editar(ActionEvent event) {
-
+    void editar(ActionEvent event) throws Exception {
+    	try {
+            Automovel pc = tableviewAuto.getSelectionModel().getSelectedItem();
+            Telas.telaEditarAuto(pc);
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
     }
 
     @FXML
@@ -136,12 +160,39 @@ public class MenuAutoController {
 
     @FXML
     void trocarParaMenuServicos(ActionEvent event)throws Exception {
-    	
+    	Gerente ger = UsuarioAutenticado.getGerenteAutenticado();
+    	if (ger != null) {
+    		Telas.telaMenuServicoGerente(ger);
+    	} else {
+    		Funcionario func = UsuarioAutenticado.getFuncAutenticado();
+    		Telas.telaMenuServicoFuncionario(func);
+    	}
     }
 
     @FXML
     void trocarParaTelaLogin(ActionEvent event) throws Exception {
     	Telas.telaLogin();
+    }
+    
+    public void stableTable()
+    {
+    	tableviewAuto.getItems().clear();
+    	AutomovelBO autoBO = new AutomovelBO();
+        try
+        {
+            List<Automovel> pcList = autoBO.listar();
+
+            while(!pcList.isEmpty())
+            {
+            	tableviewAuto.getItems().add(pcList.get(0));
+            	pcList.remove(0);
+            }
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+
     }
 
 }

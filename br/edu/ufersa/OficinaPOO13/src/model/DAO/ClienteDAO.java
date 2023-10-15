@@ -99,6 +99,25 @@ public class ClienteDAO extends BaseDAOImpl <Cliente>{
         }
         return rs;
     }
+    
+//=====================================================================================
+    
+    public ResultSet buscar (String entity) {
+
+        String sql = "SELECT * FROM tb_clientes WHERE cpf_cliente = ?";
+        PreparedStatement ptst;
+        ResultSet rs = null;
+    
+        try {
+            ptst = getConnection().prepareStatement(sql);
+            ptst.setString(1, entity);
+            System.out.println(ptst);
+            rs = ptst.executeQuery();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return rs;
+    }
 //==================================BUSCAR POR NOME====================================
     public ResultSet buscarPorNome (String nome) {
 
@@ -109,6 +128,26 @@ public class ClienteDAO extends BaseDAOImpl <Cliente>{
         try {
             ptst = getConnection().prepareStatement(sql);
             ptst.setString(1, nome);
+            System.out.println(ptst);
+            rs = ptst.executeQuery();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return rs;
+    }
+    
+    
+//==================================BUSCAR POR NOME====================================
+    public ResultSet buscarPorNomeOuPK (String nome) {
+
+        String sql = "SELECT * FROM tb_clientes WHERE nome_cliente = ? OR cpf_cliente = ?";
+        PreparedStatement ptst;
+        ResultSet rs = null;
+    
+        try {
+            ptst = getConnection().prepareStatement(sql);
+            ptst.setString(1, nome);
+            ptst.setString(2, nome);
             System.out.println(ptst);
             rs = ptst.executeQuery();
         } catch (SQLException e) {

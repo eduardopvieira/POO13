@@ -200,10 +200,6 @@ public class MenuPecasController {
     	
     	try {
             Pecas pc = tableviewPecas.getSelectionModel().getSelectedItem();
-            /*System.out.println(pc.getDescricaoItem());
-            System.out.println(pc.getEstoqueItem());
-            System.out.println(pc.getIdItem());
-            System.out.println(pc.getFabricante());*/
 
         if (UsuarioAutenticado.getGerenteAutenticado() != null) {
             Telas.telaEditarPecasGerente(pc);

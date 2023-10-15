@@ -64,7 +64,7 @@ public class ServicoBO implements BaseInterBO<Servico>{
 //======================================BUSCAR POR NOME================================================================
 
 	public ArrayList<Servico> buscarPorNome(Servico s) throws NotFoundException, InfoNaoCompativelException {
-				ResultSet servBuscado = servDAO.buscar(new Servico(s.getServicoNome()));
+				ResultSet servBuscado = servDAO.buscarPorNome(new Servico(s.getServicoNome()));
 				ArrayList<Servico> servs = new ArrayList<>();		            
 				    try {
 				    	while(servBuscado.next()) {

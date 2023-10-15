@@ -1,5 +1,6 @@
 package view;
 
+import controller.EditarAutoController;
 import controller.EditarPecasFuncionarioController;
 import controller.EditarPecasGerenteController;
 import javafx.application.Application;
@@ -7,6 +8,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import model.VO.Automovel;
 import model.VO.Cliente;
 import model.VO.Funcionario;
 import model.VO.Gerente;
@@ -128,6 +130,23 @@ public class Telas extends Application{
 		primaryStage.setScene(cena);
 	}
 	
+	public static void telaCadastroAuto() throws Exception {
+	Parent root = FXMLLoader.load(Telas.class.getResource("PopUpCadastroAuto.fxml"));
+	Scene cena = new Scene(root);		
+	primaryStage.setScene(cena);
+	}
+	
+	public static void telaEditarAuto(Automovel auto) throws Exception {
+		FXMLLoader loader = new FXMLLoader(Telas.class.getResource("telaEditarAutoController.fxml"));
+		Parent root = loader.load();
+		
+		EditarAutoController controller = loader.getController();
+		controller.Initialize(auto); 
+		
+		Scene cena = new Scene(root);
+		primaryStage.setScene(cena);
+		
+	}
 	/*public static void telaCadastroOrcamento() throws Exception{
 		Parent root = FXMLLoader.load(Telas.class.getResource("telaCadastroCliente.fxml"));
 		Scene cena = new Scene(root);		

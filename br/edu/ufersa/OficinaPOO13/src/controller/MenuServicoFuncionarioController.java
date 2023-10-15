@@ -82,13 +82,13 @@ public class MenuServicoFuncionarioController {
 //==============================================================
     
     @FXML
-    void irParaMenuAuto(ActionEvent event) {
-
+    void irParaMenuAuto(ActionEvent event) throws Exception {
+    	Telas.telaMenuAutos();
     }
 
     @FXML
-    void irParaMenuClientes(ActionEvent event) {
-
+    void irParaMenuClientes(ActionEvent event) throws Exception {
+    	Telas.telaMenuClientes();
     }
 
     @FXML

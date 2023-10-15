@@ -12,7 +12,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import model.BO.PecasBO;
 import model.BO.ServicoBO;
+import model.VO.Pecas;
 import model.VO.Servico;
 import view.Telas;
 
@@ -90,12 +92,26 @@ public class MenuServicoGerenteController {
     
     @FXML
     void deletar(ActionEvent event) {
+    	{
+            ServicoBO servBO = new ServicoBO();
 
+            try
+            {
+            	servBO.deletar(tabelaServicos.getSelectionModel().getSelectedItem());
+            }
+            catch (Exception e)
+            {
+                e.printStackTrace();
+            }
+
+            tabelaServicos.getItems().removeAll(tabelaServicos.getSelectionModel().getSelectedItem());
+            stableTable();
+        }
     }
 
     @FXML
     void editar(ActionEvent event) {
-
+    	
     }
 
     @FXML
@@ -135,6 +151,27 @@ public class MenuServicoGerenteController {
     @FXML
     void irParaTelaLogin(ActionEvent event) throws Exception {
     	Telas.telaLogin();
+    }
+    
+    public void stableTable()
+    {
+    	tabelaServicos.getItems().clear();
+    	ServicoBO pcBO = new ServicoBO();
+        try
+        {
+            List<Servico> pcList = pcBO.listar();
+
+            while(!pcList.isEmpty())
+            {
+            	tabelaServicos.getItems().add(pcList.get(0));
+            	pcList.remove(0);
+            }
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+
     }
 
 }
