@@ -12,16 +12,17 @@ public class Funcionario extends Pessoa {
     public Funcionario (String cpf) throws InfoNaoCompativelException {
     	setCPF(cpf);
     }
-    public Funcionario (String cpf, String nome, String endereco, String senha) throws InfoNaoCompativelException {
-        super(nome, endereco, cpf);
+    public Funcionario (String nome, String cpf, String endereco, String senha) throws InfoNaoCompativelException {
+        super(cpf, nome, endereco);
         setSenha(senha);
     }
     
-    public Funcionario (String cpf, String nome, String endereco, String senha, boolean isGerente) throws InfoNaoCompativelException {
-        super(nome, endereco, cpf);
+    public Funcionario (String nome, String cpf, String endereco, String senha, boolean isGerente) throws InfoNaoCompativelException {
+        super(cpf, nome, endereco);
         setSenha(senha);
         setIsGerente(isGerente);
     }
+  
     public Funcionario (String cpf, String senha) throws InfoNaoCompativelException {
         super.setCPF(cpf);
         setSenha(senha);

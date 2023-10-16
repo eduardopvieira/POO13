@@ -1,7 +1,6 @@
 package controller;
 
 import java.util.List;
-
 import Exceptions.InfoNaoCompativelException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -15,8 +14,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import model.BO.ClienteBO;
 import model.VO.Cliente;
-import model.VO.Funcionario;
-import model.VO.Gerente;
 import model.VO.UsuarioAutenticado;
 import view.Telas;
 
@@ -85,12 +82,12 @@ public class MenuClienteController {
 
     @FXML
     void trocarParaMenuServicos(ActionEvent event) throws Exception{
-    	Funcionario f = UsuarioAutenticado.getFuncAutenticado();
-    	if (f == null) {
-    		Gerente ger = UsuarioAutenticado.getGerenteAutenticado();
-    		Telas.telaMenuServicoGerente(ger);
-    	} else {
-    		Telas.telaMenuServicoFuncionario(f);
+
+    	if ("gerente".equals(UsuarioAutenticado.getFuncao())) {
+    	    Telas.telaMenuServicoGerente();
+
+    	} else if ("funcionario".equals(UsuarioAutenticado.getFuncao())) {
+    		Telas.telaMenuServicoFuncionario();
     	}
     }
 

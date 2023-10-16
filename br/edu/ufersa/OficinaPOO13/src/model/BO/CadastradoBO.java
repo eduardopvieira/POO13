@@ -14,5 +14,5 @@ public class CadastradoBO {
 	    {
 			CadastradoDAO caDAO = new CadastradoDAO();
 	        return caDAO.listarView();
-	    }
+	    } 
 }

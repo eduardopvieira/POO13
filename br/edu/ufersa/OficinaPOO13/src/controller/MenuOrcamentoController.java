@@ -162,13 +162,11 @@ public void initialize() {
 
     @FXML
     void irTelaMenuServicos(ActionEvent event) throws Exception{
-    	Gerente ger = UsuarioAutenticado.getGerenteAutenticado();
-    	if (ger != null) {
-    		Telas.telaMenuServicoGerente(ger);
-    	} else {
-    		Funcionario func = UsuarioAutenticado.getFuncAutenticado();
-    		Telas.telaMenuServicoFuncionario(func);
-    	}
+    	if ("gerente".equals(UsuarioAutenticado.getFuncao())) {
+    		Telas.telaMenuServicoGerente();
+    	} else if ("funcionario".equals(UsuarioAutenticado.getFuncao())) {
+    		Telas.telaMenuServicoFuncionario();
+    		}
     }
     
   //============================================================================================

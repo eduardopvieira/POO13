@@ -17,7 +17,7 @@ public class GerenteDAO extends BaseDAOImpl<Gerente> {
 	@Override
 	public void inserir(Gerente func) {
 		Connection con = BaseDAOImpl.getConnection();
-		String sql = "INSERT INTO tb_funcionarios (nome_func, cpf_func, senha_func, endereco_func, is_gerente) values (?, ?, ?, ?, ?)";
+		String sql = "INSERT INTO tb_funcionarios (nome_func, cpf_func, senha_func, endereco_func, isgerente) values (?, ?, ?, ?, ?)";
 		String nome = func.getNome();
 		String cpf = func.getCPF();
 		String senha = func.getSenha();

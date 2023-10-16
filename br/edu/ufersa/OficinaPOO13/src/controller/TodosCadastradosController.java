@@ -52,13 +52,13 @@ public class TodosCadastradosController {
 
     
     @FXML
-    void irTelaCadastroFunc(ActionEvent event) {
-    	
+    void irTelaCadastroFunc(ActionEvent event) throws Exception {
+    	Telas.telaCadastroFunc();
     }
 
     @FXML
-    void irTelaClientesOrcs(ActionEvent event) {
-
+    void irTelaClientesOrcs(ActionEvent event)throws Exception {
+    	Telas.telaInnerJoin();
     }
 
     @FXML

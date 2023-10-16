@@ -44,7 +44,7 @@ public class CadastrarServicoController {
     	serv.setServicoPreco(preco);
     	servBO.cadastrar(serv);
     	
-    	Telas.telaMenuServicoGerente(UsuarioAutenticado.getGerenteAutenticado());
+    	Telas.telaMenuServicoGerente();
     	}catch (Exception e) {
     		Alerts.showAlert("ERRO", "Falha ao cadastrar serviço", "Erro ao cadastrar serviço. Nada foi cadastrado.", AlertType.ERROR);
     	}
@@ -52,7 +52,7 @@ public class CadastrarServicoController {
 
     @FXML
     void voltar(ActionEvent event) throws Exception {
-    	Telas.telaMenuServicoGerente(UsuarioAutenticado.getGerenteAutenticado());
+    	Telas.telaMenuServicoGerente();
     }
 
 }
