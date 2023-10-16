@@ -29,6 +29,14 @@ public class TelaLoginController {
     @FXML
     private PasswordField campoSenha;
     
+	@FXML
+	/*public void Initialize() {
+	UsuarioAutenticado.setFuncAutenticado(null);
+	UsuarioAutenticado.setGerenteAutenticado(null);
+	System.out.println("Funcionario: " + UsuarioAutenticado.getFuncAutenticado().getIsGerente());
+	System.out.println("Gerente: " + UsuarioAutenticado.getGerenteAutenticado().getIsGerente());
+
+	}*/
 	FuncionarioBO funcBO = new FuncionarioBO();
 	GerenteBO gerBO = new GerenteBO();
 	
@@ -45,36 +53,30 @@ public class TelaLoginController {
 	        e.printStackTrace();
 	    }
 
+	    // Limpar completamente o UsuarioAutenticado
+	    UsuarioAutenticado.setFuncAutenticado(null);
+	    UsuarioAutenticado.setGerenteAutenticado(null);
+
 	    try {
 	        Funcionario autenticado = funcBO.autenticar(func);
 
-	            if (autenticado.getIsGerente()) {
-	                // Navegue para a tela do gerente
-	                
-	            	
-	            	Gerente gerenteAutenticado = new Gerente();
-	            	gerenteAutenticado.setCPF(autenticado.getCPF());
-	            	gerenteAutenticado.setNome(autenticado.getNome());
-	            	gerenteAutenticado.setEndereco(autenticado.getEndereco());
-	            	gerenteAutenticado.setSenha(autenticado.getSenha());
-	            	UsuarioAutenticado.setGerenteAutenticado(gerenteAutenticado);
-	            	
-	                Telas.telaMenuClientes();
-	                System.out.println("Entrou gerente");
-
-
-	            } else {
-	                // Navegue para a tela do funcionário
-	            	UsuarioAutenticado.setFuncAutenticado(autenticado);
-	                Telas.telaMenuClientes();
-	                System.out.println("Entrou func");
-
-	            }	        
-	           
-	        }catch (Exception e) {
-		        Alerts.showAlert("Error", "Erro de autenticação", e.getMessage(), AlertType.WARNING);
-		        e.printStackTrace(); 
-
+	        if (autenticado.getIsGerente()) {
+	            Gerente gerenteAutenticado = new Gerente();
+	            gerenteAutenticado.setCPF(autenticado.getCPF());
+	            gerenteAutenticado.setNome(autenticado.getNome());
+	            gerenteAutenticado.setEndereco(autenticado.getEndereco());
+	            gerenteAutenticado.setSenha(autenticado.getSenha());
+	            UsuarioAutenticado.setGerenteAutenticado(gerenteAutenticado);
+	            UsuarioAutenticado.setFuncao("gerente");
+	            Telas.telaMenuClientes();
+	        } else {
+	        	UsuarioAutenticado.setFuncAutenticado(autenticado);
+	            UsuarioAutenticado.setFuncao("funcionario");
+	            Telas.telaMenuClientes();
+	        }
+	    } catch (Exception e) {
+	        Alerts.showAlert("Error", "Erro de autenticação", e.getMessage(), AlertType.WARNING);
+	        e.printStackTrace();
 	    }
 	}
 	

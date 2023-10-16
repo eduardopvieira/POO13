@@ -66,7 +66,7 @@ public class EditarServicoController {
 
             servBO.alterar(serv);
             
-            Telas.telaMenuServicoGerente(UsuarioAutenticado.getGerenteAutenticado());
+            Telas.telaMenuServicoGerente();
         }
         catch (InfoNaoCompativelException e)
         {
@@ -80,7 +80,7 @@ public class EditarServicoController {
 
     @FXML
     void voltar(ActionEvent event) throws Exception {
-    	Telas.telaMenuServicoGerente(UsuarioAutenticado.getGerenteAutenticado());
+    	Telas.telaMenuServicoGerente();
     }
 
 }

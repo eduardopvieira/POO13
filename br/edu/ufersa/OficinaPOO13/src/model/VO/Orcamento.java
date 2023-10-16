@@ -20,6 +20,10 @@ public class Orcamento {
 	  setIdOrcamento(idOrcamento);
   }
  
+  public Orcamento(String cpf, int id) {
+	  setCPFClienteOrcamento(cpf);
+	  setIdOrcamento(id);
+  }
   
   public Orcamento(int id, String clienteOrcamento, String automovelOrcamento, int pecaOrcamento, int servicoOrcamento, Date dataOrcamento, double totalOrcamento, boolean isPago){
       

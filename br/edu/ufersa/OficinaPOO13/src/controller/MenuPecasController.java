@@ -12,8 +12,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import model.BO.PecasBO;
-import model.VO.Funcionario;
-import model.VO.Gerente;
 import model.VO.Pecas;
 import model.VO.UsuarioAutenticado;
 import view.Telas;
@@ -146,13 +144,11 @@ public class MenuPecasController {
 
     @FXML
     void irParaMenuServico(ActionEvent event) throws Exception {
-    	Gerente ger = UsuarioAutenticado.getGerenteAutenticado();
-    	if (ger != null) {
-    		Telas.telaMenuServicoGerente(ger);
-    	} else {
-    		Funcionario func = UsuarioAutenticado.getFuncAutenticado();
-    		Telas.telaMenuServicoFuncionario(func);
-    	}
+    	if ("gerente".equals(UsuarioAutenticado.getFuncao())) {
+    		Telas.telaMenuServicoGerente();
+    	} else if ("funcionario".equals(UsuarioAutenticado.getFuncao())) {
+    		Telas.telaMenuServicoFuncionario();
+    		}
     }
 
     @FXML

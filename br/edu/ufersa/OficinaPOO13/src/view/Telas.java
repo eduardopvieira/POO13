@@ -14,8 +14,6 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import model.VO.Automovel;
 import model.VO.Cliente;
-import model.VO.Funcionario;
-import model.VO.Gerente;
 import model.VO.Orcamento;
 import model.VO.Pecas;
 import model.VO.Servico;
@@ -63,7 +61,7 @@ public class Telas extends Application{
 		Scene cena = new Scene(root);		
 		primaryStage.setScene(cena);
 	}
-	public static void telaMenuServicoFuncionario(Funcionario func) throws Exception{
+	public static void telaMenuServicoFuncionario() throws Exception{
 		Parent root = FXMLLoader.load(Telas.class.getResource("telaMenuServicoFuncionario.fxml"));
 		Scene cena = new Scene(root);		
 		primaryStage.setScene(cena);
@@ -80,7 +78,7 @@ public class Telas extends Application{
 		primaryStage.setScene(cena);
 	}
 	
-	public static void telaMenuServicoGerente(Gerente ger) throws Exception{
+	public static void telaMenuServicoGerente() throws Exception{
 		Parent root = FXMLLoader.load(Telas.class.getResource("telaMenuServicoGerente.fxml"));
 		Scene cena = new Scene(root);		
 		primaryStage.setScene(cena);
@@ -134,6 +132,13 @@ public class Telas extends Application{
 		primaryStage.setScene(cena);
 		
 	}
+	
+	public static void telaCadastroFunc() throws Exception {
+		Parent root = FXMLLoader.load(Telas.class.getResource("telaCadastroFunc.fxml"));
+		Scene cena = new Scene(root);		
+		primaryStage.setScene(cena);
+	}
+	
 	
 	public static void telaTodosCadastrados() throws Exception {
 		Parent root = FXMLLoader.load(Telas.class.getResource("telaTodosCadastrados.fxml"));
@@ -204,6 +209,12 @@ public class Telas extends Application{
 		controller.Initialize(orc); 
 		
 		Scene cena = new Scene(root);
+		primaryStage.setScene(cena);
+	}
+	
+	public static void telaInnerJoin() throws Exception{
+		Parent root = FXMLLoader.load(Telas.class.getResource("telaInnerJoin.fxml"));
+		Scene cena = new Scene(root);		
 		primaryStage.setScene(cena);
 	}
 	
