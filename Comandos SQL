@@ -47,3 +47,8 @@ CREATE TABLE tb_orcamentos (
     precoTotal numeric(5,2),
     isPago boolean
 );
+
+CREATE VIEW vw_clientes_e_funcionarios AS
+SELECT cpf_cliente AS CPF, nome_cliente AS Nome, endereco_cliente AS Endereco, 'cliente' AS Funcao FROM tb_clientes
+UNION
+SELECT cpf_func AS CPF, nome_func AS Nome, endereco_func AS Endereco, 'funcionario' AS Funcao FROM tb_funcionarios;

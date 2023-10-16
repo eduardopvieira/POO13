@@ -67,6 +67,7 @@
                   <Font name="Manjari Regular" size="13.0" />
                </font>
             </Label>
+            <Button fx:id="botaoOutrasFuncoes" layoutX="104.0" layoutY="346.0" mnemonicParsing="false" onAction="#irTelaOutrasFuncoes" text="Outras Funçoes" />
          </children>
       </Pane>
    </items>

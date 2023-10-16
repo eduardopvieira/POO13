@@ -24,6 +24,9 @@ public class TelaLoginController {
     private TextField campoCPF;
 
     @FXML
+    private Button botaoOutrasFUncoes;
+    
+    @FXML
     private PasswordField campoSenha;
     
 	FuncionarioBO funcBO = new FuncionarioBO();
@@ -73,5 +76,10 @@ public class TelaLoginController {
 		        e.printStackTrace(); 
 
 	    }
+	}
+	
+	@FXML
+	void irTelaOutrasFuncoes(ActionEvent event) throws Exception{
+		Telas.telaTodosCadastrados();
 	}
 }
