@@ -99,6 +99,8 @@ public void initialize() {
         tabelaOrcamentos.getColumns().add(tableColumnPlacaOrc);
         tabelaOrcamentos.getColumns().add(tableColumnPrecoOrc);
         tabelaOrcamentos.getColumns().add(tableColumnServicoOrc);
+        
+        
 
         
         try

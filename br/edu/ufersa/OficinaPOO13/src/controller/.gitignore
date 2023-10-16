@@ -18,3 +18,12 @@
 /MenuServicoGerenteController.class
 /PopUpCadastrarAutoController.class
 /TelaLoginController.class
+/MenuAutoController.class
+/MenuClienteController.class
+/CadastrarAutoController.class
+/CadastrarOrcamentoController.class
+/EditarAutoController.class
+/EditarClienteController.class
+/EditarOrcamentoController.class
+/EditarServicoController.class
+/TodosCadastradosController.class
