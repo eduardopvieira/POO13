@@ -52,10 +52,9 @@
             <TableView fx:id="tabelaPecasOrcamento" layoutX="24.0" layoutY="56.0" prefHeight="264.0" prefWidth="601.0">
               <columns>
                 <TableColumn fx:id="tableColumnIDPeca" prefWidth="56.0" text="ID" />
-                <TableColumn fx:id="tableColumnNomePeca" prefWidth="176.0" text="Nome" />
-                  <TableColumn fx:id="tableColumnFabricantePeca" prefWidth="168.0" text="Fabricante" />
-                  <TableColumn fx:id="tableColumnValorPeca" prefWidth="100.0" text="Valor" />
-                  <TableColumn fx:id="tableColumnEstoquePeca" prefWidth="100.0" text="Estoque" />
+                <TableColumn fx:id="tableColumnNomePeca" prefWidth="266.0" text="Nome" />
+                  <TableColumn fx:id="tableColumnValorPeca" prefWidth="174.0" text="Valor" />
+                  <TableColumn fx:id="tableColumnEstoquePeca" prefWidth="104.0" text="Quantidade" />
               </columns>
             </TableView>
             <Label layoutX="25.0" layoutY="14.0" prefHeight="36.0" prefWidth="299.0" text="Peças do Orçamento:">

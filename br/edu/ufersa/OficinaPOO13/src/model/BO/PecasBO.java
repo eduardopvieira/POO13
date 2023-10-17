@@ -40,6 +40,27 @@ public class PecasBO implements BaseInterBO<Pecas>{
 	    }
 	}
 	
+	public boolean cadastrarPecaOrcamento(Pecas vo) throws SQLException {
+	    try {
+	        ResultSet rs = pDAO.buscarPecaOrcamentoPorPK(vo);
+	        if (rs.next()) {
+	            // Peça já existe
+	            Alerts.showAlert("Erro", "ID já existe", "A peça com ID " + vo.getIdItem() + " já está cadastrada.", AlertType.ERROR);
+	            return false;
+	        } else {
+	            // Serviço não existe, cadastre-o
+	            pDAO.inserirPecaOrcamento(vo);
+	            Alerts.showAlert("Sucesso", "Peça cadastrado com sucesso", "A peça foi cadastrada com sucesso.", AlertType.INFORMATION);
+	            return true;
+	        }
+	    } catch (SQLException e) {
+	        // Trate a exceção ou exiba uma mensagem de erro
+	        e.printStackTrace();
+	        Alerts.showAlert("Erro", "Erro no cadastro da peça", "Ocorreu um erro ao cadastrar a peça.", AlertType.ERROR);
+	        return false;
+	    }
+	}
+	
 //======================================BUSCAR POR PK=====================================================================
 
 	
@@ -79,6 +100,23 @@ public class PecasBO implements BaseInterBO<Pecas>{
 	            throw new InsertException(e.getMessage());
 	        }
 	    }
+	
+	public Pecas alterarPecaOrcamento(Pecas vo) throws InsertException {
+		try {  
+			ResultSet verificarPeca = pDAO.buscarPecaOrcamentoPorPK(vo);
+
+	            if (!verificarPeca.next() || vo.getIdItem() == 0) {
+	            	Alerts.showAlert("Erro", "Not Found", "Peça nao encontrada", AlertType.ERROR);
+	            }
+
+	            return pDAO.alterarPecaOrcamento(vo);
+	            
+	        }
+	        catch (Exception e) {
+	            throw new InsertException(e.getMessage());
+	        }
+	    }
+
 
 //======================================DELETAR=====================================================================
 
@@ -119,6 +157,13 @@ public class PecasBO implements BaseInterBO<Pecas>{
 	 PecasDAO cliDAO = new PecasDAO();
 
         return cliDAO.listar();
+    }
+	
+	public List<Pecas> listarPecaOrcamento(Pecas vo) throws SQLException
+    {
+	 PecasDAO cliDAO = new PecasDAO();
+
+        return cliDAO.listarPecaOrcamento(vo);
     }
 
 @Override

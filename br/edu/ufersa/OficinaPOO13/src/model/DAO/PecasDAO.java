@@ -32,6 +32,23 @@ public class PecasDAO extends BaseDAOImpl <Pecas>{
         }finally {closeConnection();
         }
     }
+	
+	public void inserirPecaOrcamento(Pecas entity) {
+		Connection con = getConnection();
+        String sql = "INSERT INTO tb_pecasOrcamento (orcamento_id, peca_id, quantidade) values (?,?,?)";
+
+		try {
+            PreparedStatement statement = con.prepareStatement(sql);
+            statement.setInt(1, entity.getIdOrcamentoPeca());
+            statement.setInt(2, entity.getIdItem());
+            statement.setInt(3, entity.getQuantidade());
+            statement.execute();
+            statement.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }finally {closeConnection();
+        }
+    }
      
    //===================================ALTERAR=========================================
 	@Override	
@@ -45,6 +62,25 @@ public class PecasDAO extends BaseDAOImpl <Pecas>{
 	            statement.setDouble(3, entity.getPrecoItem());
 	            statement.setInt(4, entity.getEstoqueItem());
 	            statement.setInt(5, entity.getIdItem());
+	            statement.executeUpdate();
+	            statement.close();
+	            return entity;
+		}
+        catch(SQLException e)
+        {
+			throw e;
+        }
+        finally {closeConnection();}
+    }
+	
+	public Pecas alterarPecaOrcamento(Pecas entity) throws SQLException {
+		Connection con = BaseDAOImpl.getConnection();
+        String sql = "UPDATE tb_pecasOrcamento SET quantidade = ? WHERE peca_id = ?";    
+		try {
+	            PreparedStatement statement = con.prepareStatement(sql);
+	            statement.setInt(1, entity.getIdOrcamentoPeca());
+	            statement.setInt(2, entity.getIdItem());
+	            statement.setInt(3, entity.getQuantidade());
 	            statement.executeUpdate();
 	            statement.close();
 	            return entity;
@@ -73,6 +109,24 @@ public class PecasDAO extends BaseDAOImpl <Pecas>{
 	        }
 	        return rs;
 	    }
+	
+	public ResultSet buscarPecaOrcamento(Pecas entity) {
+
+        String sql = "SELECT * FROM tb_pecasOrcamento WHERE peca_id = ?";
+        PreparedStatement ptst;
+        ResultSet rs = null;
+    
+        try {
+            ptst = getConnection().prepareStatement(sql);
+            ptst.setString(1, entity.getDescricaoItem());
+            ptst.setString(2, entity.getDescricaoItem());
+            rs = ptst.executeQuery();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return rs;
+    }
+	
 
 //==================================BUSCAR POR FAB=====================================================
 	    public ResultSet buscarPorPK (Pecas entity) {
@@ -84,6 +138,24 @@ public class PecasDAO extends BaseDAOImpl <Pecas>{
 	        try {
 	            ptst = getConnection().prepareStatement(sql);
 	            ptst.setInt(1, entity.getIdItem());
+	            System.out.println(ptst);
+	            rs = ptst.executeQuery();
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        }
+	        return rs;
+	    }
+	    
+	    public ResultSet buscarPecaOrcamentoPorPK (Pecas entity) {
+
+	        String sql = "SELECT * FROM tb_pecasOrcamento WHERE peca_id = ? AND orcamento_id = ?";
+	        PreparedStatement ptst;
+	        ResultSet rs = null;
+	    
+	        try {
+	            ptst = getConnection().prepareStatement(sql);
+	            ptst.setInt(1, entity.getIdItem());
+	            ptst.setInt(2, entity.getIdOrcamentoPeca());
 	            System.out.println(ptst);
 	            rs = ptst.executeQuery();
 	        } catch (SQLException e) {
@@ -130,12 +202,76 @@ public class PecasDAO extends BaseDAOImpl <Pecas>{
 	        finally {closeConnection();}
 	        return pc;
 	    }
+	    
+	    public List<Pecas> listarPecaOrcamento(Pecas entity)
+	    {
+	        Connection con = getConnection();
+	        String sql = "SELECT OrcamentoPecas.peca_id, pecas.descricao, pecas.preco_unitario, OrcamentoPecas.quantidade\n"
+	        		+ "FROM OrcamentoPecas\n"
+	        		+ "JOIN pecas ON OrcamentoPecas.peca_id = pecas.peca_id AND OrcamentoPecas.orcamento_id = ?";
+	        List<Pecas> pc = new ArrayList<>();
+	        	      
+	        PreparedStatement ptst1;
+	    
+	        try {
+	            ptst1 = con.prepareStatement(sql);	
+	            ptst1.setInt(1, entity.getIdOrcamentoPeca());
+	            System.out.println(ptst1);
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        }
+
+	        try {
+	            PreparedStatement ps = con.prepareStatement(sql);
+	            ResultSet rs = ps.executeQuery();
+
+	            while(rs.next())
+	            {
+	            	Pecas usu = new Pecas();
+
+	                try
+	                {
+	                    usu.setIdItem(rs.getInt("peca_id"));
+	                	usu.setQuantidade(rs.getInt("quantidade"));
+	                	usu.setDescricaoItem(rs.getString("descricao"));
+	                	usu.setPrecoItem(rs.getDouble("preco_unitario"));
+	                }
+	                catch (Exception e)
+	                {
+	                    e.printStackTrace();
+	                }
+	                pc.add(usu);
+	            }
+	            ps.close();
+	        }
+	        catch (SQLException e)
+	        {
+	            e.printStackTrace();
+	        }
+	        finally {closeConnection();}
+	        return pc;
+	    }
 //=======================================DELETAR=========================================
 	@Override
 	public void deletar(Pecas entity) {
         try {
             Connection con = BaseDAOImpl.getConnection();
             String sql = "DELETE FROM tb_pecas WHERE id_peca = ?";
+            PreparedStatement statement = con.prepareStatement(sql);
+            statement.setInt(1, entity.getIdItem());
+            statement.executeUpdate();
+            statement.close();
+            BaseDAOImpl.closeConnection();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+	
+	public void deletarPecaOrcamento(Pecas entity) {
+        try {
+            Connection con = BaseDAOImpl.getConnection();
+            String sql = "DELETE FROM tb_pecas WHERE peca_id = ?";
             PreparedStatement statement = con.prepareStatement(sql);
             statement.setInt(1, entity.getIdItem());
             statement.executeUpdate();

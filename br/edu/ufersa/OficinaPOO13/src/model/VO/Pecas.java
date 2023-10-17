@@ -3,10 +3,12 @@ package model.VO;
 public class Pecas {
 
 	private int idItem; 
+	private int idOrcamentoPeca;
 	private String descricaoItem;
 	private String fabricante;
 	private double precoItem;
 	private int estoqueItem;
+	private int quantidade;
 	
 	
 	public Pecas(){}
@@ -28,12 +30,40 @@ public class Pecas {
 	}
 	
 	
+	
+	public Pecas(int idItem, int idOrcamentoPeca, String descricaoItem, int quantidade) {
+		setIdItem(idItem);
+		setIdOrcamentoPeca(idOrcamentoPeca);
+		setDescricaoItem(descricaoItem);
+		setQuantidade(quantidade);
+	}
+	
+	
+
 	//GETS AND SETS:
+	
+	
 	
 	public int getIdItem() {
 			return idItem;
 	}
 
+
+	public int getIdOrcamentoPeca() {
+		return idOrcamentoPeca;
+	}
+
+	public void setIdOrcamentoPeca(int idOrcamentoPeca) {
+		this.idOrcamentoPeca = idOrcamentoPeca;
+	}
+
+	public int getQuantidade() {
+		return quantidade;
+	}
+
+	public void setQuantidade(int quantidade) {
+		this.quantidade = quantidade;
+	}
 
 	public void setIdItem(int idItem) {
 		if (idItem > 0) {
