@@ -20,8 +20,13 @@ public class OrcamentoBO implements BaseInterBO<Orcamento>{
 	
 	@Override
 	public boolean cadastrar(Orcamento vo) throws InsertException {
-	    orcDAO.inserir(vo);
+	    try {
+		orcDAO.inserir(vo);
 	    return true;
+	    } catch (Exception e) {
+	    	Alerts.showAlert("Erro", "Erro no cadastro", "Houve um erro no cadastro do orçamento.", AlertType.ERROR);
+	    }
+		return false;
 }
 
 //======================================BUSCAR POR ID================================================================
@@ -106,14 +111,15 @@ public class OrcamentoBO implements BaseInterBO<Orcamento>{
 	            if (!verificarOrcamento.next()) {
 	                throw new InsertException("Orçamento não encontrado");
 	            } else {
-
+	        	
 	            return orcDAO.alterar(vo);
+	            
 	            }
 	        }
 	        catch (Exception e) {
 	        	Alerts.showAlert("Erro", "Erro ao alterar", "Houve um erro ao alterar a informação no banco de dados.", AlertType.ERROR);
 	        }
-		return vo;
+			return vo;
 	    }
 
 	//======================================ALTERAR IS PAGO=======================================================================

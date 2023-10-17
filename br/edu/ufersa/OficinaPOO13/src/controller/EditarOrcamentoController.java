@@ -70,8 +70,8 @@ public void Initialize(Orcamento orc) {
     
     
     @FXML
-    void realizarEdicao(ActionEvent event) throws ParseException {
-Orcamento orcPago = new Orcamento();
+    void realizarEdicao(ActionEvent event) throws Exception {
+    	Orcamento orcPago = new Orcamento();
     	
     	orcPago.setCPFClienteOrcamento(textoCPF.getText());
  
@@ -89,18 +89,18 @@ Orcamento orcPago = new Orcamento();
     	
     	orcPago.setPlacaOrc(textoPlaca.getText());
     	
-    	orcPago.setIsPago(true);	
+    	orcPago.setIsPago(false);	
     	
     	orcPago.setTotalOrcamento(Double.valueOf(textfieldPrecoTotal.getText()));    	
     	
     	try {
     		OrcamentoBO orcBO = new OrcamentoBO();
     		orcBO.alterar(orcPago);
-    		Alerts.showAlert("Sucesso!", "Pagamento Concluído", "O orçamento foi pago com sucesso", AlertType.INFORMATION);
              		
     	} catch (Exception e) {
-    		Alerts.showAlert("Erro", "Pagamento nao efetuado", "Erro ao efetuar pagamento", AlertType.ERROR);
+    		Alerts.showAlert("Erro", "Alteração não efetuada", "Erro ao alterar", AlertType.ERROR);
     	}
+    	Telas.telaMenuOrcamentos();
     }
 
 

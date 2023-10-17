@@ -1,6 +1,6 @@
 package controller;
 
-import java.util.Date;
+import java.sql.Date;
 import java.util.List;
 
 import javafx.event.ActionEvent;
@@ -13,8 +13,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import model.BO.OrcamentoBO;
-import model.VO.Funcionario;
-import model.VO.Gerente;
 import model.VO.Orcamento;
 import model.VO.UsuarioAutenticado;
 import view.Telas;
@@ -74,14 +72,13 @@ public class MenuOrcamentoController {
     @FXML private TableColumn <Orcamento, Integer>tableColumnPecaOrc = new TableColumn<Orcamento, Integer>("id_peca");
     @FXML private TableColumn <Orcamento, String>tableColumnPlacaOrc = new TableColumn<Orcamento, String>("placa");
     @FXML private TableColumn <Orcamento, Double>tableColumnPrecoOrc = new TableColumn<Orcamento, Double>("precototal");
-    @FXML private TableColumn <Orcamento, Integer>tableColumnServicoOrc = new TableColumn<Orcamento, Integer>("servico_id");
+    @FXML private TableColumn <Orcamento, Integer>tableColumnServicoOrc = new TableColumn<Orcamento, Integer>("id_servico");
 
     
 public void initialize() {
 		
     	OrcamentoBO orcBO = new OrcamentoBO();
 
-    	
     	tableColumnCliente.setCellValueFactory(new PropertyValueFactory<Orcamento, String>("CPFClienteOrcamento"));
     	tableColumnDataOrc.setCellValueFactory(new PropertyValueFactory<Orcamento, Date>("DataOrcamento"));
     	tableColumnIdOrc.setCellValueFactory(new PropertyValueFactory<Orcamento, Integer>("IdOrcamento"));
@@ -121,7 +118,7 @@ public void initialize() {
     
     @FXML
     void buscarEntreDatas(MouseEvent event) {
-
+    	
     }
   //============================================================================================
 
@@ -186,7 +183,6 @@ public void initialize() {
         {
             e.printStackTrace();
         }
-    	
     }
     
   //============================================================================================

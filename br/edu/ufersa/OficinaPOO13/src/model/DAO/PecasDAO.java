@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import model.VO.Pecas;
-import model.VO.Servico;
 
 public class PecasDAO extends BaseDAOImpl <Pecas>{
 	

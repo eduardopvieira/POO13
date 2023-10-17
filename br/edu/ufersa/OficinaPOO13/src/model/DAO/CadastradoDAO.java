@@ -32,11 +32,7 @@ public class CadastradoDAO extends BaseDAOImpl <Cadastrado>{
                 usu.setEndereco(rs.getString("endereco"));
                 usu.setFuncao(rs.getString("funcao"));
                 pc.add(usu);
-
-                System.out.println("CPF: " + usu.getCPF());
-                System.out.println("Nome: " + usu.getNome());
-                System.out.println("Endereco: " + usu.getEndereco());
-                System.out.println("Funcao: " + usu.getFuncao());            }
+          }
             ps.close();
         }
         catch (SQLException e)

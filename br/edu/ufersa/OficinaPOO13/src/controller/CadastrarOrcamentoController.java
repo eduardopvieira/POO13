@@ -73,13 +73,16 @@ public class CadastrarOrcamentoController {
     	    Alerts.showAlert("ERRO", "Data inválida", "Insira uma data no formato 'AAAA-MM-DD'.", AlertType.INFORMATION);
     	}
 
+    	try {
     	orc.setCPFClienteOrcamento(textfieldCPF.getText());
     	orc.setIsPago(false);
     	orc.setPlacaOrc(textfieldPlaca.getText());
     	orcBO.cadastrar(orc);
     	Alerts.showAlert("Sucesso", "Orçamento cadastrado com sucesso"," " ,AlertType.INFORMATION);
-    	
     	Telas.telaMenuOrcamentos();
+    	} catch (Exception e) {
+    		Alerts.showAlert("Erro", "Houve um erro no cadastro do orçamento.", "", AlertType.ERROR);
+    	}
     }
 
     

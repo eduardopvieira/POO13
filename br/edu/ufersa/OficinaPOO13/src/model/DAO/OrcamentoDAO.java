@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import model.VO.Orcamento;
-import model.VO.Pecas;
 
 public class OrcamentoDAO extends BaseDAOImpl <Orcamento>{
     
@@ -16,8 +15,8 @@ public class OrcamentoDAO extends BaseDAOImpl <Orcamento>{
 	public void inserir(Orcamento entity) {
             try {
                 Connection con = BaseDAOImpl.getConnection();
-                String sql = "INSERT INTO tb_orcamentos (cpf, placa, id_peca, servico_id, data_orc, precoTotal, isPago, id_orcamento) values (?,?,?,?,?,?,?,?)";
-                PreparedStatement statement = con.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
+                String sql = "INSERT INTO tb_orcamentos (cpf, placa, id_peca, id_servico, data_orc, precoTotal, isPago, id_orcamento) values (?,?,?,?,?,?,?,?)";
+                PreparedStatement statement = con.prepareStatement(sql);      
                 statement.setString(1, entity.getCPFClienteOrcamento());
                 statement.setString(2, entity.getPlacaOrc());
                 statement.setInt(3, entity.getIdPecaOrcamento());
@@ -35,7 +34,7 @@ public class OrcamentoDAO extends BaseDAOImpl <Orcamento>{
     //=======================================================================================
 
     public void deletar(Orcamento entity) {
-
+    	
         Connection con = getConnection();
         String sql = "DELETE FROM tb_orcamentos WHERE id_orcamento = ?";
         try
@@ -209,7 +208,7 @@ public class OrcamentoDAO extends BaseDAOImpl <Orcamento>{
                     usu.setDataOrcamento(rs.getDate("data_orc"));
                     usu.setTotalOrcamento(rs.getDouble("precototal"));
                     usu.setIdPecaOrcamento(rs.getInt("id_peca"));
-                    usu.setIdServOrc(rs.getInt("servico_id"));
+                    usu.setIdServOrc(rs.getInt("id_servico"));
                     
                 }
                 catch (Exception e)
