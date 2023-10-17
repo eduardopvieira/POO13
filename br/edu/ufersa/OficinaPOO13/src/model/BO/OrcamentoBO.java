@@ -35,8 +35,6 @@ public class OrcamentoBO implements BaseInterBO<Orcamento>{
 				    	    orcamento.setIdOrcamento(orcBuscado.getInt("id_orcamento"));
 				    	    orcamento.setCPFClienteOrcamento(orcBuscado.getString("cpf"));
 				    	    orcamento.setPlacaOrc(orcBuscado.getString("placa"));
-				    	    orcamento.setIdPecaOrcamento(orcBuscado.getInt("id_peca"));
-				    	    orcamento.setIdServOrc(orcBuscado.getInt("id_servico"));
 				    	    orcamento.setDataOrcamento(orcBuscado.getDate("data_orc"));
 				    	    orcamento.setTotalOrcamento(orcBuscado.getDouble("precoTotal"));
 				    	    orcamento.setIsPago(orcBuscado.getBoolean("isPago"));
@@ -59,8 +57,6 @@ public class OrcamentoBO implements BaseInterBO<Orcamento>{
 				    	    orcamento.setIdOrcamento(orcBuscado.getInt("id_orcamento"));
 				    	    orcamento.setCPFClienteOrcamento(orcBuscado.getString("cpf"));
 				    	    orcamento.setPlacaOrc(orcBuscado.getString("placa"));
-				    	    orcamento.setIdPecaOrcamento(orcBuscado.getInt("id_peca"));
-				    	    orcamento.setIdServOrc(orcBuscado.getInt("id_servico"));
 				    	    orcamento.setDataOrcamento(orcBuscado.getDate("data_orc"));
 				    	    orcamento.setTotalOrcamento(orcBuscado.getDouble("precoTotal"));
 				    	    orcamento.setIsPago(orcBuscado.getBoolean("isPago"));
@@ -83,8 +79,6 @@ public class OrcamentoBO implements BaseInterBO<Orcamento>{
 					    	    orcamento.setIdOrcamento(orcBuscado.getInt("id_orcamento"));
 					    	    orcamento.setCPFClienteOrcamento(orcBuscado.getString("cpf"));
 					    	    orcamento.setPlacaOrc(orcBuscado.getString("placa"));
-					    	    orcamento.setIdPecaOrcamento(orcBuscado.getInt("id_peca"));
-					    	    orcamento.setIdServOrc(orcBuscado.getInt("id_servico"));
 					    	    orcamento.setDataOrcamento(orcBuscado.getDate("data_orc"));
 					    	    orcamento.setTotalOrcamento(orcBuscado.getDouble("precoTotal"));
 					    	    orcamento.setIsPago(orcBuscado.getBoolean("isPago"));

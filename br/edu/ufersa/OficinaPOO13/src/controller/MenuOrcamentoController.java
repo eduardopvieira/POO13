@@ -71,10 +71,8 @@ public class MenuOrcamentoController {
     @FXML private TableColumn <Orcamento, Date>tableColumnDataOrc= new TableColumn<Orcamento, Date>("data_orc");
     @FXML private TableColumn <Orcamento, Integer>tableColumnIdOrc = new TableColumn<Orcamento, Integer>("id_orcamento");
     @FXML private TableColumn <Orcamento, Boolean>tableColumnIsPago = new TableColumn<Orcamento, Boolean>("ispago");
-    @FXML private TableColumn <Orcamento, Integer>tableColumnPecaOrc = new TableColumn<Orcamento, Integer>("id_peca");
     @FXML private TableColumn <Orcamento, String>tableColumnPlacaOrc = new TableColumn<Orcamento, String>("placa");
     @FXML private TableColumn <Orcamento, Double>tableColumnPrecoOrc = new TableColumn<Orcamento, Double>("precototal");
-    @FXML private TableColumn <Orcamento, Integer>tableColumnServicoOrc = new TableColumn<Orcamento, Integer>("servico_id");
 
     
 public void initialize() {
@@ -86,19 +84,15 @@ public void initialize() {
     	tableColumnDataOrc.setCellValueFactory(new PropertyValueFactory<Orcamento, Date>("DataOrcamento"));
     	tableColumnIdOrc.setCellValueFactory(new PropertyValueFactory<Orcamento, Integer>("IdOrcamento"));
     	tableColumnIsPago.setCellValueFactory(new PropertyValueFactory<Orcamento, Boolean>("IsPago"));
-    	tableColumnPecaOrc.setCellValueFactory(new PropertyValueFactory<Orcamento, Integer>("IdPecaOrcamento"));
     	tableColumnPlacaOrc.setCellValueFactory(new PropertyValueFactory<Orcamento, String>("PlacaOrc"));
     	tableColumnPrecoOrc.setCellValueFactory(new PropertyValueFactory<Orcamento, Double>("TotalOrcamento"));
-    	tableColumnServicoOrc.setCellValueFactory(new PropertyValueFactory<Orcamento, Integer>("IdServOrc"));
         
         tabelaOrcamentos.getColumns().add(tableColumnCliente);
         tabelaOrcamentos.getColumns().add(tableColumnDataOrc);
         tabelaOrcamentos.getColumns().add(tableColumnIdOrc);
         tabelaOrcamentos.getColumns().add(tableColumnIsPago);
-        tabelaOrcamentos.getColumns().add(tableColumnPecaOrc);
         tabelaOrcamentos.getColumns().add(tableColumnPlacaOrc);
         tabelaOrcamentos.getColumns().add(tableColumnPrecoOrc);
-        tabelaOrcamentos.getColumns().add(tableColumnServicoOrc);
         
         
 

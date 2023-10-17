@@ -8,8 +8,6 @@ public class Orcamento {
   private int idOrcamento;
   private String cpfClienteOrc;
   private String placaAutoOrc;
-  private int idPecaOrc;
-  private int idServicoOrc;
   private Date dataOrcamento;
   private double totalOrcamento;
   private boolean isPago;
@@ -31,8 +29,6 @@ public class Orcamento {
       setCPFClienteOrcamento(clienteOrcamento);
       setPlacaOrc(automovelOrcamento);
       setDataOrcamento(dataOrcamento);
-      setIdPecaOrcamento(pecaOrcamento);
-      setIdServOrc(servicoOrcamento);
       setTotalOrcamento(totalOrcamento);
       setIsPago(isPago);
   }
@@ -43,32 +39,10 @@ public class Orcamento {
       setCPFClienteOrcamento(clienteOrcamento);
       setPlacaOrc(automovelOrcamento);
       setDataOrcamento(dataOrcamento);
-      setIdPecaOrcamento(pecaOrcamento);
-      setIdServOrc(servicoOrcamento);
       setTotalOrcamento(totalOrcamento);
       setIsPago(false);
   }
   
-  
-
-//=========================== SET E GET PEÇA DO ORÇAMENTO ===========================
- public void setIdPecaOrcamento (int id) {
-	 if (id != 0) {
-		 this.idPecaOrc = id;
-	 }
- }
-  
- public int getIdPecaOrcamento () {return idPecaOrc;}
-  
-  
-//=========================== SET E GET SERVIÇO DO ORÇAMENTO ===============================================
-public void setIdServOrc (int s) {
-	if (s != 0) {
-		 this.idServicoOrc = s;
-	 }
-}
- 
-public int getIdServOrc() {return idServicoOrc;}
  
 //=========================== SET E GET TOTAL DO ORÇAMENTO ==================================================
 

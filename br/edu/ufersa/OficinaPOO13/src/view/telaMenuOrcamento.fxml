@@ -53,13 +53,11 @@
             <TableView fx:id="tabelaOrcamentos" layoutX="20.0" layoutY="87.0" prefHeight="268.0" prefWidth="601.0">
               <columns>
                 <TableColumn fx:id="tableColumnIdOrc" prefWidth="57.0" text="Id" />
-                <TableColumn fx:id="tableColumnCliente" prefWidth="96.0" text="Cliente" />
-                  <TableColumn fx:id="tableColumnPlacaOrc" prefWidth="72.0" text="Placa" />
-                  <TableColumn fx:id="tableColumnPecaOrc" prefWidth="76.0" text="Peça" />
-                  <TableColumn fx:id="tableColumnServicoOrc" minWidth="0.0" prefWidth="71.0" text="Serviço" />
-                  <TableColumn fx:id="tableColumnPrecoOrc" prefWidth="76.0" text="Valor" />
-                  <TableColumn fx:id="tableColumnDataOrc" prefWidth="75.0" text="Data" />
-                  <TableColumn fx:id="tableColumnIsPago" prefWidth="75.0" text="Pago?" />
+                <TableColumn fx:id="tableColumnCliente" prefWidth="123.0" text="Cliente" />
+                  <TableColumn fx:id="tableColumnPlacaOrc" prefWidth="120.0" text="Placa" />
+                  <TableColumn fx:id="tableColumnPrecoOrc" minWidth="8.0" prefWidth="103.0" text="Valor" />
+                  <TableColumn fx:id="tableColumnDataOrc" prefWidth="133.0" text="Data" />
+                  <TableColumn fx:id="tableColumnIsPago" prefWidth="64.0" text="Pago?" />
               </columns>
             </TableView>
             <ButtonBar layoutY="2.0" prefHeight="40.0" prefWidth="621.0">

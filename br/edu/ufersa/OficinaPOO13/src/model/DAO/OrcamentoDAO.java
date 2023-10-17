@@ -16,16 +16,14 @@ public class OrcamentoDAO extends BaseDAOImpl <Orcamento>{
 	public void inserir(Orcamento entity) {
             try {
                 Connection con = BaseDAOImpl.getConnection();
-                String sql = "INSERT INTO tb_orcamentos (cpf, placa, id_peca, servico_id, data_orc, precoTotal, isPago, id_orcamento) values (?,?,?,?,?,?,?,?)";
+                String sql = "INSERT INTO tb_orcamentos (cpf, placa, data_orc, precoTotal, isPago, id_orcamento) values (?,?,?,?,?,?,?,?)";
                 PreparedStatement statement = con.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
                 statement.setString(1, entity.getCPFClienteOrcamento());
                 statement.setString(2, entity.getPlacaOrc());
-                statement.setInt(3, entity.getIdPecaOrcamento());
-                statement.setInt(4, entity.getIdServOrc());
-                statement.setDate(5, entity.getDataOrcamento());
-                statement.setDouble(6, entity.getTotalOrcamento());
-                statement.setBoolean(7, entity.getIsPago());
-                statement.setInt(8, entity.getIdOrcamento());
+                statement.setDate(3, entity.getDataOrcamento());
+                statement.setDouble(4, entity.getTotalOrcamento());
+                statement.setBoolean(5, entity.getIsPago());
+                statement.setInt(6, entity.getIdOrcamento());
                 statement.execute();
                 statement.close();
             } catch (Exception e) {
@@ -56,19 +54,17 @@ public class OrcamentoDAO extends BaseDAOImpl <Orcamento>{
 
     public Orcamento alterar (Orcamento entity) throws SQLException{
         Connection con = getConnection();
-        String sql = "UPDATE tb_orcamentos SET cpf = ?, placa = ?, id_peca = ?, id_servico = ?, precoTotal = ?, data_orc = ?, isPago = ? WHERE id_orcamento = ?";
+        String sql = "UPDATE tb_orcamentos SET cpf = ?, placa = ?, precoTotal = ?, data_orc = ?, isPago = ? WHERE id_orcamento = ?";
 
         try
         {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1, entity.getCPFClienteOrcamento());
             ps.setString(2, entity.getPlacaOrc());
-            ps.setInt(3, entity.getIdPecaOrcamento());
-            ps.setInt(4, entity.getIdServOrc());
-            ps.setDouble(5, entity.getTotalOrcamento());
-            ps.setDate(6, (Date) entity.getDataOrcamento());
-            ps.setBoolean(7, entity.getIsPago());
-            ps.setInt(8, entity.getIdOrcamento());
+            ps.setDouble(3, entity.getTotalOrcamento());
+            ps.setDate(4, (Date) entity.getDataOrcamento());
+            ps.setBoolean(5, entity.getIsPago());
+            ps.setInt(6, entity.getIdOrcamento());
             ps.execute();
             ps.close();
             return entity;
@@ -208,8 +204,6 @@ public class OrcamentoDAO extends BaseDAOImpl <Orcamento>{
                     usu.setIsPago(rs.getBoolean("ispago"));
                     usu.setDataOrcamento(rs.getDate("data_orc"));
                     usu.setTotalOrcamento(rs.getDouble("precototal"));
-                    usu.setIdPecaOrcamento(rs.getInt("id_peca"));
-                    usu.setIdServOrc(rs.getInt("servico_id"));
                     
                 }
                 catch (Exception e)

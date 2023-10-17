@@ -20,7 +20,7 @@ public class CadastrarOrcamentoController {
     private Button botaoCancelar;
 
     @FXML
-    private Button botaoConcluir;
+    private Button botaoProximo;
 
     @FXML
     private TextField textfieldCPF;
@@ -32,16 +32,8 @@ public class CadastrarOrcamentoController {
     private TextField textfieldID;
 
     @FXML
-    private TextField textfieldIdPeca;
-
-    @FXML
-    private TextField textfieldIdServico;
-
-    @FXML
     private TextField textfieldPlaca;
     
-    @FXML
-    private TextField textfieldPrecoTotal;
 
     @FXML
     void cadastrarOrcamento(ActionEvent event) throws Exception {
@@ -50,15 +42,6 @@ public class CadastrarOrcamentoController {
     	
     	int id = Integer.valueOf(textfieldID.getText());
     	orc.setIdOrcamento(id);
-    	
-    	int idPeca = Integer.valueOf(textfieldIdPeca.getText());
-    	orc.setIdPecaOrcamento(idPeca);
-    	
-    	int idServico = Integer.valueOf(textfieldIdServico.getText());
-    	orc.setIdServOrc(idServico);
-    	
-    	double precoTotal = Double.valueOf(textfieldPrecoTotal.getText()); 
-    	orc.setTotalOrcamento(precoTotal);
     	
     	orc.setCPFClienteOrcamento(textfieldCPF.getText());
     	
@@ -79,10 +62,8 @@ public class CadastrarOrcamentoController {
     	orcBO.cadastrar(orc);
     	Alerts.showAlert("Sucesso", "Orçamento cadastrado com sucesso"," " ,AlertType.INFORMATION);
     	
-    	Telas.telaMenuOrcamentos();
+    	Telas.telaCadastrarPecasOrcamento(orc);
     }
-
-    
     
     @FXML
     void voltar(ActionEvent event) throws Exception{

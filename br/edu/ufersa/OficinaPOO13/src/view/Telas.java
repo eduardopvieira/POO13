@@ -183,7 +183,13 @@ public class Telas extends Application{
 	}
 	
 	public static void telaCadastroOrcamento() throws Exception{
-		Parent root = FXMLLoader.load(Telas.class.getResource("telaCadastrarOrcamento.fxml"));
+		Parent root = FXMLLoader.load(Telas.class.getResource("telaCadastrarOrcamentoParte1.fxml"));
+		Scene cena = new Scene(root);		
+		primaryStage.setScene(cena);
+	}
+	
+	public static void telaCadastrarPecasOrcamento(Orcamento orc) throws Exception {
+		Parent root = FXMLLoader.load(Telas.class.getResource("telaCadastrarOrcamentoParte1.fxml"));
 		Scene cena = new Scene(root);		
 		primaryStage.setScene(cena);
 	}
