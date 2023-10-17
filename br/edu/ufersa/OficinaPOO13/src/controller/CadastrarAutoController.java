@@ -60,7 +60,6 @@ public class CadastrarAutoController {
     	try {
 			Telas.telaMenuAutos();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 

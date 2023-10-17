@@ -23,17 +23,14 @@ public class ServicoBO implements BaseInterBO<Servico>{
         try {
             ResultSet rs = servDAO.buscar(vo);
             if (rs.next()) {
-                // Serviço já existe
                 Alerts.showAlert("Erro", "ID já existe", "O serviço com ID " + vo.getServicoId() + " já está cadastrado.", AlertType.ERROR);
                 return false;
             } else {
-                // Serviço não existe, cadastre-o
                 servDAO.inserir(vo);
                 Alerts.showAlert("Sucesso", "Serviço cadastrado com sucesso", "O serviço foi cadastrado com sucesso.", AlertType.INFORMATION);
                 return true;
             }
         } catch (SQLException e) {
-            // Trate a exceção ou exiba uma mensagem de erro
             e.printStackTrace();
             Alerts.showAlert("Erro", "Erro no cadastro do serviço", "Ocorreu um erro ao cadastrar o serviço.", AlertType.ERROR);
             return false;
@@ -55,7 +52,6 @@ public class ServicoBO implements BaseInterBO<Servico>{
 						servBuscado.getInt("servico_id")));
 				    	}
 				    } catch (SQLException e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
          return servs;
@@ -75,7 +71,6 @@ public class ServicoBO implements BaseInterBO<Servico>{
 							servBuscado.getInt("servico_id")));
 					    	}
 				    } catch (SQLException e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
          return servs;

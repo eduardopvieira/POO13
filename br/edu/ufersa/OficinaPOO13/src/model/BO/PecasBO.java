@@ -23,17 +23,14 @@ public class PecasBO implements BaseInterBO<Pecas>{
 	    try {
 	        ResultSet rs = pDAO.buscarPorPK(vo);
 	        if (rs.next()) {
-	            // Peça já existe
 	            Alerts.showAlert("Erro", "ID já existe", "A peça com ID " + vo.getIdItem() + " já está cadastrada.", AlertType.ERROR);
 	            return false;
 	        } else {
-	            // Serviço não existe, cadastre-o
 	            pDAO.inserir(vo);
 	            Alerts.showAlert("Sucesso", "Peça cadastrado com sucesso", "A peça foi cadastrada com sucesso.", AlertType.INFORMATION);
 	            return true;
 	        }
 	    } catch (SQLException e) {
-	        // Trate a exceção ou exiba uma mensagem de erro
 	        e.printStackTrace();
 	        Alerts.showAlert("Erro", "Erro no cadastro da peça", "Ocorreu um erro ao cadastrar a peça.", AlertType.ERROR);
 	        return false;
@@ -55,7 +52,6 @@ public class PecasBO implements BaseInterBO<Pecas>{
 						pecaBuscada.getInt("estoque_peca")));
 				    	}
 				    } catch (SQLException e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
          return pecas;
@@ -123,7 +119,6 @@ public class PecasBO implements BaseInterBO<Pecas>{
 
 @Override
 public ArrayList<Pecas> buscarPorPK(Pecas vo) throws NotFoundException, InfoNaoCompativelException {
-	// TODO Auto-generated method stub
 	return null;
 }	
 }

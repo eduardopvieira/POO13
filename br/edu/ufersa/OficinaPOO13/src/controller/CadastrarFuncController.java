@@ -83,7 +83,7 @@ public class CadastrarFuncController {
     	Funcionario func = new Funcionario();
         FuncionarioDAO funcDAO = new FuncionarioDAO();
     	func.setCPF(textfieldCPFDeletar.getText());
-    	funcDAO.deletar(func);
+    	funcDAO.deletar(func); 
     	Telas.telaLogin();
     }
 }

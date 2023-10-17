@@ -3,7 +3,6 @@ package controller;
 import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert.AlertType;
@@ -74,7 +73,7 @@ public class VisualizarOrcamentoController {
         	textoPreco.setText(Double.toString(orc.getTotalOrcamento()));
         	textoIsPago.setText(Boolean.toString(orc.getIsPago()));
         	
-        	Date dataSql = orc.getDataOrcamento(); // Suponha que você já tenha obtido o objeto Date da sua entidade 'orc'
+        	Date dataSql = orc.getDataOrcamento(); 
 
         	SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         	String dataTexto = dateFormat.format(dataSql);

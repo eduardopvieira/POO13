@@ -28,15 +28,7 @@ public class TelaLoginController {
     
     @FXML
     private PasswordField campoSenha;
-    
-	@FXML
-	/*public void Initialize() {
-	UsuarioAutenticado.setFuncAutenticado(null);
-	UsuarioAutenticado.setGerenteAutenticado(null);
-	System.out.println("Funcionario: " + UsuarioAutenticado.getFuncAutenticado().getIsGerente());
-	System.out.println("Gerente: " + UsuarioAutenticado.getGerenteAutenticado().getIsGerente());
 
-	}*/
 	FuncionarioBO funcBO = new FuncionarioBO();
 	GerenteBO gerBO = new GerenteBO();
 	
@@ -53,7 +45,7 @@ public class TelaLoginController {
 	        e.printStackTrace();
 	    }
 
-	    // Limpar completamente o UsuarioAutenticado
+
 	    UsuarioAutenticado.setFuncAutenticado(null);
 	    UsuarioAutenticado.setGerenteAutenticado(null);
 

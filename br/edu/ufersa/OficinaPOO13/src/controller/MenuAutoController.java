@@ -14,8 +14,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import model.BO.AutomovelBO;
 import model.VO.Automovel;
-import model.VO.Funcionario;
-import model.VO.Gerente;
 import model.VO.UsuarioAutenticado;
 import view.Telas;
 import view.util.Alerts;

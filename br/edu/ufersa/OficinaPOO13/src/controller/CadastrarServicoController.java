@@ -7,7 +7,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import model.BO.ServicoBO;
 import model.VO.Servico;
-import model.VO.UsuarioAutenticado;
 import view.Telas;
 import view.util.Alerts;
 

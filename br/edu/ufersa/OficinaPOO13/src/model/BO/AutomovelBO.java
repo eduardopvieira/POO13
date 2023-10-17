@@ -39,12 +39,10 @@ public class AutomovelBO implements BaseInterBO<Automovel>{
               	}
               	}
             } catch (SQLException e) {
-    	        // Trate a exceção ou exiba uma mensagem de erro
     	        e.printStackTrace();
     	        Alerts.showAlert("Erro", "Erro no cadastro do automovel.", "Ocorreu um erro ao cadastrar o auto.", AlertType.ERROR);
     	        return false;
     	    } catch (InfoNaoCompativelException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		return false;

@@ -21,7 +21,7 @@
             <Label layoutX="295.0" layoutY="12.0" prefHeight="16.0" prefWidth="41.0" text="Data:" />
             <Label layoutX="264.0" layoutY="44.0" prefHeight="16.0" prefWidth="74.0" text="Id Serviço:" />
             <TextField fx:id="textfieldIdPeca" layoutX="80.0" layoutY="40.0" />
-            <TextField fx:id="textfieldData" layoutX="335.0" layoutY="8.0" />
+            <TextField fx:id="textfieldData" layoutX="335.0" layoutY="8.0" promptText="YYYY-MM-DD" />
             <TextField fx:id="textfieldIdServico" layoutX="335.0" layoutY="40.0" />
             <Label layoutX="36.0" layoutY="79.0" prefHeight="16.0" prefWidth="41.0" text="Placa:" />
             <Label layoutX="302.0" layoutY="79.0" text="CPF:" />
