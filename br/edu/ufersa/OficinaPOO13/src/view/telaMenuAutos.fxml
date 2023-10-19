@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  Copyright (c) 2015, 2019, Gluon and/or its affiliates.
+  All rights reserved. Use is subject to license terms.
+
+  This file is available and licensed under the following license:
+
+  Redistribution and use in source and binary forms, with or without
+  modification, are permitted provided that the following conditions
+  are met:
+
+  - Redistributions of source code must retain the above copyright
+    notice, this list of conditions and the following disclaimer.
+  - Redistributions in binary form must reproduce the above copyright
+    notice, this list of conditions and the following disclaimer in
+    the documentation and/or other materials provided with the distribution.
+  - Neither the name of Oracle Corporation nor the names of its
+    contributors may be used to endorse or promote products derived
+    from this software without specific prior written permission.
+
+  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+  A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+  OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+  LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+  DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+  THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MenuAutoController">
+  <children>
+    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
+      <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#4a4a4a" height="44.0" stroke="BLACK" strokeType="INSIDE" width="640.0" />
+            <Button fx:id="botaoCadastrarCliente" alignment="CENTER" contentDisplay="CENTER" layoutX="479.0" layoutY="359.0" mnemonicParsing="false" onAction="#abrirCadastroAuto" prefHeight="31.0" prefWidth="142.0" style="-fx-background-color: #;" text="Cadastrar" />
+            <TextField fx:id="botaoBuscar" layoutX="13.0" layoutY="359.0" prefHeight="31.0" prefWidth="123.0" promptText="Buscar" />
+            <TableView fx:id="tableviewAuto" layoutX="14.0" layoutY="86.0" prefHeight="271.0" prefWidth="608.0">
+              <columns>
+                <TableColumn fx:id="tableColumnModelo" prefWidth="93.0" text="Modelo" />
+                <TableColumn fx:id="tableColumnPlaca" minWidth="0.0" prefWidth="94.0" text="Placa" />
+                  <TableColumn fx:id="tableColumnMarca" prefWidth="91.0" text="Marca" />
+                  <TableColumn fx:id="tableColumnCor" prefWidth="94.0" text="Cor" />
+                  <TableColumn fx:id="tableColumnKm" prefWidth="75.0" text="KM" />
+                  <TableColumn fx:id="tableColumnAno" prefWidth="81.0" text="Ano" />
+                  <TableColumn fx:id="tableColumnCPFDono" prefWidth="79.0" text="Dono" />
+              </columns>
+            </TableView>
+            <ButtonBar layoutY="2.0" prefHeight="40.0" prefWidth="621.0">
+              <buttons>
+                  <Button fx:id="botaoOrcamentos" minWidth="69.0" mnemonicParsing="false" onAction="#trocarParaMenuOrcamentos" prefHeight="36.0" prefWidth="245.0" text="Orçamentos">
+                     <font>
+                        <Font size="12.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="botaoClientes" mnemonicParsing="false" onAction="#irTelaMenuClientes" prefHeight="36.0" prefWidth="96.0" text="Clientes">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Button>
+                  <Button mnemonicParsing="false" prefHeight="36.0" prefWidth="96.0" text="Automovel" />
+                  <Button fx:id="botaoPecas" mnemonicParsing="false" onAction="#trocarParaMenuPecas" prefHeight="36.0" prefWidth="207.0" text="Peças">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="botaoServicos" mnemonicParsing="false" onAction="#trocarParaMenuServicos" prefHeight="36.0" prefWidth="111.0" text="Serviços">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="botaoSair" mnemonicParsing="false" onAction="#trocarParaTelaLogin" prefHeight="36.0" prefWidth="96.0" text="Sair">
+                     <font>
+                        <Font size="16.0" />
+                     </font></Button>
+              </buttons>
+            </ButtonBar>
+            <Label layoutX="14.0" layoutY="49.0" prefHeight="36.0" prefWidth="163.0" text="Automoveis">
+               <font>
+                  <Font size="26.0" />
+               </font>
+            </Label>
+            <ImageView fx:id="botaoParaBuscar" fitHeight="31.0" fitWidth="34.0" layoutX="155.0" layoutY="359.0" onMouseClicked="#realizarBusca" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@VE/lupa.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="botaoDeletar" layoutX="525.0" layoutY="55.0" mnemonicParsing="false" onAction="#deletar" prefHeight="24.0" prefWidth="83.0" text="Deletar" />
+            <Button fx:id="botaoEditar" layoutX="428.0" layoutY="55.0" mnemonicParsing="false" onAction="#editar" prefHeight="24.0" prefWidth="83.0" text="Editar" />
+      </children>
+    </AnchorPane>
+  </children>
+</VBox>

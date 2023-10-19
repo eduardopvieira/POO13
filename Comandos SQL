@@ -1,0 +1,70 @@
+-- Criação da tabela tb_clientes
+CREATE TABLE tb_clientes (
+    cpf_cliente varchar(11) PRIMARY KEY,
+    nome_cliente varchar(50),
+    endereco_cliente varchar(100)
+);
+
+-- Criação da tabela tb_automoveis
+CREATE TABLE tb_automoveis (
+    dono varchar(11) REFERENCES tb_clientes(cpf_cliente) ON DELETE CASCADE,
+    placa varchar(7) PRIMARY KEY
+        -- Adicione a restrição de chave estrangeira com DELETE CASCADE
+        ON DELETE CASCADE,
+    modelo varchar(30),
+    marca varchar(30),
+    ano int,
+    quilometragem numeric(7, 0),
+    cor varchar(30)
+);
+
+-- Criação da tabela tb_funcionarios
+CREATE TABLE tb_funcionarios (
+    cpf_func varchar(11) PRIMARY KEY,
+    nome_func varchar(50),
+    endereco_func varchar(100),
+    senha_func varchar(20),
+    isGerente boolean
+);
+
+-- Criação da tabela tb_servicos
+CREATE TABLE tb_servicos (
+    servico_id serial PRIMARY KEY,
+    servico_nome varchar(30),
+    servico_desc varchar(100),
+    servico_preco numeric(5, 2)
+);
+
+-- Criação da tabela tb_pecas
+CREATE TABLE tb_pecas (
+    id_peca serial PRIMARY KEY,
+    desc_peca varchar(20),
+    fab_peca varchar(20),
+    preco_peca numeric(5, 2),
+    estoque_peca numeric(4, 2)
+);
+
+-- Criação da tabela tb_orcamentos
+CREATE TABLE tb_orcamentos (
+    id_orcamento serial PRIMARY KEY,
+    cpf varchar(11) REFERENCES tb_clientes(cpf_cliente) ON DELETE CASCADE,
+    placa varchar(7) REFERENCES tb_automoveis(placa) ON DELETE CASCADE,
+    id_peca integer REFERENCES tb_pecas(id_peca),
+    id_servico integer REFERENCES tb_servicos(servico_id),
+    data_orc date,
+    precoTotal numeric(5, 2),
+    isPago boolean
+);
+
+CREATE OR REPLACE VIEW vw_clientes_e_funcionarios AS
+SELECT cpf_cliente AS CPF, nome_cliente AS Nome, endereco_cliente AS Endereco, 'cliente' AS Funcao FROM tb_clientes
+UNION
+SELECT cpf_func AS CPF, nome_func AS Nome, endereco_func AS Endereco,
+    CASE
+        WHEN isGerente = true THEN 'gerente'
+        ELSE 'funcionario'
+    END AS Funcao
+FROM tb_funcionarios;
+
+
+
